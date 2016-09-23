@@ -1,0 +1,16 @@
+obj/
+bin/Debug/napof.pdb
+*.dll
+Release/
+*.lib
+*.pdb
+*.exe
+.vs/Soundlab/v14/.suo
+Soundlab.VC.VC.opendb
+Soundlab.VC.db
+bin/Soundlab.exp
+bin/Soundlab.iobj
+bin/Soundlab.ipdb
+bin/Soundlab_debug.exp
+bin/Soundlab_debug.ilk
+bin/j4cDAC.txt
