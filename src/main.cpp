@@ -7,8 +7,8 @@
 int main( )
 {
 	ofGLWindowSettings window_settings;
-	window_settings.glVersionMajor = 4;
-	window_settings.glVersionMinor = 5;
+	window_settings.glVersionMajor = 3;
+	window_settings.glVersionMinor = 3;
 	window_settings.windowMode = OF_WINDOW;
 
 	window_settings.width = 1024;

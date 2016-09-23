@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C4EF82D008985A414CC9F5455D781496452D6526" : 0,
+    "E0E505E6CB658039E01DB108E67D68125CDF59DB" : 0,
+    "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7" : 0,
+    "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6648CD66-05CB-4AEE-ADE4-A65865FD7D3B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C4EF82D008985A414CC9F5455D781496452D6526" : "nap\/",
+    "E0E505E6CB658039E01DB108E67D68125CDF59DB" : "netherdream\/",
+    "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7" : "soundlab\/",
+    "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A" : "napnaivi\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Soundlab",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Soundlab.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/naivisoftware\/nap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/naivisoftware\/soundlab.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stijnvanbeek\/nap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C4EF82D008985A414CC9F5455D781496452D6526"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/naivisoftware\/netherdream.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E0E505E6CB658039E01DB108E67D68125CDF59DB"
+    }
+  ]
+}
