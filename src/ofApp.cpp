@@ -269,20 +269,35 @@ void ofApp::createAudio()
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
 	granulator->setInputStream(mBufferStream.get());
+    granulator->density.setProportion(0.5);
+    granulator->duration.setValue(100);
+    granulator->irregularity.setProportion(0.5);
+    granulator->positionDev.setProportion(0.25);
+    granulator->positionSpeed.setProportion(0.4);
 
 	auto& output = patchComponent.getPatch().addOperator<OutputUnit>("output");
 	output.channelCount.setValue(2);
 	output.audioInput.connect(granulator->output);
 
-	auto& animator = patchComponent.getPatch().addOperator<RampAnimator>("animator");
-	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
-	animator.durations.setValue({ 3000, 500, 6000 });
-	animator.looping.setValue(true);
-	animator.schedulerInput.connect(output.schedulerOutput);
-	granulator->density.proportionPlug.connect(animator.output);
+//	auto& animator = patchComponent.getPatch().addOperator<RampAnimator>("animator");
+//	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
+//	animator.durations.setValue({ 3000, 500, 6000 });
+//	animator.looping.setValue(true);
+//	animator.schedulerInput.connect(output.schedulerOutput);
+//	granulator->density.proportionPlug.connect(animator.output);
 
-	granulator->playCloud("cloud", 1.0f);
+//    granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "duration", 2000 },  { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
+    auto& animator = patchComponent.getPatch().addOperator<Animator>("animator");
+    animator.sequences.addAttribute<FloatArray>("pitch", { 1., 1.5, 4/3, 5/3, 7/6 });
+    animator.sequences.addAttribute<FloatArray>("position", { 0, 0.2, 0.3, 0.6 } );
+    animator.sequences.addAttribute<float>("attack", 500);
+    animator.sequences.addAttribute<float>("decay", 500);
+    animator.durations.setValue({ 2000, 1000, 1000, 2000, 1000 });
+    animator.looping.setValue(true);
+    animator.schedulerInput.connect(output.schedulerOutput);
+    granulator->cloudInput.connect(animator.output);
+    
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
 

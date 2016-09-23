@@ -18,7 +18,7 @@ Main Compute
 */
 void main()
 {
-	vec4 image_clr = texture2D(mTexture, varyingtexcoord);
+	vec4 image_clr = texture(mTexture, varyingtexcoord);
 	image_clr.xyz *= mColor;
 
 	// Set output color
