@@ -269,9 +269,10 @@ void ofApp::createAudio()
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
 	granulator->setInputStream(mBufferStream.get());
-    granulator->density.setValue(50);
+    granulator->density.setProportion(0.5);
     granulator->duration.setValue(100);
     granulator->irregularity.setProportion(0.5);
+    granulator->positionDev.setProportion(0.25);
     granulator->positionSpeed.setProportion(0.4);
 
 	auto& output = patchComponent.getPatch().addOperator<OutputUnit>("output");
