@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "ofSoundBuffer.h"
 
 // OF Includes
 #include <napofservice.h>
@@ -288,15 +289,30 @@ void ofApp::createAudio()
 
 //    granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "duration", 2000 },  { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
+    FloatArray pitches1 = { 1., 1.5, 4/3., 5/3., 7/6., 2/3. };
+    FloatArray pitches2 = mult({ 1.5, 4/3., 5/3., 7/6., 5/6. }, 1.5);
+    
     auto& animator = patchComponent.getPatch().addOperator<Animator>("animator");
-    animator.sequences.addAttribute<FloatArray>("pitch", { 1., 1.5, 4/3, 5/3, 7/6 });
-    animator.sequences.addAttribute<FloatArray>("position", { 0, 0.2, 0.3, 0.6 } );
+    animator.sequences.addAttribute<FloatArray>("pitch", pitches1);
+    animator.sequences.addAttribute<FloatArray>("position", { 0.2 } );
     animator.sequences.addAttribute<float>("attack", 500);
     animator.sequences.addAttribute<float>("decay", 500);
-    animator.durations.setValue({ 2000, 1000, 1000, 2000, 1000 });
+    animator.sequences.addAttribute<float>("duration", 2000);
+    animator.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
     animator.looping.setValue(true);
     animator.schedulerInput.connect(output.schedulerOutput);
     granulator->cloudInput.connect(animator.output);
+    
+    auto& animator2 = patchComponent.getPatch().addOperator<Animator>("animator2");
+    animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
+    animator2.sequences.addAttribute<FloatArray>("position", { 0.2 } );
+    animator2.sequences.addAttribute<float>("attack", 500);
+    animator2.sequences.addAttribute<float>("decay", 500);
+    animator2.sequences.addAttribute<float>("duration", 3000);
+    animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
+    animator2.looping.setValue(true);
+    animator2.schedulerInput.connect(output.schedulerOutput);
+    granulator->cloudInput.connect(animator2.output);
     
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
