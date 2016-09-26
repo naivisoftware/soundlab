@@ -51,9 +51,9 @@
 		D22868BC1D95769500682676 /* ControlManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868901D95769500682676 /* ControlManager.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868BD1D95769500682676 /* OptionControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868921D95769500682676 /* OptionControl.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868BE1D95769500682676 /* ValueControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868941D95769500682676 /* ValueControl.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22868BF1D95769500682676 /* Animator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868971D95769500682676 /* Animator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D22868BF1D95769500682676 /* Sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868971D95769500682676 /* Sequencer.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C01D95769500682676 /* DataTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D228689B1D95769500682676 /* DataTypes.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22868C11D95769500682676 /* RampAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D228689E1D95769500682676 /* RampAnimator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D22868C11D95769500682676 /* RampSequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D228689E1D95769500682676 /* RampSequencer.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C21D95769500682676 /* AudioFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A31D95769500682676 /* AudioFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C31D95769500682676 /* MathFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A51D95769500682676 /* MathFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C41D95769500682676 /* UtilityFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A81D95769500682676 /* UtilityFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -265,15 +265,15 @@
 		D22868931D95769500682676 /* OptionControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionControl.h; sourceTree = "<group>"; };
 		D22868941D95769500682676 /* ValueControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ValueControl.cpp; sourceTree = "<group>"; };
 		D22868951D95769500682676 /* ValueControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueControl.h; sourceTree = "<group>"; };
-		D22868971D95769500682676 /* Animator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animator.cpp; sourceTree = "<group>"; };
-		D22868981D95769500682676 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
+		D22868971D95769500682676 /* Sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sequencer.cpp; sourceTree = "<group>"; };
+		D22868981D95769500682676 /* Sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequencer.h; sourceTree = "<group>"; };
 		D22868991D95769500682676 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		D228689A1D95769500682676 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
 		D228689B1D95769500682676 /* DataTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataTypes.cpp; sourceTree = "<group>"; };
 		D228689C1D95769500682676 /* DataTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypes.h; sourceTree = "<group>"; };
 		D228689D1D95769500682676 /* Primitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Primitives.h; sourceTree = "<group>"; };
-		D228689E1D95769500682676 /* RampAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RampAnimator.cpp; sourceTree = "<group>"; };
-		D228689F1D95769500682676 /* RampAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RampAnimator.h; sourceTree = "<group>"; };
+		D228689E1D95769500682676 /* RampSequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RampSequencer.cpp; sourceTree = "<group>"; };
+		D228689F1D95769500682676 /* RampSequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RampSequencer.h; sourceTree = "<group>"; };
 		D22868A01D95769500682676 /* Translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translator.h; sourceTree = "<group>"; };
 		D22868A11D95769500682676 /* ValueRamper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueRamper.h; sourceTree = "<group>"; };
 		D22868A31D95769500682676 /* AudioFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFunctions.cpp; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 		D22869061D9576AE00682676 /* Polyphonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyphonic.h; sourceTree = "<group>"; };
 		D22869071D9576AE00682676 /* Router.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Router.cpp; sourceTree = "<group>"; };
 		D22869081D9576AE00682676 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
-		D22869091D9576AE00682676 /* Sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequencer.h; sourceTree = "<group>"; };
+		D22869091D9576AE00682676 /* VoiceSequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceSequencer.h; sourceTree = "<group>"; };
 		D228690A1D9576AE00682676 /* Unit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
 		D228690B1D9576AE00682676 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		D228690C1D9576AE00682676 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
@@ -685,15 +685,15 @@
 		D22868961D95769500682676 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				D22868971D95769500682676 /* Animator.cpp */,
-				D22868981D95769500682676 /* Animator.h */,
+				D22868971D95769500682676 /* Sequencer.cpp */,
+				D22868981D95769500682676 /* Sequencer.h */,
 				D22868991D95769500682676 /* Buffer.h */,
 				D228689A1D95769500682676 /* CircularBuffer.h */,
 				D228689B1D95769500682676 /* DataTypes.cpp */,
 				D228689C1D95769500682676 /* DataTypes.h */,
 				D228689D1D95769500682676 /* Primitives.h */,
-				D228689E1D95769500682676 /* RampAnimator.cpp */,
-				D228689F1D95769500682676 /* RampAnimator.h */,
+				D228689E1D95769500682676 /* RampSequencer.cpp */,
+				D228689F1D95769500682676 /* RampSequencer.h */,
 				D22868A01D95769500682676 /* Translator.h */,
 				D22868A11D95769500682676 /* ValueRamper.h */,
 			);
@@ -847,7 +847,7 @@
 				D22869061D9576AE00682676 /* Polyphonic.h */,
 				D22869071D9576AE00682676 /* Router.cpp */,
 				D22869081D9576AE00682676 /* Router.h */,
-				D22869091D9576AE00682676 /* Sequencer.h */,
+				D22869091D9576AE00682676 /* VoiceSequencer.h */,
 				D228690A1D9576AE00682676 /* Unit.cpp */,
 				D228690B1D9576AE00682676 /* Unit.h */,
 				D228690C1D9576AE00682676 /* Voice.h */,
@@ -1236,7 +1236,7 @@
 				D228686A1D95767D00682676 /* entity.cpp in Sources */,
 				D22869F61D95780800682676 /* napofshaderbinding.cpp in Sources */,
 				D22869EE1D95780800682676 /* napofblendtype.cpp in Sources */,
-				D22868BF1D95769500682676 /* Animator.cpp in Sources */,
+				D22868BF1D95769500682676 /* Sequencer.cpp in Sources */,
 				D228687C1D95767D00682676 /* serviceableoperator.cpp in Sources */,
 				D22869EC1D95780800682676 /* module_napof.cpp in Sources */,
 				D22869AD1D9577E700682676 /* napethercamera.cpp in Sources */,
@@ -1286,7 +1286,7 @@
 				D22869FE1D95780800682676 /* napofspritecomponent.cpp in Sources */,
 				D228686D1D95767D00682676 /* fileutils.cpp in Sources */,
 				D228686F1D95767D00682676 /* logger.cpp in Sources */,
-				D22868C11D95769500682676 /* RampAnimator.cpp in Sources */,
+				D22868C11D95769500682676 /* RampSequencer.cpp in Sources */,
 				D228687E1D95767D00682676 /* tinyxml2.cpp in Sources */,
 				D228686C1D95767D00682676 /* eventdispatcher.cpp in Sources */,
 				D26025451D957CED0012AAD0 /* typeconverters.cpp in Sources */,

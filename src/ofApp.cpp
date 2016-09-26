@@ -20,8 +20,8 @@
 #include <Lib/Audio/Utility/AudioFile/WavReader.h>
 #include <Lib/Audio/Unit/OutputUnit.h>
 #include <Lib/Audio/Unit/Granular/Granulator.h>
-#include <Lib/Utility/Data/RampAnimator.h>
-#include <Lib/Utility/Data/Animator.h>
+#include <Lib/Utility/Data/RampSequencer.h>
+#include <Lib/Utility/Data/Sequencer.h>
 
 using namespace lib;
 using namespace lib::audio;
@@ -280,7 +280,7 @@ void ofApp::createAudio()
 	output.channelCount.setValue(2);
 	output.audioInput.connect(granulator->output);
 
-//	auto& animator = patchComponent.getPatch().addOperator<RampAnimator>("animator");
+//	auto& animator = patchComponent.getPatch().addOperator<RampSequencer>("animator");
 //	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
 //	animator.durations.setValue({ 3000, 500, 6000 });
 //	animator.looping.setValue(true);
@@ -292,7 +292,7 @@ void ofApp::createAudio()
     FloatArray pitches1 = { 1., 1.5, 4/3., 5/3., 7/6., 2/3. };
     FloatArray pitches2 = mult({ 1.5, 4/3., 5/3., 7/6., 5/6. }, 1.5);
     
-    auto& animator = patchComponent.getPatch().addOperator<Animator>("animator");
+    auto& animator = patchComponent.getPatch().addOperator<Sequencer>("animator");
     animator.sequences.addAttribute<FloatArray>("pitch", pitches1);
     animator.sequences.addAttribute<FloatArray>("position", { 0.2 } );
     animator.sequences.addAttribute<float>("attack", 500);
@@ -303,7 +303,7 @@ void ofApp::createAudio()
     animator.schedulerInput.connect(output.schedulerOutput);
     granulator->cloudInput.connect(animator.output);
     
-    auto& animator2 = patchComponent.getPatch().addOperator<Animator>("animator2");
+    auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
     animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
     animator2.sequences.addAttribute<FloatArray>("position", { 0.2 } );
     animator2.sequences.addAttribute<float>("attack", 500);
