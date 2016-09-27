@@ -266,14 +266,17 @@ void ofApp::createAudio()
 	audioService->setActive(true);
 
 	auto& eSound = mCore.addEntity("sound");
-    auto& audioFileComponent = eSound.addComponent<AudioFileComponent>("audioFile");
-    audioFileComponent.fileName.setValue(ofFile("mydyingbride.wav").getAbsolutePath());
+    auto& audioFileComponent1 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent1.fileName.setValue(ofFile("audio/mydyingbride.wav").getAbsolutePath());
+    auto&audioFileComponent2 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent2.fileName.setValue(ofFile("audio/kewis.wav").getAbsolutePath());
     
 	auto& patchComponent = eSound.addComponent<PatchComponent>("patch");
 
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
-	granulator->setInputStream(audioFileComponent.getStream());
+	granulator->addInputStream(audioFileComponent1.getStream());
+    granulator->addInputStream(audioFileComponent2.getStream());
     granulator->density.setProportion(0.4);
     granulator->duration.setValue(100);
     granulator->irregularity.setProportion(0.5);
@@ -292,32 +295,32 @@ void ofApp::createAudio()
 // 	animator.schedulerInput.connect(output.schedulerOutput);
 // 	granulator->density.proportionPlug.connect(animator.output);
 
-   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
+//   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
-//     FloatArray pitches1 = { 1.0f, 1.5f, 4/3.f, 5/3.f, 7/6.f, 2/3.f };
-//     FloatArray pitches2 = mult({ 1.5f, 4/3.f, 5/3.f, 7/6.f, 5/6.f }, 1.5f);
-//     
-//     auto& animator = patchComponent.getPatch().addOperator<Sequencer>("animator");
-//     animator.sequences.addAttribute<FloatArray>("pitch", pitches1);
-//     animator.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-//     animator.sequences.addAttribute<float>("attack", 500);
-//     animator.sequences.addAttribute<float>("decay", 500);
-//     animator.sequences.addAttribute<float>("duration", 2000);
-//     animator.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
-//     animator.looping.setValue(true);
-//     animator.schedulerInput.connect(output.schedulerOutput);
-//     granulator->cloudInput.connect(animator.output);
-//     
-//     auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
-//     animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
-//     animator2.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-//     animator2.sequences.addAttribute<float>("attack", 500);
-//     animator2.sequences.addAttribute<float>("decay", 500);
-//     animator2.sequences.addAttribute<float>("duration", 3000);
-//     animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
-//     animator2.looping.setValue(true);
-//     animator2.schedulerInput.connect(output.schedulerOutput);
-//     granulator->cloudInput.connect(animator2.output);
+     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f };
+     FloatArray pitches2 = mult({ 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 1.f }, 1.5f);
+     
+     auto& animator1 = patchComponent.getPatch().addOperator<Sequencer>("animator");
+     animator1.sequences.addAttribute<FloatArray>("pitch", pitches1);
+     animator1.sequences.addAttribute<FloatArray>("position", { 0.2f } );
+     animator1.sequences.addAttribute<float>("attack", 500);
+     animator1.sequences.addAttribute<float>("decay", 500);
+     animator1.sequences.addAttribute<float>("duration", 2000);
+     animator1.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
+     animator1.looping.setValue(true);
+     animator1.schedulerInput.connect(output.schedulerOutput);
+     granulator->cloudInput.connect(animator1.output);
+     
+     auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
+     animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
+     animator2.sequences.addAttribute<FloatArray>("position", { 0.2f } );
+     animator2.sequences.addAttribute<float>("attack", 500);
+     animator2.sequences.addAttribute<float>("decay", 500);
+     animator2.sequences.addAttribute<float>("duration", 3000);
+     animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
+     animator2.looping.setValue(true);
+     animator2.schedulerInput.connect(output.schedulerOutput);
+     granulator->cloudInput.connect(animator2.output);
     
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
