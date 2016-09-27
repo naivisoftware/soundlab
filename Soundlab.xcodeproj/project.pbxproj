@@ -118,6 +118,8 @@
 		D2286A041D95780800682676 /* nofSplineUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22869E21D95780800682676 /* nofSplineUtils.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2286A061D95780800682676 /* nofUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22869E81D95780800682676 /* nofUtils.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2286A071D95780800682676 /* ofVec2i.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22869EA1D95780800682676 /* ofVec2i.cpp */; settings = {ASSET_TAGS = (); }; };
+		D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260252C1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D260252A1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260253E1D957CED0012AAD0 /* boxlayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D260252E1D957CED0012AAD0 /* boxlayout.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260253F1D957CED0012AAD0 /* fractionlayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D26025301D957CED0012AAD0 /* fractionlayout.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -416,6 +418,9 @@
 		D22869E91D95780800682676 /* nofUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nofUtils.h; sourceTree = "<group>"; };
 		D22869EA1D95780800682676 /* ofVec2i.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofVec2i.cpp; sourceTree = "<group>"; };
 		D22869EB1D95780800682676 /* ofVec2i.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofVec2i.h; sourceTree = "<group>"; };
+		D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFileComponent.cpp; sourceTree = "<group>"; };
+		D25F02F01D9AAF4A003AB96B /* AudioFileComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileComponent.h; sourceTree = "<group>"; };
+		D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioBufferStream.cpp; sourceTree = "<group>"; };
 		D260252A1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = napoflayoutplanecomponent.cpp; sourceTree = "<group>"; };
 		D260252B1D957CDD0012AAD0 /* napoflayoutplanecomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = napoflayoutplanecomponent.h; sourceTree = "<group>"; };
 		D260252E1D957CED0012AAD0 /* boxlayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = boxlayout.cpp; sourceTree = "<group>"; };
@@ -878,6 +883,7 @@
 				D22869131D9576AE00682676 /* AudioStream.h */,
 				D22869141D9576AE00682676 /* MidiProcessor.cpp */,
 				D22869151D9576AE00682676 /* MidiProcessor.h */,
+				D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -887,6 +893,8 @@
 			children = (
 				D22869101D9576AE00682676 /* WavReader.cpp */,
 				D22869111D9576AE00682676 /* WavReader.h */,
+				D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */,
+				D25F02F01D9AAF4A003AB96B /* AudioFileComponent.h */,
 			);
 			path = AudioFile;
 			sourceTree = "<group>";
@@ -1205,10 +1213,12 @@
 				D22868631D95767D00682676 /* cexport.cpp in Sources */,
 				D22869F71D95780800682676 /* napofsimplecamcomponent.cpp in Sources */,
 				D22869161D9576AE00682676 /* AudioObject.cpp in Sources */,
+				D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */,
 				D22868711D95767D00682676 /* modulemanager.cpp in Sources */,
 				D22868671D95767D00682676 /* core.cpp in Sources */,
 				D22868761D95767D00682676 /* patch.cpp in Sources */,
 				D2286A011D95780800682676 /* napofupdatecomponent.cpp in Sources */,
+				D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */,
 				D26025571D957E530012AAD0 /* ofxSvg.cpp in Sources */,
 				D22869FC1D95780800682676 /* napofsplinemodulationcomponent.cpp in Sources */,
 				D26025441D957CED0012AAD0 /* splitlayout.cpp in Sources */,

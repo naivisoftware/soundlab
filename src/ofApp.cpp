@@ -17,7 +17,7 @@
 #include <Utils/nofUtils.h>
 
 // Audio
-#include <Lib/Audio/Utility/AudioFile/WavReader.h>
+#include <Lib/Audio/Utility/AudioFile/AudioFileComponent.h>
 #include <Lib/Audio/Unit/OutputUnit.h>
 #include <Lib/Audio/Unit/Granular/Granulator.h>
 #include <Lib/Utility/Data/RampSequencer.h>
@@ -255,9 +255,10 @@ void ofApp::resetCamera()
 
 void ofApp::createAudio()
 {
-	float bufferSampleRate;
-	readWavFile(ofFile("mydyingbride.wav").getAbsolutePath(), mBuffer, bufferSampleRate);
-	mBufferStream = std::make_unique<AudioBufferStream>(bufferSampleRate, mBuffer);
+//	float bufferSampleRate;
+//	readWavFile(ofFile("mydyingbride.wav").getAbsolutePath(), mBuffer, bufferSampleRate);
+//	mBufferStream = std::make_unique<AudioBufferStream>(bufferSampleRate, mBuffer);
+    
 
 	audioService = &mCore.addService<AudioService>();
 	audioService->setBufferSize(64);
@@ -265,11 +266,14 @@ void ofApp::createAudio()
 	audioService->setActive(true);
 
 	auto& eSound = mCore.addEntity("sound");
+    auto& audioFileComponent = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent.fileName.setValue(ofFile("mydyingbride.wav").getAbsolutePath());
+    
 	auto& patchComponent = eSound.addComponent<PatchComponent>("patch");
 
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
-	granulator->setInputStream(mBufferStream.get());
+	granulator->setInputStream(audioFileComponent.getStream());
     granulator->density.setProportion(0.4);
     granulator->duration.setValue(100);
     granulator->irregularity.setProportion(0.5);

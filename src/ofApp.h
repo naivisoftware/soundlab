@@ -8,8 +8,6 @@
 #include <nap/core.h>
 #include <nap/patch.h>
 
-#include <Lib/Utility/Data/Buffer.h>
-#include <Lib/Audio/Utility/AudioBufferStream.h>
 #include <Lib/Audio/Unit/AudioDevice.h>
 #include <openFrameworks/Gui/OFControlPanel.h>
 
@@ -67,8 +65,6 @@ private:
 
 	// Sound
 	ofSoundStream soundStream;
-	lib::Buffer<lib::SampleValue> mBuffer;
-	std::unique_ptr<lib::audio::AudioBufferStream> mBufferStream = nullptr;
 	lib::audio::Granulator* granulator = nullptr;
 	lib::audio::AudioService* audioService = nullptr;
 	lib::gui::OFControlPanel granulatorPanel;
