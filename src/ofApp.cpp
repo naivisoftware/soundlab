@@ -269,7 +269,15 @@ void ofApp::createAudio()
     auto& audioFileComponent1 = eSound.addComponent<AudioFileComponent>("audioFile");
     audioFileComponent1.fileName.setValue(ofFile("audio/mydyingbride.wav").getAbsolutePath());
     auto&audioFileComponent2 = eSound.addComponent<AudioFileComponent>("audioFile");
-    audioFileComponent2.fileName.setValue(ofFile("audio/kewis.wav").getAbsolutePath());
+    audioFileComponent2.fileName.setValue(ofFile("audio/bartokpizz.wav").getAbsolutePath());
+    auto&audioFileComponent3 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent3.fileName.setValue(ofFile("audio/bronsbow.wav").getAbsolutePath());
+    auto&audioFileComponent4 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent4.fileName.setValue(ofFile("audio/collegno.wav").getAbsolutePath());
+    auto&audioFileComponent5 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent5.fileName.setValue(ofFile("audio/slowbowing.wav").getAbsolutePath());
+    auto&audioFileComponent6 = eSound.addComponent<AudioFileComponent>("audioFile");
+    audioFileComponent6.fileName.setValue(ofFile("audio/kewis.wav").getAbsolutePath());
     
 	auto& patchComponent = eSound.addComponent<PatchComponent>("patch");
 
@@ -277,6 +285,10 @@ void ofApp::createAudio()
 	granulator->channelCount.setValue(2);
 	granulator->addInputStream(audioFileComponent1.getStream());
     granulator->addInputStream(audioFileComponent2.getStream());
+    granulator->addInputStream(audioFileComponent3.getStream());
+    granulator->addInputStream(audioFileComponent4.getStream());
+    granulator->addInputStream(audioFileComponent5.getStream());
+    granulator->addInputStream(audioFileComponent6.getStream());
     granulator->density.setProportion(0.4);
     granulator->duration.setValue(100);
     granulator->irregularity.setProportion(0.5);
@@ -297,7 +309,7 @@ void ofApp::createAudio()
 
 //   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
-     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f };
+     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 7/6.f };
      FloatArray pitches2 = mult({ 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 1.f }, 1.5f);
      
      auto& animator1 = patchComponent.getPatch().addOperator<Sequencer>("animator");
@@ -326,7 +338,7 @@ void ofApp::createAudio()
 	granulatorPanel.setControlManager(granulator->getControlManager());
 
 	soundStream.printDeviceList();
-	soundStream.setDeviceID(2);
+//	soundStream.setDeviceID(2);
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 
