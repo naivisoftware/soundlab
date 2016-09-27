@@ -300,7 +300,7 @@ void ofApp::createAudio()
 
 //   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
-     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f };
+     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 7/6.f };
      FloatArray pitches2 = mult({ 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 1.f }, 1.5f);
      
      auto& animator1 = patchComponent.getPatch().addOperator<Sequencer>("animator");
@@ -329,7 +329,7 @@ void ofApp::createAudio()
 	granulatorPanel.setControlManager(granulator->getControlManager());
 
 	soundStream.printDeviceList();
-	soundStream.setDeviceID(2);
+//	soundStream.setDeviceID(2);
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 
