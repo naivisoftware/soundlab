@@ -19,7 +19,6 @@
 // Audio
 #include <Lib/Audio/Utility/AudioFile/AudioFileComponent.h>
 #include <Lib/Audio/Unit/OutputUnit.h>
-#include <Lib/Audio/Unit/Granular/Granulator.h>
 #include <Lib/Utility/Data/RampSequencer.h>
 #include <Lib/Utility/Data/Sequencer.h>
 
@@ -45,14 +44,18 @@ void ofApp::setup()
 	// Create audio service + devices
 	createAudio();
 
+	//////////////////////////////////////////////////////////////////////////
+	// TEST
+	//////////////////////////////////////////////////////////////////////////
+
 	// Create spline entity and add first spline
 	nap::Entity& spline_e = mCore.addEntity("Splines");
-	nap::Entity& spline_entity = addSpline(spline_e, { 0.0f, 0.0f, 0.0f});
+	mSplineEntity = &addSpline(spline_e, { 0.0f, 0.0f, 0.0f});
 
 	// Set as entity to draw
  	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
  	assert(ether_cam != nullptr);
- 	ether_cam->mRenderEntity.setTarget(spline_entity);
+ 	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
 }
 
 
@@ -218,7 +221,7 @@ void ofApp::createLaserEntity()
 	laser_cam.setFrustrumWidth(1000.0f);
 	laser_cam.setFrustrumHeight(1000.0f);
 
-	laser_cam.mTraceMode.setValue(false);
+	laser_cam.mTraceMode.setValue(true);
 }
 
 
@@ -265,13 +268,13 @@ void ofApp::createAudio()
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
 
-	auto& eSound = mCore.addEntity("sound");
-    auto& audioFileComponent1 = eSound.addComponent<AudioFileComponent>("audioFile");
+	mAudioEntity = &mCore.addEntity("sound");
+    auto& audioFileComponent1 = mAudioEntity->addComponent<AudioFileComponent>("audioFile");
     audioFileComponent1.fileName.setValue(ofFile("audio/mydyingbride.wav").getAbsolutePath());
-    auto&audioFileComponent2 = eSound.addComponent<AudioFileComponent>("audioFile");
+    auto&audioFileComponent2 = mAudioEntity->addComponent<AudioFileComponent>("audioFile");
     audioFileComponent2.fileName.setValue(ofFile("audio/kewis.wav").getAbsolutePath());
     
-	auto& patchComponent = eSound.addComponent<PatchComponent>("patch");
+	auto& patchComponent = mAudioEntity->addComponent<PatchComponent>("patch");
 
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
@@ -330,10 +333,23 @@ void ofApp::createAudio()
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 
-
+	// Connect grains changes
+	granulator->grainSignal.connect(mGrainTriggered);
 }
+
+
+// Called when grains change
+void ofApp::grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params)
+{
+	float mapped_v = gFit(time, 10, 1000, 0.005f, 0.45f);
+	mapped_v *= ofRandom(0.25f, 1.0f);
+
+	OFTraceComponent* trace_comp = mSplineEntity->getComponent<OFTraceComponent>();	
+	trace_comp->mOffset.setValue(ofRandom(0.0f, 1.0f));
+	trace_comp->mLength.setValue(mapped_v);
+}
+
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
-}
+void ofApp::dragEvent(ofDragInfo dragInfo)
+{}

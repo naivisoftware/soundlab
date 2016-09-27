@@ -10,6 +10,7 @@
 
 #include <Lib/Audio/Unit/AudioDevice.h>
 #include <openFrameworks/Gui/OFControlPanel.h>
+#include <Lib/Audio/Unit/Granular/Granulator.h>
 
 namespace nap
 {
@@ -60,12 +61,21 @@ private:
 	void						flipProjectionMethod();
 	void						resetCamera();
 	void						createAudio();
-	nap::Entity*				mCamera;
-	nap::Entity*				mLaserEntity;
+	nap::Entity*				mCamera = nullptr;			//< Scene camera
+	nap::Entity*				mLaserEntity = nullptr;		//< Laser
+	nap::Entity*				mAudioEntity = nullptr;		//< Audio
+	nap::Entity*				mSplineEntity = nullptr;	//< Active Spline
 
 	// Sound
 	ofSoundStream soundStream;
 	lib::audio::Granulator* granulator = nullptr;
 	lib::audio::AudioService* audioService = nullptr;
 	lib::gui::OFControlPanel granulatorPanel;
+
+	// Hook up
+	void grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params);
+	nap::Slot<lib::TimeValue, const lib::audio::GrainParameters&> mGrainTriggered = [&](lib::TimeValue time, const lib::audio::GrainParameters& params)
+	{
+		grainTriggered(time, params);
+	};
 };
