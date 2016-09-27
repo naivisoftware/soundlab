@@ -97,7 +97,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	//ss_compomnent.mSplineType.setValue(stype);
 
 	// Test
-	file_component.mFile.setValue("svg/open.svg");
+	file_component.mFile.setValue("svg/whirl.svg");
 
 	// Set colors
 	col_component.ClearColors();
@@ -105,8 +105,8 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	col_component.AddColor(ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f));
 	col_component.AddColor(gDefaultSplineColor);
 
-	trace_component.mLength.setValue(0.1f);
-	trace_component.mSpeed.setValue(0.1f);
+	trace_component.mLength.setValue(0.2f);
+	trace_component.mSpeed.setValue(0.033f);
 
 	//col_component.mCycleSpeed.setValue(0.05f);
 	col_component.update();
@@ -120,9 +120,9 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	text_component.mText.setValue(new_entity.getName());
 
 	// Set rotation
-	rotate_component.mX.setValue(0.175f);
-	rotate_component.mY.setValue(0.125f);
-	rotate_component.mZ.setValue(0.1f);
+	rotate_component.mX.setValue(0.075f);
+	rotate_component.mY.setValue(0.1f);
+	rotate_component.mZ.setValue(0.05f);
 	rotate_component.mSpeed.setValue(100.0f);
 
 	// Set frequency
