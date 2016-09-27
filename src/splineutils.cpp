@@ -89,7 +89,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 
 	// Set shape
 	//int itype = mGui.mShapeSelection;
-	SplineType stype = SplineType::Circle;
+	SplineType stype = SplineType::Hexagon;
 
 	// Set spline type
 	//ss_compomnent.mSplineCount.setValue(500);
@@ -97,7 +97,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	//ss_compomnent.mSplineType.setValue(stype);
 
 	// Test
-	file_component.mFile.setValue("svg/whirl.svg");
+	file_component.mFile.setValue("svg/open.svg");
 
 	// Set colors
 	col_component.ClearColors();

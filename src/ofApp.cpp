@@ -31,7 +31,7 @@ using namespace nap;
 void ofApp::setup()
 {
 	mOFService = &mCore.addService<nap::OFService>();
-// 	mLaserService = &mCore.addService<nap::EtherDreamService>();
+ 	mLaserService = &mCore.addService<nap::EtherDreamService>();
 
 	// HACK, shouldn't be here
 	nap::registerOfShaderBindings();
@@ -40,7 +40,7 @@ void ofApp::setup()
 	createCameraEntity();
 
 	// Add laser entity
-// 	createLaserEntity();
+ 	createLaserEntity();
 
 	// Create audio service + devices
 	createAudio();
@@ -50,9 +50,9 @@ void ofApp::setup()
 	nap::Entity& spline_entity = addSpline(spline_e, { 0.0f, 0.0f, 0.0f});
 
 	// Set as entity to draw
-// 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
-// 	assert(ether_cam != nullptr);
-// 	ether_cam->mRenderEntity.setTarget(spline_entity);
+ 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
+ 	assert(ether_cam != nullptr);
+ 	ether_cam->mRenderEntity.setTarget(spline_entity);
 }
 
 
@@ -66,7 +66,7 @@ void ofApp::update()
 void ofApp::draw()
 {
 	mOFService->draw();
-// 	mLaserService->draw();
+	mLaserService->draw();
 
 	// Draw framerate
 	float rate = ofGetFrameRate();
@@ -323,6 +323,7 @@ void ofApp::createAudio()
 	granulatorPanel.setControlManager(granulator->getControlManager());
 
 	soundStream.printDeviceList();
+	soundStream.setDeviceID(2);
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 
