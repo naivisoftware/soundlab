@@ -31,7 +31,7 @@ using namespace nap;
 void ofApp::setup()
 {
 	mOFService = &mCore.addService<nap::OFService>();
-	mLaserService = &mCore.addService<nap::EtherDreamService>();
+// 	mLaserService = &mCore.addService<nap::EtherDreamService>();
 
 	// HACK, shouldn't be here
 	nap::registerOfShaderBindings();
@@ -40,7 +40,7 @@ void ofApp::setup()
 	createCameraEntity();
 
 	// Add laser entity
-	createLaserEntity();
+// 	createLaserEntity();
 
 	// Create audio service + devices
 	createAudio();
@@ -50,9 +50,9 @@ void ofApp::setup()
 	nap::Entity& spline_entity = addSpline(spline_e, { 0.0f, 0.0f, 0.0f});
 
 	// Set as entity to draw
-	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
-	assert(ether_cam != nullptr);
-	ether_cam->mRenderEntity.setTarget(spline_entity);
+// 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
+// 	assert(ether_cam != nullptr);
+// 	ether_cam->mRenderEntity.setTarget(spline_entity);
 }
 
 
@@ -66,7 +66,7 @@ void ofApp::update()
 void ofApp::draw()
 {
 	mOFService->draw();
-	mLaserService->draw();
+// 	mLaserService->draw();
 
 	// Draw framerate
 	float rate = ofGetFrameRate();
@@ -270,7 +270,7 @@ void ofApp::createAudio()
 	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
 	granulator->channelCount.setValue(2);
 	granulator->setInputStream(mBufferStream.get());
-    granulator->density.setProportion(0.5);
+    granulator->density.setProportion(0.2);
     granulator->duration.setValue(100);
     granulator->irregularity.setProportion(0.5);
     granulator->positionDev.setProportion(0.25);
@@ -280,39 +280,39 @@ void ofApp::createAudio()
 	output.channelCount.setValue(2);
 	output.audioInput.connect(granulator->output);
 
-//	auto& animator = patchComponent.getPatch().addOperator<RampSequencer>("animator");
-//	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
-//	animator.durations.setValue({ 3000, 500, 6000 });
-//	animator.looping.setValue(true);
-//	animator.schedulerInput.connect(output.schedulerOutput);
-//	granulator->density.proportionPlug.connect(animator.output);
+// 	auto& animator = patchComponent.getPatch().addOperator<RampSequencer>("animator");
+// 	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
+// 	animator.durations.setValue({ 3000, 500, 6000 });
+// 	animator.looping.setValue(true);
+// 	animator.schedulerInput.connect(output.schedulerOutput);
+// 	granulator->density.proportionPlug.connect(animator.output);
 
-//    granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "duration", 2000 },  { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
+   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
 
-    FloatArray pitches1 = { 1.0f, 1.5f, 4/3.f, 5/3.f, 7/6.f, 2/3.f };
-    FloatArray pitches2 = mult({ 1.5f, 4/3.f, 5/3.f, 7/6.f, 5/6.f }, 1.5f);
-    
-    auto& animator = patchComponent.getPatch().addOperator<Sequencer>("animator");
-    animator.sequences.addAttribute<FloatArray>("pitch", pitches1);
-    animator.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-    animator.sequences.addAttribute<float>("attack", 500);
-    animator.sequences.addAttribute<float>("decay", 500);
-    animator.sequences.addAttribute<float>("duration", 2000);
-    animator.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
-    animator.looping.setValue(true);
-    animator.schedulerInput.connect(output.schedulerOutput);
-    granulator->cloudInput.connect(animator.output);
-    
-    auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
-    animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
-    animator2.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-    animator2.sequences.addAttribute<float>("attack", 500);
-    animator2.sequences.addAttribute<float>("decay", 500);
-    animator2.sequences.addAttribute<float>("duration", 3000);
-    animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
-    animator2.looping.setValue(true);
-    animator2.schedulerInput.connect(output.schedulerOutput);
-    granulator->cloudInput.connect(animator2.output);
+//     FloatArray pitches1 = { 1.0f, 1.5f, 4/3.f, 5/3.f, 7/6.f, 2/3.f };
+//     FloatArray pitches2 = mult({ 1.5f, 4/3.f, 5/3.f, 7/6.f, 5/6.f }, 1.5f);
+//     
+//     auto& animator = patchComponent.getPatch().addOperator<Sequencer>("animator");
+//     animator.sequences.addAttribute<FloatArray>("pitch", pitches1);
+//     animator.sequences.addAttribute<FloatArray>("position", { 0.2f } );
+//     animator.sequences.addAttribute<float>("attack", 500);
+//     animator.sequences.addAttribute<float>("decay", 500);
+//     animator.sequences.addAttribute<float>("duration", 2000);
+//     animator.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
+//     animator.looping.setValue(true);
+//     animator.schedulerInput.connect(output.schedulerOutput);
+//     granulator->cloudInput.connect(animator.output);
+//     
+//     auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
+//     animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
+//     animator2.sequences.addAttribute<FloatArray>("position", { 0.2f } );
+//     animator2.sequences.addAttribute<float>("attack", 500);
+//     animator2.sequences.addAttribute<float>("decay", 500);
+//     animator2.sequences.addAttribute<float>("duration", 3000);
+//     animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
+//     animator2.looping.setValue(true);
+//     animator2.schedulerInput.connect(output.schedulerOutput);
+//     granulator->cloudInput.connect(animator2.output);
     
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
