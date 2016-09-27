@@ -51,3 +51,8 @@ vs/**
 *.rar
 *DS_Store*
 modules/napetherservice/ReadMe.txt
+*.xcuserstate
+
+*.xcuserstate
+
+*.xcbkptlist
