@@ -15,7 +15,6 @@ bin/Soundlab_debug.exp
 bin/Soundlab_debug.ilk
 bin/j4cDAC.txt
 /.idea
-/bin
 *.suo
 *.user
 *.lib
