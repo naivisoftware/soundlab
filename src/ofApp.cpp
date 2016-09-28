@@ -4,6 +4,7 @@
 // OF Includes
 #include <napofservice.h>
 #include <napofshaderbinding.h>
+#include <settings.h>
 
 // Etherdream Includes
 #include <napetherservice.h>
@@ -328,8 +329,11 @@ void ofApp::createAudio()
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
 
+	// Connect to sound device
 	soundStream.printDeviceList();
-//	soundStream.setDeviceID(2);
+	int sound_id = gGetAppSetting<int>("SoundDeviceID", 1);
+	nap::Logger::info("opening sound device: %d", sound_id);
+	soundStream.setDeviceID(sound_id);
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 

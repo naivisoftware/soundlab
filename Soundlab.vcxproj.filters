@@ -46,6 +46,9 @@
     <ClCompile Include="src\splineutils.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\settings.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -111,6 +114,9 @@
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClInclude>
     <ClInclude Include="src\splineutils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
