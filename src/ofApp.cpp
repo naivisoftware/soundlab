@@ -222,7 +222,7 @@ void ofApp::createLaserEntity()
 	laser_cam.setFrustrumWidth(1000.0f);
 	laser_cam.setFrustrumHeight(1000.0f);
 
-	laser_cam.mTraceMode.setValue(true);
+	laser_cam.mTraceMode.setValue(false);
 }
 
 

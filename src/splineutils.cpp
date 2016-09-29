@@ -8,7 +8,7 @@
 
 // Const
 const ofFloatColor gDefaultSplineColor(1.0f, 1.0f, 1.0f);
-const ofFloatColor gDefaultBlackColor(0.09f, 0.52f, 0.388f, 1.0f);
+const ofFloatColor gDefaultBlackColor(0.0f, 0.0f, 0.0f, 1.0f);
 const ofFloatColor gSwitchColor(0.09f, 0.52f, 0.388f, 1.0f);
 
 static const std::string	sTraceLengthLagName("TraceLengthLag");
@@ -86,6 +86,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 
 	// Set transform component
 	tx_component.mTranslate.setValue(worldPos);
+	tx_component.mScale.setValue({ 2.0f, 2.0f, 2.0f });
 
 	// Set shape
 	//int itype = mGui.mShapeSelection;
@@ -101,17 +102,18 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 
 	// Set colors
 	col_component.ClearColors();
-	col_component.AddColor(gDefaultSplineColor);
-	col_component.AddColor(ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f));
-	col_component.AddColor(gDefaultSplineColor);
+	col_component.AddColor(ofFloatColor(0.0f, 1.0f, 0.682f, 1.0f));
+	col_component.AddColor(ofFloatColor(0.0f, 0.0f, 0.0f, 1.0f));
 
-	trace_component.mLength.setValue(0.2f);
-	trace_component.mSpeed.setValue(0.033f);
+	col_component.mFrequency.setValue(40.0f);
+	col_component.mStep.setValue(true);
+	col_component.mFrequencyPower.setValue(4.0f);
 
-	//col_component.mCycleSpeed.setValue(0.05f);
 	col_component.update();
 	col_component.mEnableUpdates.setValue(true);
 
+	trace_component.mLength.setValue(0.2f);
+	trace_component.mSpeed.setValue(0.033f);
 
 	// Set trace point count
 	trace_component.mCount.setValue(500);
