@@ -43,6 +43,10 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	spline_mat.mShader.setValue("shaders/spline_shader");
 	assert(spline_mat.isLoaded());
 
+	// Set width
+	spline_component.mLineWidth.setValue(2.0f);
+	trace_component.mLineWidth.setValue(10.0f);
+
 	/*
 	// Add Lag components
 	nap::OFFloatLagComponent& trace_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sTraceLengthLagName);
