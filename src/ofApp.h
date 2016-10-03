@@ -72,6 +72,13 @@ private:
 	lib::audio::AudioService* audioService = nullptr;
 	lib::gui::OFControlPanel granulatorPanel;
 
+	// Gui (TEST)
+	ofxPanel					mGui;
+	ofParameterGroup			mGroup;
+	ofParameter<float>*			mParmToSet = nullptr;
+	void						valueChanged(float& inValue);
+	void						setupGui();
+
 	// Hook up
 	void grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params);
 	nap::Slot<lib::TimeValue, const lib::audio::GrainParameters&> mGrainTriggered = [&](lib::TimeValue time, const lib::audio::GrainParameters& params)

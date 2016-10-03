@@ -57,6 +57,12 @@ void ofApp::setup()
  	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
  	assert(ether_cam != nullptr);
  	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
+
+	//////////////////////////////////////////////////////////////////////////
+	// GUI
+	//////////////////////////////////////////////////////////////////////////
+
+	//setupGui();
 }
 
 
@@ -80,7 +86,6 @@ void ofApp::draw()
 
 	// Draw audio panel
 	granulatorPanel.draw();
-
 }
 
 
@@ -104,6 +109,9 @@ void ofApp::keyPressed(int key)
 		break;
 	case 'f':
 		ofToggleFullscreen();
+		break;
+	case '0':
+		mParmToSet->set(0.0f);
 		break;
 	}
 }
@@ -341,6 +349,27 @@ void ofApp::createAudio()
 	granulator->grainSignal.connect(mGrainTriggered);
 }
 
+
+void ofApp::valueChanged(float& inValue)
+{
+	std::cout << inValue << "\n";
+}
+
+
+// Test for figuring out auto mapping of objects later on
+void ofApp::setupGui()
+{
+	mGroup.add(ofParameter<float>("hello", 1.0f, 0.0f, 1.0f));
+	mGroup.add(ofParameter<float>("whut", 0.5f, 0.0f, 1.0f));
+	mGroup.add(ofParameter<bool>("toggle", true));
+	mGroup.setName("group_one");
+
+	mParmToSet = &mGroup.getFloat("whut");
+	mParmToSet->addListener(this, &ofApp::valueChanged);
+	
+	mGui.setup(mGroup);
+	mGui.setPosition(ofPoint(400, 400, 0.0f));
+}
 
 // Called when grains change
 void ofApp::grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params)
