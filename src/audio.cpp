@@ -37,8 +37,8 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name)
     
     auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
     output.channelCount.setValue(2);
-    output.audioInput.connect(granulator->output);
-//    resonator->audioInput.connect(granulator->output);
+    output.audioInput.connect(resonator->audioOutput);
+    resonator->audioInput.connect(granulator->output);
     
     for (auto i = 0; i < 1; ++i)
     {
@@ -47,7 +47,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name)
         granulator->cloudInput.connect(grainSeq.output);
         
         auto& resSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("resonatorSequencer" + to_string(i + 1));
-        resSeq.playing.setValue(true);
         resSeq.schedulerInput.connect(output.schedulerOutput);
         resonator->input.connect(resSeq.output);
     }
