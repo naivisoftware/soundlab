@@ -21,26 +21,53 @@ namespace nap {
         // changes the path to the json file containing info on all the assets on a host
         nap::Attribute<std::string> jsonPath = {this, "jsonPath", "", &JsonComponent::jsonPathChanged};
 
+        // Checks wether a json entry exists at the location where the jsonPOinter points to
         bool exists(rapidjson::Value& root, const std::string& jsonPointer);
 
-        float getNumber(rapidjson::Value& root, const std::string& jsonPointer, float defaultValue = 0.f);
-        std::string getString(rapidjson::Value& root, const std::string& jsonPointer, const std::string& defaultValue = "");
+        // Return a generic json object
         rapidjson::Value* getValue(rapidjson::Value& root, const std::string& jsonPointer);
+        
+        // Return a numeric type
+        template <typename T>
+        T getNumber(rapidjson::Value& root, const std::string& jsonPointer, T defaultValue);
+        
+        // Reeturn a string
+        std::string getString(rapidjson::Value& root, const std::string& jsonPointer, const std::string& defaultValue = "");
 
+        // Return a numeric array
+        template <typename T>
+        std::vector<T> getNumberArray(rapidjson::Value& root, const std::string& jsonPointer);
+        
+        // Return a string array
         std::vector<std::string> getStringArray(rapidjson::Value& root, const std::string& jsonPointer);
-        std::vector<float> getNumberArray(rapidjson::Value& root, const std::string& jsonPointer);
+        
+        // Return an array of generic json objects
         std::vector<rapidjson::Value*> getObjectArray(rapidjson::Value& root, const std::string& jsonPointer);
         
+        // Return a generic json object using an index within a parent object
         rapidjson::Value* getValueByIndex(rapidjson::Value& root, const std::string& jsonPointer, int index);
+        
+        // Return a generic json object using an index into an array
         rapidjson::Value* getValueFromArray(rapidjson::Value& root, int inIndex);
         
-        float getNumber(const std::string& jsonPointer, float defaultValue = 0.f);
-        float getFloat(const std::string& jsonPointer, float defaultValue = 0);
-        int getInt(const std::string& jsonPointer, float defaultValue = 0);
+        // Same as other @getNumber but using the document as root
+        template <typename T>
+        T getNumber(const std::string& jsonPointer, T defaultValue);
+        
+        // Same as other @getNumberArray but using the document as root
+        template <typename T>
+        std::vector<T> getNumberArray(const std::string& jsonPointer);
+        
+        // Same as other @getString but using the document as root
         std::string getString(const std::string& jsonPointer, const std::string& defaultValue = "");
+        
+        // Same as other @getStringArray but using the document as root
         std::vector<std::string> getStringArray(const std::string& jsonPointer);
+        
+        // Same as other @getObjectArray but using the document as root
         std::vector<rapidjson::Value*> getObjectArray(const std::string& jsonPointer);
         
+        // Maps the content of a generic json object to the values of attributes in the nap Object tree
         void mapToAttributes(rapidjson::Value& json, Object& object);
         
         // Find and return an array as an actual json string
@@ -62,6 +89,75 @@ namespace nap {
         std::unique_ptr<rapidjson::Document> mDocument = nullptr;
         std::string mRawDocumentContent;
     };
+    
+    
+    template <typename T>
+    T JsonComponent::getNumber(rapidjson::Value& root, const std::string& jsonPointer, T defaultValue)
+    {
+        rapidjson::Value* value = getValue(root, jsonPointer);
+        
+        if (!value) return defaultValue;
+        
+        if (value->IsFloat())
+            return T(value->GetFloat());
+        
+        else if (value->IsDouble())
+            return T(value->GetDouble());
+        
+        else if (value->GetInt())
+            return T(value->GetInt());
+        
+        Logger::warn("json value not a number: " + jsonPointer);
+        return defaultValue;
+    }
+    
+    
+    template <typename T>
+    std::vector<T> JsonComponent::getNumberArray(rapidjson::Value& root, const std::string& jsonPointer)
+    {
+        std::vector<T> arr;
+        rapidjson::Value* json = getValue(root, jsonPointer);
+        if (!json)
+            return arr;
+        
+        if (!json->IsArray())
+        {
+            Logger::warn("Not an array: " + jsonPointer);
+            return arr;
+        }
+        
+        for (auto it = json->Begin(); it != json->End(); ++it)
+        {
+            rapidjson::Value* elm = it;
+            if (elm->IsFloat())
+                arr.emplace_back(elm->GetFloat());
+            if (elm->IsInt())
+                arr.emplace_back(elm->GetInt());
+        }
+        return arr;
+    }
+    
+    
+    template <typename T>
+    T JsonComponent::getNumber(const std::string& jsonPointer, T defaultValue)
+    {
+        if (!mDocument) return defaultValue;
+        return getNumber<T>(*mDocument, jsonPointer, defaultValue);
+    }
+    
+    
+    template <typename T>
+    std::vector<T> JsonComponent::getNumberArray(const std::string& jsonPointer)
+    {
+        if (!mDocument)
+        {
+            std::vector<T> emptyResult;
+            return emptyResult;
+        }
+        return getNumberArray<T>(*mDocument, jsonPointer);
+    }
+    
+    
     
 }
 

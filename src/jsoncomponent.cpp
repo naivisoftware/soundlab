@@ -47,26 +47,6 @@ namespace nap {
     }
 
 
-    float JsonComponent::getNumber(rapidjson::Value& root, const std::string& jsonPointer, float defaultValue /*= 0.f*/)
-    {
-        rapidjson::Value* value = getValue(root, jsonPointer);
-
-        if (!value) return defaultValue;
-
-        if (value->IsFloat())
-            return value->GetFloat();
-
-        else if (value->IsDouble())
-            return float(value->GetDouble());
-
-        else if (value->GetInt())
-            return float(value->GetInt());
-
-        Logger::warn("json value not a number: " + jsonPointer);
-        return defaultValue;
-    }
-
-
     std::string JsonComponent::getString(rapidjson::Value& root, const std::string& jsonPointer, const std::string& defaultValue /*= ""*/)
     {
         rapidjson::Value* value = getValue(root, jsonPointer);
@@ -100,36 +80,12 @@ namespace nap {
         {
             rapidjson::Value* elm = it;
             if (!elm->IsString()) continue;
-            arr.push_back(elm->GetString());
+            arr.emplace_back(elm->GetString());
         }
         return arr;
     }
 
 
-    std::vector<float> JsonComponent::getNumberArray(rapidjson::Value& root, const std::string& jsonPointer)
-    {
-        std::vector<float> arr;
-        rapidjson::Value* floats = getValue(root, jsonPointer);
-        if (!floats) return arr;
-        
-        if (!floats->IsArray())
-        {
-            Logger::warn("Not an array: " + jsonPointer);
-            return arr;
-        }
-        
-        for (auto it = floats->Begin(); it != floats->End(); ++it)
-        {
-            rapidjson::Value* elm = it;
-            if (elm->IsFloat())
-                arr.push_back(elm->GetFloat());
-            if (elm->IsInt())
-                arr.push_back(elm->GetInt());
-        }
-        return arr;
-    }
-
-    
     std::vector<rapidjson::Value*> JsonComponent::getObjectArray(rapidjson::Value& root, const std::string& jsonPointer)
     {
         std::vector<rapidjson::Value*> result;
@@ -165,7 +121,10 @@ namespace nap {
     }
 
 
-    bool JsonComponent::exists(rapidjson::Value& root, const std::string& jsonPointer) { return rapidjson::Pointer(jsonPointer.c_str()).Get(root) != nullptr; }
+    bool JsonComponent::exists(rapidjson::Value& root, const std::string& jsonPointer)
+    {
+        return rapidjson::Pointer(jsonPointer.c_str()).Get(root) != nullptr;
+    }
 
 
     rapidjson::Value* JsonComponent::getValueByIndex(rapidjson::Value& root, const std::string& jsonPointer, int index)
@@ -209,6 +168,7 @@ namespace nap {
                 if (object.getTypeInfo().isKindOf<Attribute<float>>())
                     static_cast<Attribute<float>*>(&object)->setValue(json.GetInt());
             }
+            
             if (json.IsFloat())
             {
                 if (object.getTypeInfo().isKindOf<Attribute<int>>())
@@ -216,38 +176,83 @@ namespace nap {
                 if (object.getTypeInfo().isKindOf<Attribute<float>>())
                     static_cast<Attribute<float>*>(&object)->setValue(json.GetFloat());
             }
+            
             if (json.IsString())
             {
                 if (object.getTypeInfo().isKindOf<Attribute<std::string>>())
                     static_cast<Attribute<std::string>*>(&object)->setValue(json.GetString());
             }
+            
             if (json.IsBool())
             {
                 if (object.getTypeInfo().isKindOf<Attribute<bool>>())
                     static_cast<Attribute<bool>*>(&object)->setValue(json.GetBool());
             }
+            
             if (json.IsArray())
             {
                 if (object.getTypeInfo().isKindOf<Attribute<FloatArray>>())
-                    static_cast<Attribute<FloatArray>*>(&object)->setValue(getNumberArray(json, ""));
+                    static_cast<Attribute<FloatArray>*>(&object)->setValue(getNumberArray<float>(json, ""));
+                
                 if (object.getTypeInfo().isKindOf<Attribute<IntArray>>())
-                {
-                    FloatArray floats = getNumberArray(json, "");
-                    IntArray ints;
-                    for (auto& number : floats)
-                        ints.emplace_back(number);
-                    
-                    static_cast<Attribute<IntArray>*>(&object)->setValue(ints);
-                }
+                    static_cast<Attribute<IntArray>*>(&object)->setValue(getNumberArray<int>(json, ""));
+                
                 if (object.getTypeInfo().isKindOf<Attribute<StringArray>>())
                     static_cast<Attribute<StringArray>*>(&object)->setValue(getStringArray(json, ""));
+                
                 if (object.getTypeInfo().isKindOf<ArrayAttribute<float>>())
+                    static_cast<ArrayAttribute<float>&>(object).setValues(getNumberArray<float>(json, ""));
+                
+                if (object.getTypeInfo().isKindOf<ArrayAttribute<int>>())
+                    static_cast<ArrayAttribute<int>&>(object).setValues(getNumberArray<int>(json, ""));
+            }
+            
+            if (json.IsObject())
+            {
+                if (object.getTypeInfo().isKindOf<CompoundAttribute>())
                 {
+                    auto& attribute = dynamic_cast<CompoundAttribute&>(object);
+                    attribute.clear();
+                    
+                    for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
+                    {
+                        std::string name = it->name.GetString();
+                        
+                        Object* child = nullptr;
+                        
+                        if (it->value.IsString())
+                            child = &attribute.addAttribute<std::string>(it->value.GetString(), name);
+                        if (it->value.IsFloat())
+                            child = &attribute.addAttribute<float>(it->value.GetFloat(), name);
+                        if (it->value.IsInt())
+                            child = &attribute.addAttribute<int>(it->value.GetInt(), name);
+                        if (it->value.IsObject())
+                        {
+                            child = &attribute.addCompoundAttribute(name);
+                            mapToAttributes(it->value, *child);
+                        }
+                        
+                        if (it->value.IsArray())
+                        {
+                            auto array = it->value.GetArray();
+                            if (array.Size() > 0)
+                            {
+                                if (array[0].IsFloat())
+                                    child = &attribute.addArrayAttribute<float>(name);
+                                if (array[0].IsInt())
+                                    child = &attribute.addArrayAttribute<int>(name);
+                                if (array[0].IsString())
+                                    child = &attribute.addArrayAttribute<std::string>(name);
+                            }
+                            if (child)
+                                mapToAttributes(it->value, *child);
+                        }
+                    }
                     
                 }
             }
-            
         }
+        
         else {
             if (json.IsObject())
             {
@@ -260,7 +265,6 @@ namespace nap {
                         mapToAttributes(it->value, *child);
                     }
                 }
-                
             }
         }
     }
@@ -282,19 +286,6 @@ namespace nap {
         ss << "]";
         return ss.str();
     }
-
-
-    float JsonComponent::getNumber(const std::string& jsonPointer, float defaultValue)
-    {
-        if (!mDocument) return defaultValue;
-        return getNumber(*mDocument, jsonPointer, defaultValue);
-    }
-
-
-    float JsonComponent::getFloat(const std::string& jsonPointer, float defaultValue) { return getNumber(jsonPointer, defaultValue); }
-
-
-    int JsonComponent::getInt(const std::string& jsonPointer, float defaultValue) { return (int)getNumber(jsonPointer, defaultValue); }
 
 
     std::string JsonComponent::getString(const std::string& jsonPointer, const std::string& defaultValue)
