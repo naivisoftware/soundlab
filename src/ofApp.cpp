@@ -1,6 +1,9 @@
 #include "ofApp.h"
 #include "ofSoundBuffer.h"
 
+// nap
+#include <nap/coremodule.h> // niet weghalen! OSX
+
 // OF Includes
 #include <napofservice.h>
 #include <napofshaderbinding.h>
@@ -80,6 +83,8 @@ void ofApp::draw()
 
 	// Draw audio panel
 	granulatorPanel.draw();
+    
+    resonatorPanel.draw();
 
 }
 
@@ -263,12 +268,14 @@ void ofApp::createAudio()
 //	readWavFile(ofFile("mydyingbride.wav").getAbsolutePath(), mBuffer, bufferSampleRate);
 //	mBufferStream = std::make_unique<AudioBufferStream>(bufferSampleRate, mBuffer);
     
+    mCore.addService<AudioFileService>();
 
 	audioService = &mCore.addService<AudioService>();
 	audioService->setBufferSize(64);
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
 
+    /*
 	mAudioEntity = &mCore.addEntity("sound");
     auto& audioFileComponent1 = mAudioEntity->addComponent<AudioFileComponent>("audioFile");
     audioFileComponent1.fileName.setValue(ofFile("audio/mydyingbride.wav").getAbsolutePath());
@@ -287,10 +294,15 @@ void ofApp::createAudio()
     granulator->positionDev.setProportion(0.25);
     granulator->positionSpeed.setProportion(0.4);
 //    granulator->amplitude.setProportion(1.);
+    
+    resonator = &patchComponent.getPatch().addOperator<ResonatorUnit>("resonator");
+    resonator->channelCount.setValue(2);
+    resonator->inputChannelCount.setValue(2);
 
 	auto& output = patchComponent.getPatch().addOperator<OutputUnit>("output");
 	output.channelCount.setValue(2);
-	output.audioInput.connect(granulator->output);
+	output.audioInput.connect(resonator->audioOutput);
+    resonator->audioInput.connect(granulator->output);
 
 // 	auto& animator = patchComponent.getPatch().addOperator<RampSequencer>("animator");
 // 	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
@@ -326,8 +338,19 @@ void ofApp::createAudio()
      animator2.schedulerInput.connect(output.schedulerOutput);
      granulator->cloudInput.connect(animator2.output);
     
+    resonator->playParams({ { "frequency", 440 } });
+    resonator->playParams({ { "frequency", 660 } });
+    
 	granulatorPanel.setup();
 	granulatorPanel.setControlManager(granulator->getControlManager());
+    resonatorPanel.setup();
+    resonatorPanel.setControlManager(resonator->getControlManager());
+
+     // Connect grains changes
+     granulator->grainSignal.connect(mGrainTriggered);     
+     */
+    
+    audioComposition = make_unique<AudioComposition>(mCore.getRoot(), ofFile("audiosettings.json").getAbsolutePath());
 
 	// Connect to sound device
 	soundStream.printDeviceList();
@@ -337,8 +360,6 @@ void ofApp::createAudio()
 
 	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
 
-	// Connect grains changes
-	granulator->grainSignal.connect(mGrainTriggered);
 }
 
 

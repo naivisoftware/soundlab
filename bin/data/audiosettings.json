@@ -1,0 +1,26 @@
+{
+    "audioFiles": [
+    	"audio/bartokpizz.wav",
+    	"audio/bronsbow.wav",
+    	"audio/collegno.wav",
+    	"audio/slowbowing.wav",
+    	"audio/kewis.wav",
+    	"audio/mydyingbride.wav"
+    ],
+    
+    "part1": {
+    	"grainSequencer1": {
+    		"playing": true,
+    		"times": [ 5000 ],
+    		"sequences": {
+    			"duration": [ 5000 ],
+    			"pitch": [ 1.0 ],
+    			"position": [ 0.5 ],
+    			"amplitude": [ 1 ],
+    			"attack": [ 0 ],
+    			"decay": [ 0 ],
+    			"selectedStream": [ 5 ]
+    		}
+    	}  
+    }
+}
