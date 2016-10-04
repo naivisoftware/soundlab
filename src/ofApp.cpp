@@ -20,12 +20,6 @@
 #include <splineutils.h>
 #include <Utils/nofUtils.h>
 
-// Audio
-#include <Lib/Audio/Utility/AudioFile/AudioFileComponent.h>
-#include <Lib/Audio/Unit/OutputUnit.h>
-#include <Lib/Utility/Data/RampSequencer.h>
-#include <Lib/Utility/Data/Sequencer.h>
-
 using namespace lib;
 using namespace lib::audio;
 using namespace nap;
@@ -60,6 +54,12 @@ void ofApp::setup()
  	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
  	assert(ether_cam != nullptr);
  	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
+
+	//////////////////////////////////////////////////////////////////////////
+	// GUI
+	//////////////////////////////////////////////////////////////////////////
+
+	//setupGui();
 }
 
 
@@ -80,11 +80,6 @@ void ofApp::draw()
 	ofColor ccolor = rate < 55 ? ofColor::red : ofColor::green;
 	ofSetColor(ccolor);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
-
-	// Draw audio panel
-	granulatorPanel.draw();
-    
-    resonatorPanel.draw();
 
 }
 
@@ -109,6 +104,9 @@ void ofApp::keyPressed(int key)
 		break;
 	case 'f':
 		ofToggleFullscreen();
+		break;
+	case '0':
+		mParmToSet->set(0.0f);
 		break;
 	}
 }
@@ -264,10 +262,6 @@ void ofApp::resetCamera()
 
 void ofApp::createAudio()
 {
-//	float bufferSampleRate;
-//	readWavFile(ofFile("mydyingbride.wav").getAbsolutePath(), mBuffer, bufferSampleRate);
-//	mBufferStream = std::make_unique<AudioBufferStream>(bufferSampleRate, mBuffer);
-    
     mCore.addService<AudioFileService>();
 
 	audioService = &mCore.addService<AudioService>();
@@ -275,81 +269,6 @@ void ofApp::createAudio()
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
 
-    /*
-	mAudioEntity = &mCore.addEntity("sound");
-    auto& audioFileComponent1 = mAudioEntity->addComponent<AudioFileComponent>("audioFile");
-    audioFileComponent1.fileName.setValue(ofFile("audio/mydyingbride.wav").getAbsolutePath());
-    auto&audioFileComponent2 = mAudioEntity->addComponent<AudioFileComponent>("audioFile");
-    audioFileComponent2.fileName.setValue(ofFile("audio/kewis.wav").getAbsolutePath());
-    
-	auto& patchComponent = mAudioEntity->addComponent<PatchComponent>("patch");
-
-	granulator = &patchComponent.getPatch().addOperator<Granulator>("granulator");
-	granulator->channelCount.setValue(2);
-	granulator->addInputStream(audioFileComponent1.getStream());
-    granulator->addInputStream(audioFileComponent2.getStream());
-    granulator->density.setProportion(0.4);
-    granulator->duration.setValue(100);
-    granulator->irregularity.setProportion(0.5);
-    granulator->positionDev.setProportion(0.25);
-    granulator->positionSpeed.setProportion(0.4);
-//    granulator->amplitude.setProportion(1.);
-    
-    resonator = &patchComponent.getPatch().addOperator<ResonatorUnit>("resonator");
-    resonator->channelCount.setValue(2);
-    resonator->inputChannelCount.setValue(2);
-
-	auto& output = patchComponent.getPatch().addOperator<OutputUnit>("output");
-	output.channelCount.setValue(2);
-	output.audioInput.connect(resonator->audioOutput);
-    resonator->audioInput.connect(granulator->output);
-
-// 	auto& animator = patchComponent.getPatch().addOperator<RampSequencer>("animator");
-// 	animator.sequence.setValue({ 0.2f, 0.5f, 0.1f, 0.6f });
-// 	animator.durations.setValue({ 3000, 500, 6000 });
-// 	animator.looping.setValue(true);
-// 	animator.schedulerInput.connect(output.schedulerOutput);
-// 	granulator->density.proportionPlug.connect(animator.output);
-
-//   granulator->playCloudParams({ { "pitch", 1. }, { "position", 0.5 }, { "amplitude", 1 }, { "attack", 1000 }, { "decay", 1000 }});
-
-     FloatArray pitches1 = { 1.0f, 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 7/6.f };
-     FloatArray pitches2 = mult({ 2/3.f, 1/2.f, 1/3.f, 1/6.f, 5/6.f, 1.f }, 1.5f);
-     
-     auto& animator1 = patchComponent.getPatch().addOperator<Sequencer>("animator");
-     animator1.sequences.addAttribute<FloatArray>("pitch", pitches1);
-     animator1.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-     animator1.sequences.addAttribute<float>("attack", 500);
-     animator1.sequences.addAttribute<float>("decay", 500);
-     animator1.sequences.addAttribute<float>("duration", 2000);
-     animator1.times.setValue({ 2000, 1000, 1000, 2000, 1000 });
-     animator1.looping.setValue(true);
-     animator1.schedulerInput.connect(output.schedulerOutput);
-     granulator->cloudInput.connect(animator1.output);
-     
-     auto& animator2 = patchComponent.getPatch().addOperator<Sequencer>("animator2");
-     animator2.sequences.addAttribute<FloatArray>("pitch", pitches2);
-     animator2.sequences.addAttribute<FloatArray>("position", { 0.2f } );
-     animator2.sequences.addAttribute<float>("attack", 500);
-     animator2.sequences.addAttribute<float>("decay", 500);
-     animator2.sequences.addAttribute<float>("duration", 3000);
-     animator2.times.setValue({ 3000, 1500, 3000, 1500, 3000 });
-     animator2.looping.setValue(true);
-     animator2.schedulerInput.connect(output.schedulerOutput);
-     granulator->cloudInput.connect(animator2.output);
-    
-    resonator->playParams({ { "frequency", 440 } });
-    resonator->playParams({ { "frequency", 660 } });
-    
-	granulatorPanel.setup();
-	granulatorPanel.setControlManager(granulator->getControlManager());
-    resonatorPanel.setup();
-    resonatorPanel.setControlManager(resonator->getControlManager());
-
-     // Connect grains changes
-     granulator->grainSignal.connect(mGrainTriggered);     
-     */
-    
     audioComposition = make_unique<AudioComposition>(mCore.getRoot(), ofFile("audiosettings.json").getAbsolutePath());
 
 	// Connect to sound device
@@ -362,6 +281,27 @@ void ofApp::createAudio()
 
 }
 
+
+void ofApp::valueChanged(float& inValue)
+{
+	std::cout << inValue << "\n";
+}
+
+
+// Test for figuring out auto mapping of objects later on
+void ofApp::setupGui()
+{
+//	mGroup.add(ofParameter<float>("hello", 1.0f, 0.0f, 1.0f));
+//	mGroup.add(ofParameter<float>("whut", 0.5f, 0.0f, 1.0f));
+//	mGroup.add(ofParameter<bool>("toggle", true));
+	mGroup.setName("group_one");
+
+	mParmToSet = &mGroup.getFloat("whut");
+	mParmToSet->addListener(this, &ofApp::valueChanged);
+	
+	mGui.setup(mGroup);
+	mGui.setPosition(ofPoint(400, 400, 0.0f));
+}
 
 // Called when grains change
 void ofApp::grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params)

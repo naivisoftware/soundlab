@@ -76,6 +76,13 @@ private:
     lib::gui::OFControlPanel resonatorPanel;
     std::unique_ptr<AudioComposition> audioComposition = nullptr;
 
+	// Gui (TEST)
+	ofxPanel					mGui;
+	ofParameterGroup			mGroup;
+	ofParameter<float>*			mParmToSet = nullptr;
+	void						valueChanged(float& inValue);
+	void						setupGui();
+
 	// Hook up
 	void grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params);
     nap::Slot<lib::TimeValue, const lib::audio::GrainParameters&> mGrainTriggered = { [&](lib::TimeValue time, const lib::audio::GrainParameters& params)

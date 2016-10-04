@@ -28,6 +28,8 @@ int main( )
 	// Disable arb texture rendering (normalized uv_coordinates)
 	ofDisableArbTex();
 
+	glEnable(GL_LINE_SMOOTH);
+
 	// Set max framerate
 	ofSetFrameRate(60);
 
@@ -36,11 +38,6 @@ int main( )
 
 	// Enable alpha blending
 	ofEnableAlphaBlending();
-
-	// Enable depth test
-	// ofEnableDepthTest();
-
-	//glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
 
 	// Create app
 	std::shared_ptr<ofApp> main_app = std::make_shared<ofApp>();
