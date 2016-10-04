@@ -8,10 +8,14 @@
 #include <nap/core.h>
 #include <nap/patch.h>
 
+// Audio Includes
 #include <Lib/Audio/Unit/AudioDevice.h>
 #include <Lib/Audio/Utility/AudioFile/AudioFileService.h>
 #include <Lib/Audio/Unit/Granular/Granulator.h>
+
+// OF Includes
 #include <openFrameworks/Gui/OFControlPanel.h>
+#include <Utils/nofattributewrapper.h>
 
 #include <audio.h>
 
@@ -78,8 +82,9 @@ private:
 
 	// Gui (TEST)
 	ofxPanel					mGui;
-	ofParameterGroup			mGroup;
-	ofParameter<float>*			mParmToSet = nullptr;
+	OFAttributeWrapper			mColorParameters;
+	OFAttributeWrapper			mRotateParameters;
+	OFAttributeWrapper			mTraceParameters;
 	void						valueChanged(float& inValue);
 	void						setupGui();
 

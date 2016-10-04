@@ -59,7 +59,7 @@ void ofApp::setup()
 	// GUI
 	//////////////////////////////////////////////////////////////////////////
 
-	//setupGui();
+	setupGui();
 }
 
 
@@ -81,6 +81,7 @@ void ofApp::draw()
 	ofSetColor(ccolor);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
 
+	mGui.draw();
 }
 
 
@@ -106,7 +107,6 @@ void ofApp::keyPressed(int key)
 		ofToggleFullscreen();
 		break;
 	case '0':
-		mParmToSet->set(0.0f);
 		break;
 	}
 }
@@ -291,17 +291,23 @@ void ofApp::valueChanged(float& inValue)
 // Test for figuring out auto mapping of objects later on
 void ofApp::setupGui()
 {
-//	mGroup.add(ofParameter<float>("hello", 1.0f, 0.0f, 1.0f));
-//	mGroup.add(ofParameter<float>("whut", 0.5f, 0.0f, 1.0f));
-//	mGroup.add(ofParameter<bool>("toggle", true));
-	mGroup.setName("group_one");
-
-	mParmToSet = &mGroup.getFloat("whut");
-	mParmToSet->addListener(this, &ofApp::valueChanged);
+	// Populate parameters
+	mColorParameters.setName("Color");
+	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
 	
-	mGui.setup(mGroup);
-	mGui.setPosition(ofPoint(400, 400, 0.0f));
+	mRotateParameters.setName("Rotation");
+	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
+	
+	mTraceParameters.setName("Tracer");
+	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
+
+	// Add parameters to gui
+	mGui.setup(mColorParameters.getGroup());
+	mGui.add(mRotateParameters.getGroup());
+	mGui.add(mTraceParameters.getGroup());
+	mGui.setPosition(ofPoint(10, 10, 0.0f));
 }
+
 
 // Called when grains change
 void ofApp::grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params)
