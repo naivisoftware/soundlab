@@ -183,6 +183,8 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\audio.cpp" />
+    <ClCompile Include="src\jsoncomponent.cpp" />
     <ClCompile Include="src\settings.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -201,6 +203,8 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <ClCompile Include="src\splineutils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\audio.h" />
+    <ClInclude Include="src\jsoncomponent.h" />
     <ClInclude Include="src\settings.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\openFrameworks\addons\ofxGui\src\ofxBaseGui.h" />
