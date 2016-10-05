@@ -27,12 +27,6 @@ public:
     
     nap::Entity* entity = nullptr;
     nap::PatchComponent* patchComponent = nullptr;
-    lib::audio::Granulator* granulator = nullptr;
-    lib::audio::ResonatorUnit* resonator = nullptr;
-    std::vector<lib::Sequencer*> grainSequencers;
-    std::vector<lib::RampSequencer*> grainAnimators;
-    std::vector<lib::Sequencer*> resonatorSequencers;
-    std::vector<lib::RampSequencer*> resonatorAnimators;
 };
 
 
@@ -40,14 +34,20 @@ class AudioComposition {
 public:
     AudioComposition(nap::Entity& root, const std::string& jsonPath);
     
+    void play(int player, int partIndex);
     void play(int player, const std::string& partName);
     
+    void next();
+    void random();
+
+    int getPartCount();
+    
+private:
     nap::Entity* entity = nullptr;
     std::vector<std::unique_ptr<AudioPlayer>> players;
-    
     nap::JsonComponent* jsonComponent = nullptr;
     
-    nap::Entity* audioFiles = nullptr;
+    int mCurrentPartIndex = 0;
 };
 
 

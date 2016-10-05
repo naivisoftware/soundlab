@@ -67,6 +67,12 @@ namespace nap {
         // Same as other @getObjectArray but using the document as root
         std::vector<rapidjson::Value*> getObjectArray(const std::string& jsonPointer);
         
+        // Return a generic json object using an index within a parent object
+        rapidjson::Value* getValueByIndex(const std::string& jsonPointer, int index);
+        
+        // Return a generic json object using an index into an array
+        rapidjson::Value* getValueFromArray(int inIndex);
+        
         // Maps the content of a generic json object to the values of attributes in the nap Object tree
         void mapToAttributes(rapidjson::Value& json, Object& object);
         
@@ -104,8 +110,11 @@ namespace nap {
         else if (value->IsDouble())
             return T(value->GetDouble());
         
-        else if (value->GetInt())
+        else if (value->IsInt())
             return T(value->GetInt());
+        
+        else if (value->IsInt64())
+            return T(value->GetInt64());
         
         Logger::warn("json value not a number: " + jsonPointer);
         return defaultValue;

@@ -7,46 +7,174 @@
     	"audio/kewis.wav",
     	"audio/mydyingbride.wav"
     ],
-    
-    "part1": {
 
-        "granulator": {
-            "density": 20,
-            "grainSize": 50,
-            "positionSpeed": 0.1,
-            "irregularity": 1,
-            "diffusion": 1,
-            "width": 1,
-            "inputStream": 0
-        },
-
-    	"grainSequencer1": {
-    		"times": [ 5000.0 ],
-    		"sequences": {
-    			"position": [ 0.1 ],
-    			"amplitude": [ 1.0 ],
-    			"attack": [ 0.0 ],
-    			"decay": [ 0.0 ],
-                "duration": [ 5000.0 ]
-    		},
-            "playing": true
-    	},
-
-        "resonator": {
-            "feedback": 0.8,
-            "damping": 0,
-            "attack": 10,
-            "release": 100
-        },
-
-        "resonatorSequencer1": {
-            "times": [ 0, 5000 ],
-            "sequences": {
-                "duration": [ 5000 ],
-                "frequency": [ 220, 440 ]
+    "init": {
+        "1": {
+            "resonator": {
+                "feedback": 0.0,
+                "damping": 0.0
             },
-            "playing": true
-        }  
 
+            "resonatorSequencer1": {
+                "times": [ 5000 ],
+                "sequences": {
+                    "duration": [ 10000 ],
+                    "frequency": [ 220 ],
+                    "amplitude": [ 0.5 ],
+                    "attack": [ 2000 ],
+                    "release": [ 2000 ]
+                },
+                "looping": true,
+                "playing": true
+            }
+        },
+
+        "2": {
+        }        
+    },
+
+    "start": 0,
+    
+    "parts": {
+
+        "granulator pad": {
+            "granulator": {
+                "shape": 0,
+                "grainSize": 100,
+                "width": 1,
+                "irregulatity": 1,
+                "diffusion": 1,
+                "density": 20,
+                "position": 0.1,
+                "positionSpeed": 0.5
+            },
+
+            "grainSequencer1": {
+                "times": [ 30000.0 ],
+                "sequences": {
+                    "amplitude": [ 1.0 ],
+                    "attack": [ 1000.0 ],
+                    "decay": [ 1000.0 ],
+                    "duration": [ 30000.0 ]
+                },
+                "looping": true,
+                "playing": true
+            }          
+        },
+
+        "resonator pad": {
+            "resonator": {
+                "attack": 2000,
+                "release": 2000
+            },
+
+            "resonatorSequencer1": {
+                "times": [ 2000, 2000, 2000, 2000 ],
+                "sequences": {
+                    "duration": [ 6000 ],
+                    "frequency": [ 200, 266.666, 300, 233.333 ],
+                    "feedback": [ 0.99 ],
+                    "damping": [ 0.0 ],
+                    "amplitude": [ 0.5 ],
+                    "attack": [ 2000 ],
+                    "release": [ 2000 ]
+                },
+                "looping": true,
+                "playing": true
+            }
+        },   
+
+
+        "no resonance": {
+            "resonator": {
+                "feedback": 0.0,
+                "damping": 0.0
+            },
+
+            "resonatorSequencer1": {
+                "times": [ 5000 ],
+                "sequences": {
+                    "duration": [ 10000 ],
+                    "frequency": [ 220 ],
+                    "amplitude": [ 0.5 ],
+                    "attack": [ 2000 ],
+                    "release": [ 2000 ]
+                },
+                "looping": true,
+                "playing": true
+            }
+        },
+
+
+
+        "squeeky": {
+            "granulator": {
+                "shape": 1,
+                "grainSize": 200,
+                "width": 1,
+                "irregulatity": 1,
+                "diffusion": 1
+            },
+
+            "grainSequencer1": {
+                "times": [ 5000.0 ],
+                "sequences": {
+                    "position": [ 0.1 ],
+                    "amplitude": [ 1.0 ],
+                    "attack": [ 0.0 ],
+                    "decay": [ 0.0 ],
+                    "duration": [ 5000.0 ]
+                },
+                "looping": true,
+                "playing": true
+            },
+
+            "densityAnimator": {
+                "times": [ 1000, 3000, 1000, 2000 ],
+                "sequence": [ 0.8, 0.1, 0.8, 0.2 ],
+                "looping": true,
+                "playing": true
+            }
+
+        },        
+
+        "input Bartokpizz": {
+            "granulator": {
+                "inputStream": 0
+            }
+        },
+        
+        "input Bronsbow": {
+            "granulator": {
+                "inputStream": 1
+            }
+        },
+
+        "input Collegno": {
+            "granulator": {
+                "inputStream": 2
+            }
+        },
+        
+        "input Slowbowing": {
+            "granulator": {
+                "inputStream": 3
+            }
+        },
+        
+        "input Kewis": {
+            "granulator": {
+                "inputStream": 4
+            }
+        },
+        
+        "input mydyingbride": {
+            "granulator": {
+                "inputStream": 5
+            }
+        }
+
+                
     }
+    
 }

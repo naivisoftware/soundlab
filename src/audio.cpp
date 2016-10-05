@@ -17,6 +17,7 @@
 #include <Lib/Audio/Unit/OutputUnit.h>
 #include <Lib/Utility/Data/Sequencer.h>
 #include <Lib/Utility/Data/RampSequencer.h>
+#include <Lib/Utility/Functions/MathFunctions.h>
 
 using namespace nap;
 using namespace std;
@@ -28,28 +29,50 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name)
     
     patchComponent = &entity->addComponent<PatchComponent>("patch");
     
-    granulator = &patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
-    granulator->channelCount.setValue(2);
+    // granulator
+    auto& granulator = patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
+    granulator.channelCount.setValue(2);
     
-    resonator = &patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
-    resonator->channelCount.setValue(2);
-    resonator->inputChannelCount.setValue(2);
+    // resonator
+    auto& resonator = patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
+    resonator.channelCount.setValue(2);
+    resonator.inputChannelCount.setValue(2);
     
+    // audio output
     auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
     output.channelCount.setValue(2);
-    output.audioInput.connect(resonator->audioOutput);
-    resonator->audioInput.connect(granulator->output);
+    output.audioInput.connect(resonator.audioOutput);
+    resonator.audioInput.connect(granulator.output);
     
-    for (auto i = 0; i < 1; ++i)
+    // sequencers
+    for (auto i = 0; i < 2; ++i)
     {
         auto& grainSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("grainSequencer" + to_string(i + 1));
         grainSeq.schedulerInput.connect(output.schedulerOutput);
-        granulator->cloudInput.connect(grainSeq.output);
+        granulator.cloudInput.connect(grainSeq.output);
         
         auto& resSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("resonatorSequencer" + to_string(i + 1));
         resSeq.schedulerInput.connect(output.schedulerOutput);
-        resonator->input.connect(resSeq.output);
+        resonator.input.connect(resSeq.output);
     }
+    
+    // granulator animators
+    auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
+    densityAnimator.schedulerInput.connect(output.schedulerOutput);
+    granulator.density.proportionPlug.connect(densityAnimator.output);
+    
+    auto& positionAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("positionAnimator");
+    positionAnimator.schedulerInput.connect(output.schedulerOutput);
+    granulator.position.proportionPlug.connect(positionAnimator.output);
+    
+    auto& grainSizeAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("grainSizeAnimator");
+    grainSizeAnimator.schedulerInput.connect(output.schedulerOutput);
+    granulator.position.proportionPlug.connect(grainSizeAnimator.output);
+    
+    // resonator animator
+    auto& resonatorAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("resonanceAnimator");
+    resonatorAnimator.schedulerInput.connect(output.schedulerOutput);
+    resonator.feedback.proportionPlug.connect(resonatorAnimator.output);
         
 }
 
@@ -69,18 +92,41 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
     
     // add the audio files
     std::vector<std::string> audioFileNames = jsonComponent->getStringArray("/audioFiles");
-    audioFiles = &root.addEntity("audioFiles");
+    auto& audioFiles = root.addEntity("audioFiles");
     for (auto& audioFileName : audioFileNames)
     {
-        auto& audioFile = audioFiles->addComponent<lib::audio::AudioFileComponent>();
+        auto& audioFile = audioFiles.addComponent<lib::audio::AudioFileComponent>();
         audioFile.fileName.setValue(ofFile(audioFileName).getAbsolutePath());
     }
     
-    // add the players
+    // add the player
     for (auto i = 0; i < 1; ++i)
         players.emplace_back(make_unique<AudioPlayer>(*entity, "player" + to_string(i + 1)));
     
-    play(0, "part1");
+    play(0, "init/1");
+    play(1, "init/2");
+    mCurrentPartIndex = jsonComponent->getNumber<int>("/start", 0);
+    play(0, mCurrentPartIndex);
+}
+
+
+void AudioComposition::play(int player, int index)
+{
+    rapidjson::Value* json = jsonComponent->getValueByIndex("/parts", index);
+    if (!json)
+    {
+        Logger::warn("Part not found: " + to_string(index));
+        return;
+    }
+    
+    if (player >= players.size())
+    {
+        Logger::warn("Player index out of range: " + to_string(player));
+        return;
+    }
+    
+    jsonComponent->mapToAttributes(*json, players[player]->patchComponent->getPatch());
+    
 }
 
 
@@ -100,6 +146,34 @@ void AudioComposition::play(int player, const std::string& partName)
     }
     
     jsonComponent->mapToAttributes(*json, players[player]->patchComponent->getPatch());
+}
+
+
+int AudioComposition::getPartCount()
+{
+    rapidjson::Value* json = jsonComponent->getValue("/parts");
+    
+    if (!json || !json->IsObject())
+    {
+        Logger::warn("No parts found");
+        return;
+    }
+    
+    return json->MemberCount();
+}
+
+
+void AudioComposition::next()
+{
+    mCurrentPartIndex = (mCurrentPartIndex + 1) % getPartCount();
+    play(0, mCurrentPartIndex);
+}
+
+
+void AudioComposition::random()
+{
+    mCurrentPartIndex = lib::dblRand() * getPartCount();
+    play(0, mCurrentPartIndex);
 }
 
 

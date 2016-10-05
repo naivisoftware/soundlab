@@ -106,6 +106,12 @@ void ofApp::keyPressed(int key)
 	case 'f':
 		ofToggleFullscreen();
 		break;
+    case 'n':
+        audioComposition->next();
+        break;
+    case 'm':
+        audioComposition->random();
+        break;
 	case '0':
 		break;
 	}

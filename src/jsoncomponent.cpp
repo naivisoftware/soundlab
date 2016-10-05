@@ -322,4 +322,21 @@ namespace nap {
         return getValue(*mDocument, jsonPointer);
     }
     
+    
+    rapidjson::Value* JsonComponent::getValueByIndex(const std::string& jsonPointer, int index)
+    {
+        if (!mDocument)
+            return nullptr;
+        return getValueByIndex(*mDocument, jsonPointer, index);
+        
+    }
+    
+    
+    rapidjson::Value* JsonComponent::getValueFromArray(int index)
+    {
+        if (!mDocument)
+            return nullptr;
+        return getValueFromArray(*mDocument, index);
+    }
+    
 }
