@@ -41,6 +41,7 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name)
     // audio output
     auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
     output.channelCount.setValue(2);
+    output.audioInput.connect(granulator.output);
     output.audioInput.connect(resonator.audioOutput);
     resonator.audioInput.connect(granulator.output);
     
@@ -100,19 +101,30 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
     }
     
     // add the player
-    for (auto i = 0; i < 1; ++i)
+    for (auto i = 0; i < 2; ++i)
         players.emplace_back(make_unique<AudioPlayer>(*entity, "player" + to_string(i + 1)));
     
     play(0, "init/1");
     play(1, "init/2");
     mCurrentPartIndex = jsonComponent->getNumber<int>("/start", 0);
     play(0, mCurrentPartIndex);
+    play(1, mCurrentPartIndex);
 }
 
 
 void AudioComposition::play(int player, int index)
 {
-    rapidjson::Value* json = jsonComponent->getValueByIndex("/parts", index);
+    rapidjson::Value* parts = jsonComponent->getValue("/parts");
+    int i = 0;
+    auto it = parts->MemberBegin();
+    while (i != index && it != parts->MemberEnd())
+    {
+        it++;
+        i++;
+    }
+    
+    auto name = it->name.GetString();
+    rapidjson::Value* json = &it->value;
     if (!json)
     {
         Logger::warn("Part not found: " + to_string(index));
@@ -125,6 +137,7 @@ void AudioComposition::play(int player, int index)
         return;
     }
     
+    Logger::debug(std::string("Playing audio part: ") + name + " on " + to_string(player));
     jsonComponent->mapToAttributes(*json, players[player]->patchComponent->getPatch());
     
 }
@@ -145,6 +158,7 @@ void AudioComposition::play(int player, const std::string& partName)
         return;
     }
     
+    Logger::debug("Playing audio part: " + partName + " on " + to_string(player));
     jsonComponent->mapToAttributes(*json, players[player]->patchComponent->getPatch());
 }
 
@@ -166,14 +180,14 @@ int AudioComposition::getPartCount()
 void AudioComposition::next()
 {
     mCurrentPartIndex = (mCurrentPartIndex + 1) % getPartCount();
-    play(0, mCurrentPartIndex);
+    play(lib::dblRand() * players.size(), mCurrentPartIndex);
 }
 
 
 void AudioComposition::random()
 {
     mCurrentPartIndex = lib::dblRand() * getPartCount();
-    play(0, mCurrentPartIndex);
+    play(lib::dblRand() * players.size(), mCurrentPartIndex);
 }
 
 

@@ -12,24 +12,25 @@
         "1": {
             "resonator": {
                 "feedback": 0.0,
-                "damping": 0.0
+                "damping": 0.0,
+                "amplitude": 0.2
             },
 
-            "resonatorSequencer1": {
-                "times": [ 5000 ],
-                "sequences": {
-                    "duration": [ 10000 ],
-                    "frequency": [ 220 ],
-                    "amplitude": [ 0.5 ],
-                    "attack": [ 2000 ],
-                    "release": [ 2000 ]
-                },
-                "looping": true,
-                "playing": true
+            "granulator": {
+                "amplitude": 0.5
             }
         },
 
         "2": {
+            "resonator": {
+                "feedback": 0.0,
+                "damping": 0.0,
+                "amplitude": 0.2
+            },
+
+            "granulator": {
+                "amplitude": 0.5
+            }
         }        
     },
 
@@ -46,7 +47,7 @@
                 "diffusion": 1,
                 "density": 20,
                 "position": 0.1,
-                "positionSpeed": 0.5
+                "positionSpeed": 0.05
             },
 
             "grainSequencer1": {
@@ -70,13 +71,12 @@
             },
 
             "resonatorSequencer1": {
-                "times": [ 2000, 2000, 2000, 2000 ],
+                "times": [ 2000 ],
                 "sequences": {
                     "duration": [ 6000 ],
                     "frequency": [ 200, 266.666, 300, 233.333 ],
-                    "feedback": [ 0.99 ],
+                    "feedback": [ 0.95 ],
                     "damping": [ 0.0 ],
-                    "amplitude": [ 0.25 ],
                     "attack": [ 2000 ],
                     "release": [ 2000 ]
                 },
@@ -86,12 +86,43 @@
         },   
 
 
-        "no resonance": {
+        "resonator melodies": {
             "resonator": {
-                "feedback": 0.0,
-                "damping": 0.0
+                "attack": 2000,
+                "release": 2000
             },
 
+            "resonatorSequencer1": {
+                "times": [ 2000 ],
+                "sequences": {
+                    "duration": [ 6000 ],
+                    "frequency": [ 200, 266.666, 300, 233.333 ],
+                    "feedback": [ 0.95 ],
+                    "damping": [ 0.0 ],
+                    "attack": [ 2000 ],
+                    "release": [ 2000 ]
+                },
+                "looping": true,
+                "playing": true
+            },
+
+            "resonatorSequencer2": {
+                "times": [ 1500 ],
+                "sequences": {
+                    "duration": [ 4000 ],
+                    "frequency": [ 300, 400, 450, 350 ],
+                    "feedback": [ 0.95 ],
+                    "damping": [ 0.0 ],
+                    "attack": [ 500 ],
+                    "release": [ 500 ]
+                },
+                "looping": true,
+                "playing": true
+            }
+        },   
+
+
+        "no resonance": {
             "resonatorSequencer1": {
                 "times": [ 5000 ],
                 "sequences": {
@@ -101,11 +132,31 @@
                     "attack": [ 2000 ],
                     "release": [ 2000 ]
                 },
-                "looping": true,
-                "playing": true
+                "looping": false,
+                "playing": false
             }
         },
 
+
+        "grain movement": {
+            "positionAnimator": {
+                "times": [ 5000, 5000, 10000, 10000 ],
+                "sequence": [ 0.0, 1.0, 0.0, 1.0 ],
+                "looping": true,
+                "playing": true
+            }
+
+        },                
+
+
+        "grain no movement": {
+            "positionAnimator": {
+                "times": [ 5000, 5000 ],
+                "sequence": [ 0.0, 1.0 ],
+                "looping": false,
+                "playing": false
+            }
+        },                
 
 
         "squeeky": {
