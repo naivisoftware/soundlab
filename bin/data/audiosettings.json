@@ -162,12 +162,6 @@
             }
         },
         
-        "input Kewis": {
-            "granulator": {
-                "inputStream": 4
-            }
-        },
-        
         "input mydyingbride": {
             "granulator": {
                 "inputStream": 5
