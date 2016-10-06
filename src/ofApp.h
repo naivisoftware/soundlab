@@ -83,13 +83,20 @@ private:
 	// Gui (TEST)
 	ofxPanel					mGui;
 	ofxPanel					mLaserGui;
+	ofxPanel					mAudioGui;
 
 	OFAttributeWrapper			mColorParameters;
 	OFAttributeWrapper			mRotateParameters;
 	OFAttributeWrapper			mTraceParameters;
 	OFAttributeWrapper			mXformParameters;
 	OFAttributeWrapper			mSelectionParameters;
+	OFAttributeWrapper			mFileParameters;
+	
 	OFAttributeWrapper			mLaserServiceParameters;
+	OFAttributeWrapper			mLaserCamParameters;
+
+	OFAttributeWrapper			mGranulatorParameters;
+
 	void						setupGui();
 
 	// Hook up

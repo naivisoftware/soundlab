@@ -295,7 +295,7 @@ void ofApp::setupGui()
 	// Populate parameters for spline modulation
 	mColorParameters.setName("Color");
 	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
-	
+
 	mXformParameters.setName("Transform");
 	mXformParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
 
@@ -308,19 +308,39 @@ void ofApp::setupGui()
 	mSelectionParameters.setName("Selection");
 	mSelectionParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineSelectionComponent>()));
 
+	mFileParameters.setName("Spline File");
+	mFileParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineFromFileComponent>()));
+
 	// Add parameters to gui
 	mGui.setup(mColorParameters.getGroup());
 	mGui.add(mXformParameters.getGroup());
 	mGui.add(mRotateParameters.getGroup());
 	mGui.add(mTraceParameters.getGroup());
 	mGui.add(mSelectionParameters.getGroup());
+	mGui.add(mFileParameters.getGroup());
 	mGui.setPosition(ofPoint(10, 10, 0.0f));
 
+	//mGui.loadFromFile("settings.xml");
+
+	//////////////////////////////////////////////////////////////////////////
+
 	// Populate parameters for laser service
+	mLaserServiceParameters.setName("LaserService");
 	mLaserServiceParameters.addObject(*mLaserService);
-	mLaserServiceParameters.setName("Laser Service");
-	mLaserGui.setup(mLaserServiceParameters.getGroup());
+
+	mLaserCamParameters.setName("LaserCamera");
+	mLaserCamParameters.addObject(*(mLaserEntity->getComponent<nap::EtherDreamCamera>()));
+
+	mLaserGui.setup(mLaserCamParameters .getGroup());
+	mLaserGui.add(mLaserServiceParameters.getGroup());
+
 	mLaserGui.setPosition(ofPoint(mGui.getWidth() + 25, 10, 0.0f));
+
+	//////////////////////////////////////////////////////////////////////////
+
+	//mGranulatorParameters.setName("Granulator");
+	//mGranulatorParameters.addObject(mAudioEntity->getComponent<Granulator>))
+
 }
 
 
