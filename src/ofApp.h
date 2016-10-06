@@ -82,10 +82,14 @@ private:
 
 	// Gui (TEST)
 	ofxPanel					mGui;
+	ofxPanel					mLaserGui;
+
 	OFAttributeWrapper			mColorParameters;
 	OFAttributeWrapper			mRotateParameters;
 	OFAttributeWrapper			mTraceParameters;
-	void						valueChanged(float& inValue);
+	OFAttributeWrapper			mXformParameters;
+	OFAttributeWrapper			mSelectionParameters;
+	OFAttributeWrapper			mLaserServiceParameters;
 	void						setupGui();
 
 	// Hook up

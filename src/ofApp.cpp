@@ -82,6 +82,7 @@ void ofApp::draw()
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
 
 	mGui.draw();
+	mLaserGui.draw();
 }
 
 
@@ -288,30 +289,38 @@ void ofApp::createAudio()
 }
 
 
-void ofApp::valueChanged(float& inValue)
-{
-	std::cout << inValue << "\n";
-}
-
-
 // Test for figuring out auto mapping of objects later on
 void ofApp::setupGui()
 {
-	// Populate parameters
+	// Populate parameters for spline modulation
 	mColorParameters.setName("Color");
 	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
 	
+	mXformParameters.setName("Transform");
+	mXformParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
+
 	mRotateParameters.setName("Rotation");
 	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
 	
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
 
+	mSelectionParameters.setName("Selection");
+	mSelectionParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineSelectionComponent>()));
+
 	// Add parameters to gui
 	mGui.setup(mColorParameters.getGroup());
+	mGui.add(mXformParameters.getGroup());
 	mGui.add(mRotateParameters.getGroup());
 	mGui.add(mTraceParameters.getGroup());
+	mGui.add(mSelectionParameters.getGroup());
 	mGui.setPosition(ofPoint(10, 10, 0.0f));
+
+	// Populate parameters for laser service
+	mLaserServiceParameters.addObject(*mLaserService);
+	mLaserServiceParameters.setName("Laser Service");
+	mLaserGui.setup(mLaserServiceParameters.getGroup());
+	mLaserGui.setPosition(ofPoint(mGui.getWidth() + 25, 10, 0.0f));
 }
 
 

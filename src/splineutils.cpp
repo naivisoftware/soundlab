@@ -47,47 +47,6 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	spline_component.mLineWidth.setValue(2.0f);
 	trace_component.mLineWidth.setValue(10.0f);
 
-	/*
-	// Add Lag components
-	nap::OFFloatLagComponent& trace_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sTraceLengthLagName);
-	trace_lag.SetAttribute(trace_component.mLength);
-	trace_lag.mSmoothTime.setValue(0.2f);
-
-	nap::OFFloatLagComponent& trace_speed_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sTraceLagSpeedName);
-	trace_speed_lag.SetAttribute(trace_component.mSpeed);
-	trace_speed_lag.mSmoothTime.setValue(0.25f);
-	trace_speed_lag.mTargetValue.setValue(1.0f);
-	*/
-
-	/*
-	nap::OFFloatLagComponent& lfo_speed_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sLFOSpeedLagName);
-	lfo_speed_lag.SetAttribute(lfo_component.mSpeed);
-	lfo_speed_lag.mSmoothTime.setValue(0.05f);
-	lfo_speed_lag.mMaxSpeed.setValue(1000.0f);
-
-
-	nap::OFFloatLagComponent& lfo_amp_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sLFOAmplitudeLagName);
-	lfo_amp_lag.SetAttribute(lfo_component.mAmplitude);
-	lfo_amp_lag.mSmoothTime.setValue(0.025f);
-	lfo_amp_lag.mMaxSpeed.setValue(5000.0f);
-
-	nap::OFFloatLagComponent& lfo_freq_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sLFOFreqLagName);
-	lfo_freq_lag.SetAttribute(lfo_component.mFrequency);
-	lfo_freq_lag.mSmoothTime.setValue(0.5f);
-	*/
-
-	//nap::OFFloatLagComponent& color_speed_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sColorSpeedName);
-	//color_speed_lag.SetAttribute(col_component.mCycleSpeed);
-	//color_speed_lag.mSmoothTime.setValue(0.5);
-
-	//nap::OFVec3LagComponent& scale_lag = new_entity.addComponent<nap::OFVec3LagComponent>(sScaleLagName);
-	//scale_lag.SetAttribute(tx_component.mScale);
-	//scale_lag.mSmoothTime.setValue(0.35f);
-
-	//nap::OFFloatLagComponent& trace_offset_lag = new_entity.addComponent<nap::OFFloatLagComponent>(sOffsetLagName);
-	//trace_offset_lag.SetAttribute(trace_component.mOffset);
-	//trace_offset_lag.mSmoothTime.setValue(0.075f);
-
 	// Set transform component
 	tx_component.mTranslate.setValue(worldPos);
 	tx_component.mScale.setValue({ 2.0f, 2.0f, 2.0f });
@@ -105,13 +64,8 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	file_component.mFile.setValue("svg/whirl.svg");
 
 	// Set colors
-	col_component.ClearColors();
-	col_component.AddColor(ofFloatColor(0.0f, 1.0f, 0.682f, 1.0f));
-	col_component.AddColor(ofFloatColor(0.0f, 0.0f, 0.0f, 1.0f));
-
-	col_component.mFrequency.setValue(40.0f);
-	col_component.mStep.setValue(true);
-	col_component.mFrequencyPower.setValue(4.0f);
+	col_component.mColorOne.setValue(ofFloatColor(0.0f, 1.0f, 0.682f, 1.0f));
+	col_component.mColorTwo.setValue(ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f));
 
 	col_component.update();
 	col_component.mEnableUpdates.setValue(true);
@@ -126,10 +80,10 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	text_component.mText.setValue(new_entity.getName());
 
 	// Set rotation
-	rotate_component.mX.setValue(0.075f);
-	rotate_component.mY.setValue(0.1f);
-	rotate_component.mZ.setValue(0.05f);
-	rotate_component.mSpeed.setValue(100.0f);
+	//rotate_component.mX.setValue(0.075f);
+	//rotate_component.mY.setValue(0.1f);
+	//rotate_component.mZ.setValue(0.05f);
+	//rotate_component.mSpeed.setValue(100.0f);
 
 	// Set frequency
 	//lfo_component.mFrequency.setValue(10.0f);

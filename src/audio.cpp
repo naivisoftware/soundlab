@@ -170,7 +170,7 @@ int AudioComposition::getPartCount()
     if (!json || !json->IsObject())
     {
         Logger::warn("No parts found");
-        return;
+        return 0;
     }
     
     return json->MemberCount();
