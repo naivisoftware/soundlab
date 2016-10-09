@@ -15,6 +15,9 @@
 		62A97B46096E56FDCF64BAE8 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C9416F3C011B005DDDD2180 /* ofxSliderGroup.cpp */; };
 		A680F8A59954562DB8777D24 /* splineutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7474C81D4A9C9C2EA8D6256 /* splineutils.cpp */; };
 		BAFB107040D72FEC3341CA05 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4F7045E8AD42EA5FDCE6BA7 /* ofxBaseGui.cpp */; };
+		D225D3261DAAA014003CAB28 /* nofattributewrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D225D3221DAAA014003CAB28 /* nofattributewrapper.cpp */; settings = {ASSET_TAGS = (); }; };
+		D225D3271DAAA014003CAB28 /* nofparamattrlink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D225D3241DAAA014003CAB28 /* nofparamattrlink.cpp */; settings = {ASSET_TAGS = (); }; };
+		D225D32A1DAAA13F003CAB28 /* jsonchooser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D225D3281DAAA13F003CAB28 /* jsonchooser.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868611D95767D00682676 /* attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868101D95767C00682676 /* attribute.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868621D95767D00682676 /* attributeobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868121D95767C00682676 /* attributeobject.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868631D95767D00682676 /* cexport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868141D95767C00682676 /* cexport.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -194,6 +197,12 @@
 		A4F7045E8AD42EA5FDCE6BA7 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
 		A7474C81D4A9C9C2EA8D6256 /* splineutils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = splineutils.cpp; path = src/splineutils.cpp; sourceTree = SOURCE_ROOT; };
 		B07A19DF7BDE6B4259735412 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxButton.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
+		D225D3221DAAA014003CAB28 /* nofattributewrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nofattributewrapper.cpp; sourceTree = "<group>"; };
+		D225D3231DAAA014003CAB28 /* nofattributewrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nofattributewrapper.h; sourceTree = "<group>"; };
+		D225D3241DAAA014003CAB28 /* nofparamattrlink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nofparamattrlink.cpp; sourceTree = "<group>"; };
+		D225D3251DAAA014003CAB28 /* nofparamattrlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nofparamattrlink.h; sourceTree = "<group>"; };
+		D225D3281DAAA13F003CAB28 /* jsonchooser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsonchooser.cpp; sourceTree = "<group>"; };
+		D225D3291DAAA13F003CAB28 /* jsonchooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonchooser.h; sourceTree = "<group>"; };
 		D22868101D95767C00682676 /* attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = attribute.cpp; sourceTree = "<group>"; };
 		D22868111D95767C00682676 /* attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attribute.h; sourceTree = "<group>"; };
 		D22868121D95767C00682676 /* attributeobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = attributeobject.cpp; sourceTree = "<group>"; };
@@ -1032,6 +1041,10 @@
 		D22869E71D95780800682676 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D225D3221DAAA014003CAB28 /* nofattributewrapper.cpp */,
+				D225D3231DAAA014003CAB28 /* nofattributewrapper.h */,
+				D225D3241DAAA014003CAB28 /* nofparamattrlink.cpp */,
+				D225D3251DAAA014003CAB28 /* nofparamattrlink.h */,
 				D22869E81D95780800682676 /* nofUtils.cpp */,
 				D22869E91D95780800682676 /* nofUtils.h */,
 				D22869EA1D95780800682676 /* ofVec2i.cpp */,
@@ -1185,6 +1198,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D225D3281DAAA13F003CAB28 /* jsonchooser.cpp */,
+				D225D3291DAAA13F003CAB28 /* jsonchooser.h */,
 				D28BE2F91DA25141001E1ACB /* jsoncomponent.cpp */,
 				D28BE2FA1DA25141001E1ACB /* jsoncomponent.h */,
 				D242C5001D9E7C4B00B6546C /* settings.cpp */,
@@ -1320,6 +1335,7 @@
 				D22869241D9576AE00682676 /* Oscillator.cpp in Sources */,
 				D228686E1D95767D00682676 /* link.cpp in Sources */,
 				D242C50D1D9E7FF400B6546C /* tinyxmlerror.cpp in Sources */,
+				D225D3261DAAA014003CAB28 /* nofattributewrapper.cpp in Sources */,
 				D22869F81D95780800682676 /* napofsimpleshapecomponent.cpp in Sources */,
 				D22868741D95767D00682676 /* objectutils.cpp in Sources */,
 				D22868C61D95769500682676 /* OscService.cpp in Sources */,
@@ -1373,6 +1389,7 @@
 				D26025531D957E530012AAD0 /* src_colors.cpp in Sources */,
 				D228692F1D9576AE00682676 /* Router.cpp in Sources */,
 				44EE8434D982FB5E34E3C4C0 /* ofxGuiGroup.cpp in Sources */,
+				D225D32A1DAAA13F003CAB28 /* jsonchooser.cpp in Sources */,
 				D2286A061D95780800682676 /* nofUtils.cpp in Sources */,
 				D228691E1D9576AE00682676 /* Envelope.cpp in Sources */,
 				D228686B1D95767D00682676 /* event.cpp in Sources */,
@@ -1409,6 +1426,7 @@
 				D228692A1D9576AE00682676 /* GrainVoice.cpp in Sources */,
 				D22869FB1D95780800682676 /* napofsplinecomponent.cpp in Sources */,
 				D228691F1D9576AE00682676 /* FFT.cpp in Sources */,
+				D225D3271DAAA014003CAB28 /* nofparamattrlink.cpp in Sources */,
 				D22869281D9576AE00682676 /* Effect.cpp in Sources */,
 				20C6C6351D615148B2203E63 /* ofxPanel.cpp in Sources */,
 				D26025551D957E530012AAD0 /* svgtiny_gradient.cpp in Sources */,
