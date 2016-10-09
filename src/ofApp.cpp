@@ -83,6 +83,10 @@ void ofApp::draw()
 
 	mGui.draw();
 	mLaserGui.draw();
+    audioComposition->getGranulatorGuiForPlayer(0).draw();
+    audioComposition->getResonatorGuiForPlayer(0).draw();
+    audioComposition->getGranulatorGuiForPlayer(1).draw();
+    audioComposition->getResonatorGuiForPlayer(1).draw();
 }
 
 
@@ -107,12 +111,6 @@ void ofApp::keyPressed(int key)
 	case 'f':
 		ofToggleFullscreen();
 		break;
-    case 'n':
-        audioComposition->next();
-        break;
-    case 'm':
-        audioComposition->random();
-        break;
 	case '0':
 		break;
 	}
@@ -316,11 +314,24 @@ void ofApp::setupGui()
 	mGui.add(mSelectionParameters.getGroup());
 	mGui.setPosition(ofPoint(10, 10, 0.0f));
 
+    int x = mGui.getWidth() + 25;
+    
 	// Populate parameters for laser service
 	mLaserServiceParameters.addObject(*mLaserService);
 	mLaserServiceParameters.setName("Laser Service");
 	mLaserGui.setup(mLaserServiceParameters.getGroup());
 	mLaserGui.setPosition(ofPoint(mGui.getWidth() + 25, 10, 0.0f));
+    
+    audioComposition->getGranulatorGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
+    x += audioComposition->getGranulatorGuiForPlayer(0).getWidth() + 25;
+    
+    audioComposition->getResonatorGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
+    x += audioComposition->getResonatorGuiForPlayer(0).getWidth() + 25;
+    
+    audioComposition->getGranulatorGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
+    x += audioComposition->getGranulatorGuiForPlayer(1).getWidth() + 25;
+    
+    audioComposition->getResonatorGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
 }
 
 

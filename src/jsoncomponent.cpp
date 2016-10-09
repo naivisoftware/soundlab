@@ -157,6 +157,29 @@ namespace nap {
     }
     
     
+    int JsonComponent::getSize(rapidjson::Value& root, const std::string& jsonPointer)
+    {
+        rapidjson::Value* object = getValue(root, jsonPointer);
+        
+        if (!object)
+            return 0;
+        
+        if (object->IsArray())
+            return object->GetArray().Size();
+        
+        if (object->IsObject())
+        {
+            auto i = 0;
+            for (auto it = object->MemberBegin(); it != object->MemberEnd(); ++it)
+                i++;
+            return i;
+        }
+        
+        return 0;
+        
+    }
+    
+    
     void JsonComponent::mapToAttributes(rapidjson::Value& json, Object& object)
     {
         if (object.getTypeInfo().isKindOf<AttributeBase>())
@@ -212,37 +235,50 @@ namespace nap {
                 if (object.getTypeInfo().isKindOf<CompoundAttribute>())
                 {
                     auto& attribute = dynamic_cast<CompoundAttribute&>(object);
-                    attribute.clear();
+//                    attribute.clear();
                     
                     for (auto it = json.MemberBegin(); it != json.MemberEnd(); ++it)
                     {
                         std::string name = it->name.GetString();
                         
-                        Object* child = nullptr;
-                        
                         if (it->value.IsString())
-                            child = &attribute.addAttribute<std::string>(it->value.GetString(), name);
+                        {
+                            auto child = attribute.getOrCreateAttribute<std::string>(name);
+                            if (child)
+                                child->setValue(it->value.GetString());
+                        }
                         if (it->value.IsFloat())
-                            child = &attribute.addAttribute<float>(it->value.GetFloat(), name);
+                        {
+                            auto child = attribute.getOrCreateAttribute<float>(name);
+                            if (child)
+                                child->setValue(it->value.GetFloat());
+                        }
                         if (it->value.IsInt())
-                            child = &attribute.addAttribute<int>(it->value.GetInt(), name);
+                        {
+                            auto child = attribute.getOrCreateAttribute<int>(name);
+                            if (child)
+                                child->setValue(it->value.GetInt());
+                        }
                         if (it->value.IsObject())
                         {
-                            child = &attribute.addCompoundAttribute(name);
-                            mapToAttributes(it->value, *child);
+                            auto child = attribute.getOrCreateCompoundAttribute(name);
+                            if (child)
+                                mapToAttributes(it->value, *child);
                         }
                         
                         if (it->value.IsArray())
                         {
+                            Object* child = nullptr;
+                            
                             auto array = it->value.GetArray();
                             if (array.Size() > 0)
                             {
                                 if (array[0].IsFloat())
-                                    child = &attribute.addArrayAttribute<float>(name);
+                                    child = attribute.getOrCreateArrayAttribute<float>(name);
                                 if (array[0].IsInt())
-                                    child = &attribute.addArrayAttribute<int>(name);
+                                    child = attribute.getOrCreateArrayAttribute<int>(name);
                                 if (array[0].IsString())
-                                    child = &attribute.addArrayAttribute<std::string>(name);
+                                    child = attribute.getOrCreateArrayAttribute<std::string>(name);
                             }
                             if (child)
                                 mapToAttributes(it->value, *child);
@@ -330,6 +366,15 @@ namespace nap {
         return getValueByIndex(*mDocument, jsonPointer, index);
         
     }
+    
+    
+    int JsonComponent::getSize(const std::string& jsonPointer)
+    {
+        if (!mDocument)
+            return 0;
+        return getSize(*mDocument, jsonPointer);
+    }
+    
     
     
     rapidjson::Value* JsonComponent::getValueFromArray(int index)

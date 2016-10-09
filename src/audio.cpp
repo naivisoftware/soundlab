@@ -23,58 +23,128 @@ using namespace nap;
 using namespace std;
 
 
-AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name)
+AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonComponent& jsonComponent)
 {
     entity = &root.addEntity(name);
     
     patchComponent = &entity->addComponent<PatchComponent>("patch");
     
     // granulator
-    auto& granulator = patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
-    granulator.channelCount.setValue(2);
+    granulator = &patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
+    granulator->channelCount.setValue(2);
+    grainParameters.addAttribute(granulator->density.proportionAttribute);
+    grainParameters.addAttribute(granulator->position.attribute);
+    grainParameters.addAttribute(granulator->amplitude.proportionAttribute);
+    grainParameters.addAttribute(granulator->amplitudeDev.attribute);
+    grainParameters.addAttribute(granulator->duration.proportionAttribute);
+    grainParameters.addAttribute(granulator->durationDev.attribute);
+    grainParameters.addAttribute(granulator->pitch.attribute);
+    grainParameters.addAttribute(granulator->transpose.attribute);
+    grainParameters.addAttribute(granulator->positionDev.attribute);
+    grainParameters.addAttribute(granulator->irregularity.proportionAttribute);
+    grainParameters.addAttribute(granulator->pitchDev.proportionAttribute);
+    grainParameters.addAttribute(granulator->panDev.proportionAttribute);
+    grainParameters.addAttribute(granulator->shape.attribute);
+    grainParameters.addAttribute(granulator->attackDecay.proportionAttribute);
+    
+    granulator->positionSpeed.setValue(0);
     
     // resonator
-    auto& resonator = patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
-    resonator.channelCount.setValue(2);
-    resonator.inputChannelCount.setValue(2);
+    resonator = &patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
+    resonator->channelCount.setValue(2);
+    resonator->inputChannelCount.setValue(2);
+    resonParameters.addAttribute(resonator->amplitude.attribute);
+    resonParameters.addAttribute(resonator->attack.attribute);
+    resonParameters.addAttribute(resonator->releaseTime.attribute);
+    resonParameters.addAttribute(resonator->damping.proportionAttribute);
+    resonParameters.addAttribute(resonator->feedback.proportionAttribute);
+    resonParameters.addAttribute(resonator->detune.proportionAttribute);
+    resonParameters.addAttribute(resonator->polarity.attribute);
     
     // audio output
     auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
     output.channelCount.setValue(2);
-    output.audioInput.connect(granulator.output);
-    output.audioInput.connect(resonator.audioOutput);
-    resonator.audioInput.connect(granulator.output);
+    output.audioInput.connect(granulator->output);
+    output.audioInput.connect(resonator->audioOutput);
+    resonator->audioInput.connect(granulator->output);
     
     // sequencers
     for (auto i = 0; i < 2; ++i)
     {
         auto& grainSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("grainSequencer" + to_string(i + 1));
         grainSeq.schedulerInput.connect(output.schedulerOutput);
-        granulator.cloudInput.connect(grainSeq.output);
+        granulator->cloudInput.connect(grainSeq.output);
+        grainSequencers.emplace_back(&grainSeq);
         
         auto& resSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("resonatorSequencer" + to_string(i + 1));
         resSeq.schedulerInput.connect(output.schedulerOutput);
-        resonator.input.connect(resSeq.output);
+        resonator->input.connect(resSeq.output);
+        resonatorSequencers.emplace_back(&resSeq);
+        
+        // json settings choosers
+        auto& grainSeqChooser = entity->addComponent<nap::JsonChooser>();
+        grainSeqChooser.setJsonComponent(jsonComponent);
+        grainSeqChooser.setTarget(grainSeq);
+        grainSeqChooser.optionsJsonPtr.setValue("/granulatorSequences");
+        grainParameters.addAttribute(grainSeq.playing);
+        grainSeqChooser.choice.setName("sequence");
+        grainParameters.addAttribute(grainSeqChooser.choice);
+        grainSequenceChoosers.emplace_back(&grainSeqChooser);
+        
+        auto& grainInputChooser = entity->addComponent<nap::JsonChooser>();
+        grainInputChooser.setJsonComponent(jsonComponent);
+        grainInputChooser.setTarget(grainSeq.sequences);
+        grainInputChooser.optionsJsonPtr.setValue("/granulatorInputs");
+        grainInputChooser.choice.setName("input audio");
+        grainParameters.addAttribute(grainInputChooser.choice);
+        
+        auto& resSeqChooser = entity->addComponent<nap::JsonChooser>();
+        resSeqChooser.setJsonComponent(jsonComponent);
+        resSeqChooser.setTarget(resSeq);
+        resSeqChooser.optionsJsonPtr.setValue("/resonatorSequences");
+        resonParameters.addAttribute(resSeq.playing);
+        resSeqChooser.choice.setName("sequence");
+        resonParameters.addAttribute(resSeqChooser.choice);
+        resonatorSequenceChoosers.emplace_back(&resSeqChooser);
     }
     
     // granulator animators
     auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
     densityAnimator.schedulerInput.connect(output.schedulerOutput);
-    granulator.density.proportionPlug.connect(densityAnimator.output);
+    granulator->density.proportionPlug.connect(densityAnimator.output);
+    auto& densitySeqChooser = entity->addComponent<nap::JsonChooser>();
+    densitySeqChooser.setJsonComponent(jsonComponent);
+    densitySeqChooser.setTarget(densityAnimator);
+    densitySeqChooser.optionsJsonPtr.setValue("/densitySequences");
+    densityParameters.addAttribute(densityAnimator.playing);
+    densityParameters.addAttribute(densityAnimator.speed.proportionAttribute);
+    densitySeqChooser.choice.setName("sequence");
+    densityParameters.addAttribute(densitySeqChooser.choice);
     
     auto& positionAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("positionAnimator");
+    positionAnimator.controlInterval.setValue(10); // high control rate
     positionAnimator.schedulerInput.connect(output.schedulerOutput);
-    granulator.position.proportionPlug.connect(positionAnimator.output);
+    granulator->position.proportionPlug.connect(positionAnimator.output);
+    auto& posSeqChooser = entity->addComponent<nap::JsonChooser>();
+    posSeqChooser.setJsonComponent(jsonComponent);
+    posSeqChooser.setTarget(positionAnimator);
+    posSeqChooser.optionsJsonPtr.setValue("/positionSequences");
+    positionParameters.addAttribute(positionAnimator.playing);
+    positionParameters.addAttribute(positionAnimator.speed.proportionAttribute);
+    posSeqChooser.choice.setName("sequence");
+    positionParameters.addAttribute(posSeqChooser.choice);
     
-    auto& grainSizeAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("grainSizeAnimator");
-    grainSizeAnimator.schedulerInput.connect(output.schedulerOutput);
-    granulator.position.proportionPlug.connect(grainSizeAnimator.output);
+    grainParameters.setName("granulator");
+    resonParameters.setName("resonator");
+    positionParameters.setName("position modulation");
+    densityParameters.setName("density modulation");
     
-    // resonator animator
-    auto& resonatorAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("resonanceAnimator");
-    resonatorAnimator.schedulerInput.connect(output.schedulerOutput);
-    resonator.feedback.proportionPlug.connect(resonatorAnimator.output);
-        
+    granulatorPanel.setName(name + " granulator");
+    granulatorPanel.setup(grainParameters.getGroup());
+    granulatorPanel.add(positionParameters.getGroup());
+    granulatorPanel.add(densityParameters.getGroup());
+    
+    resonatorPanel.setup(resonParameters.getGroup());
 }
 
 
@@ -102,13 +172,14 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
     
     // add the player
     for (auto i = 0; i < 2; ++i)
-        players.emplace_back(make_unique<AudioPlayer>(*entity, "player" + to_string(i + 1)));
+        players.emplace_back(make_unique<AudioPlayer>(*entity, "player" + to_string(i + 1), *jsonComponent));
     
     play(0, "init/1");
     play(1, "init/2");
-    mCurrentPartIndex = jsonComponent->getNumber<int>("/start", 0);
-    play(0, mCurrentPartIndex);
-    play(1, mCurrentPartIndex);
+    
+//    mCurrentPartIndex = jsonComponent->getNumber<int>("/start", 0);
+//    play(0, mCurrentPartIndex);
+//    play(1, mCurrentPartIndex);
 }
 
 
@@ -123,13 +194,14 @@ void AudioComposition::play(int player, int index)
         i++;
     }
     
-    auto name = it->name.GetString();
-    rapidjson::Value* json = &it->value;
-    if (!json)
+    if (it == parts->MemberEnd())
     {
         Logger::warn("Part not found: " + to_string(index));
         return;
     }
+    
+    auto name = it->name.GetString();
+    rapidjson::Value* json = &it->value;
     
     if (player >= players.size())
     {
@@ -161,34 +233,4 @@ void AudioComposition::play(int player, const std::string& partName)
     Logger::debug("Playing audio part: " + partName + " on " + to_string(player));
     jsonComponent->mapToAttributes(*json, players[player]->patchComponent->getPatch());
 }
-
-
-int AudioComposition::getPartCount()
-{
-    rapidjson::Value* json = jsonComponent->getValue("/parts");
-    
-    if (!json || !json->IsObject())
-    {
-        Logger::warn("No parts found");
-        return 0;
-    }
-    
-    return json->MemberCount();
-}
-
-
-void AudioComposition::next()
-{
-    mCurrentPartIndex = (mCurrentPartIndex + 1) % getPartCount();
-    play(lib::dblRand() * players.size(), mCurrentPartIndex);
-}
-
-
-void AudioComposition::random()
-{
-    mCurrentPartIndex = lib::dblRand() * getPartCount();
-    play(lib::dblRand() * players.size(), mCurrentPartIndex);
-}
-
-
 

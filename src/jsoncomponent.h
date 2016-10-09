@@ -50,6 +50,12 @@ namespace nap {
         // Return a generic json object using an index into an array
         rapidjson::Value* getValueFromArray(rapidjson::Value& root, int inIndex);
         
+        // Return the number of entries withis this object
+        int getSize(rapidjson::Value& root, const std::string& jsonPointer);
+        
+        // Return a generic json object using an index into an array
+        rapidjson::Value* getValue(const std::string& jsonPointer);
+        
         // Same as other @getNumber but using the document as root
         template <typename T>
         T getNumber(const std::string& jsonPointer, T defaultValue);
@@ -70,17 +76,14 @@ namespace nap {
         // Return a generic json object using an index within a parent object
         rapidjson::Value* getValueByIndex(const std::string& jsonPointer, int index);
         
-        // Return a generic json object using an index into an array
+        // Return the number of entries withis this object
+        int getSize(const std::string& jsonPointer);
+        
         rapidjson::Value* getValueFromArray(int inIndex);
         
         // Maps the content of a generic json object to the values of attributes in the nap Object tree
         void mapToAttributes(rapidjson::Value& json, Object& object);
         
-        // Find and return an array as an actual json string
-        std::string getJSONStringArray(const std::string& jsonPointer);
-
-        rapidjson::Value* getValue(const std::string& jsonPointer);
-
         // returns wether the json document containing info on all the assets is loaded successfully
         bool isLoaded() const { return mDocument != nullptr; }
 
@@ -88,6 +91,9 @@ namespace nap {
             return mRawDocumentContent;
         }
 
+        // Find and return an array as an actual json string
+        std::string getJSONStringArray(const std::string& jsonPointer);
+        
     private:
         void jsonPathChanged(const std::string& path) { mDocument = loadDocument(path); }
         

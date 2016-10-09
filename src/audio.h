@@ -19,14 +19,31 @@
 #include <Lib/Utility/Data/Sequencer.h>
 #include <Lib/Utility/Data/RampSequencer.h>
 #include <jsoncomponent.h>
+#include <jsonchooser.h>
 
+#include <Utils/nofattributewrapper.h>
+
+#include "ofxGui.h"
 
 class AudioPlayer {
 public:
-    AudioPlayer(nap::Entity& root, const std::string& name);
+    AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonComponent& jsonComponent);
     
     nap::Entity* entity = nullptr;
     nap::PatchComponent* patchComponent = nullptr;
+    lib::audio::ResonatorUnit* resonator = nullptr;
+    lib::audio::Granulator* granulator = nullptr;
+    std::vector<lib::Sequencer*> grainSequencers;
+    std::vector<lib::Sequencer*> resonatorSequencers;
+    std::vector<nap::JsonChooser*> grainSequenceChoosers;
+    std::vector<nap::JsonChooser*> resonatorSequenceChoosers;
+    
+    OFAttributeWrapper grainParameters;
+    OFAttributeWrapper resonParameters;
+    OFAttributeWrapper positionParameters;
+    OFAttributeWrapper densityParameters;
+    ofxPanel granulatorPanel;
+    ofxPanel resonatorPanel;
 };
 
 
@@ -37,17 +54,15 @@ public:
     void play(int player, int partIndex);
     void play(int player, const std::string& partName);
     
-    void next();
-    void random();
-
-    int getPartCount();
+    ofxPanel& getGranulatorGuiForPlayer(int index) { return players[index]->granulatorPanel; }
+    ofxPanel& getResonatorGuiForPlayer(int index) { return players[index]->resonatorPanel; }
+    
+    int getPlayerCount() { return players.size(); }
     
 private:
     nap::Entity* entity = nullptr;
-    std::vector<std::unique_ptr<AudioPlayer>> players;
     nap::JsonComponent* jsonComponent = nullptr;
-    
-    int mCurrentPartIndex = 0;
+    std::vector<std::unique_ptr<AudioPlayer>> players;
 };
 
 
