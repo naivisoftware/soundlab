@@ -32,6 +32,7 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     // granulator
     granulator = &patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
     granulator->channelCount.setValue(2);
+    granulator->density.setRange(granulator->density.getMin(), 50);
     grainParameters.addAttribute(granulator->density.proportionAttribute);
     grainParameters.addAttribute(granulator->position.attribute);
     grainParameters.addAttribute(granulator->amplitude.proportionAttribute);
