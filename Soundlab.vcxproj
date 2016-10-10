@@ -204,6 +204,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <ClCompile Include="src\splineutils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gui.h" />
     <ClInclude Include="src\audio.h" />
     <ClInclude Include="src\jsonchooser.h" />
     <ClInclude Include="src\jsoncomponent.h" />

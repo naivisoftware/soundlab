@@ -73,6 +73,7 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
+	// Draw services
 	mOFService->draw();
 	mLaserService->draw();
 
@@ -82,6 +83,8 @@ void ofApp::draw()
 	ofSetColor(ccolor);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
 
+	// Draw Gui
+	ofEnableAlphaBlending();
 	mSplineGui.draw();
 	mLaserGui.draw();
     audioComposition->getGuiForPlayer(0).draw();
