@@ -117,6 +117,7 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
     densityAnimator.schedulerInput.connect(output.schedulerOutput);
     granulator->density.proportionPlug.connect(densityAnimator.output);
+    densityAnimator.startValue.link(granulator->density.proportionAttribute);
     auto& densitySeqChooser = entity->addComponent<nap::JsonChooser>();
     densitySeqChooser.setJsonComponent(jsonComponent);
     densitySeqChooser.setTarget(densityAnimator);
@@ -130,6 +131,7 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     positionAnimator.controlInterval.setValue(10); // high control rate
     positionAnimator.schedulerInput.connect(output.schedulerOutput);
     granulator->position.proportionPlug.connect(positionAnimator.output);
+    positionAnimator.startValue.link(granulator->position.proportionAttribute);
     auto& posSeqChooser = entity->addComponent<nap::JsonChooser>();
     posSeqChooser.setJsonComponent(jsonComponent);
     posSeqChooser.setTarget(positionAnimator);
