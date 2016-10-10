@@ -67,3 +67,9 @@ modules/napetherservice/ReadMe.txt
 bin/data/app_settings.xml
 
 bin/data/app_settings.xml
+
+*.xcuserstate
+
+*.xcuserstate
+
+Soundlab.xcodeproj/project.xcworkspace/xcuserdata/stijnvanbeek.xcuserdatad/UserInterfaceState.xcuserstate
