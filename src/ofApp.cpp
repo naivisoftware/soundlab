@@ -82,7 +82,7 @@ void ofApp::draw()
 	ofSetColor(ccolor);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
 
-	mGui.draw();
+	mSplineGui.draw();
 	mLaserGui.draw();
     audioComposition->getGuiForPlayer(0).draw();
     audioComposition->getGuiForPlayer(1).draw();
@@ -152,8 +152,25 @@ void ofApp::mouseExited(int x, int y){
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h)
+{
+	int spacing = gGetAppSetting<int>("GuiSpacing", 25);
 
+	// Position spline gui
+	ofPoint current_point(10, 10);
+	mSplineGui.setPosition(current_point);
+	current_point.x += mSplineGui.getWidth() + spacing;
+
+	// Position laser gui
+	mLaserGui.setPosition(current_point);
+
+	// Position audio gui 1
+	current_point.x = w - (audioComposition->getGuiForPlayer(0).getWidth() * 2) - (spacing * 2);
+	audioComposition->getGuiForPlayer(0).setPosition(current_point);
+
+	// Position audio gui 2
+	current_point.x += (audioComposition->getGuiForPlayer(1).getWidth() + spacing);
+	audioComposition->getGuiForPlayer(1).setPosition(current_point);
 }
 
 //--------------------------------------------------------------
@@ -289,6 +306,9 @@ void ofApp::createAudio()
 // Test for figuring out auto mapping of objects later on
 void ofApp::setupGui()
 {
+	// Default gui setip
+	ofxGuiSetFont(gGetAppSetting<std::string>("GuiFont", "Arial"), gGetAppSetting<int>("GuiFontSize", 8));
+
 	// Populate parameters for spline modulation
 	mColorParameters.setName("Color");
 	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
@@ -312,17 +332,15 @@ void ofApp::setupGui()
 	mFileParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineFromFileComponent>()));
 
 	// Add parameters to gui
-	mGui.setup(mColorParameters.getGroup());
-	mGui.add(mXformParameters.getGroup());
-	mGui.add(mRotateParameters.getGroup());
-	mGui.add(mTraceParameters.getGroup());
-	mGui.add(mLFOParameters.getGroup());
-	mGui.add(mSelectionParameters.getGroup());
-	mGui.add(mFileParameters.getGroup());
-	mGui.setPosition(ofPoint(10, 10, 0.0f));
-
-    
-	//mGui.loadFromFile("settings.xml");
+	mSplineGui.setup();
+	mSplineGui.add(mColorParameters.getGroup());
+	mSplineGui.add(mXformParameters.getGroup());
+	mSplineGui.add(mRotateParameters.getGroup());
+	mSplineGui.add(mTraceParameters.getGroup());
+	mSplineGui.add(mLFOParameters.getGroup());
+	mSplineGui.add(mSelectionParameters.getGroup());
+	mSplineGui.add(mFileParameters.getGroup());
+	mSplineGui.minimizeAll();
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -333,19 +351,10 @@ void ofApp::setupGui()
 	mLaserCamParameters.setName("LaserCamera");
 	mLaserCamParameters.addObject(*(mLaserEntity->getComponent<nap::EtherDreamCamera>()));
 
-	mLaserGui.setup(mLaserCamParameters .getGroup());
+	mLaserGui.setup();
+	mLaserGui.add(mLaserCamParameters.getGroup());
 	mLaserGui.add(mLaserServiceParameters.getGroup());
-
-    int x = mGui.getWidth() + 25;
-	mLaserGui.setPosition(ofPoint(x, 10, 0.0f));
-    
-    audioComposition->getGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
-    x += audioComposition->getGuiForPlayer(0).getWidth() + 25;
-    
-    audioComposition->getGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
-    x += audioComposition->getGuiForPlayer(1).getWidth() + 25;
-    
-
+	mLaserGui.minimizeAll();
 }
 
 

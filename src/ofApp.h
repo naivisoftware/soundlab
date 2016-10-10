@@ -81,7 +81,7 @@ private:
     std::unique_ptr<AudioComposition> audioComposition = nullptr;
 
 	// Gui (TEST)
-	ofxPanel					mGui;
+	ofxPanel					mSplineGui;
 	ofxPanel					mLaserGui;
 	ofxPanel					mAudioGui;
 

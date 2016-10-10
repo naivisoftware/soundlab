@@ -63,7 +63,3 @@ modules/napetherservice/ReadMe.txt
 *.wav
 
 *.xcuserstate
-
-bin/data/app_settings.xml
-
-bin/data/app_settings.xml
