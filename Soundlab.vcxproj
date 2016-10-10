@@ -184,6 +184,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\audio.cpp" />
+    <ClCompile Include="src\jsonchooser.cpp" />
     <ClCompile Include="src\jsoncomponent.cpp" />
     <ClCompile Include="src\settings.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -204,6 +205,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\audio.h" />
+    <ClInclude Include="src\jsonchooser.h" />
     <ClInclude Include="src\jsoncomponent.h" />
     <ClInclude Include="src\settings.h" />
     <ClInclude Include="src\ofApp.h" />

@@ -55,6 +55,7 @@
     <ClCompile Include="src\jsoncomponent.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\jsonchooser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -131,6 +132,7 @@
     <ClInclude Include="src\jsoncomponent.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\jsonchooser.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

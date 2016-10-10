@@ -15,6 +15,7 @@
 #include <napofsimpleshapecomponent.h>
 #include <napofimagecomponent.h>
 #include <napofattributes.h>
+#include <napofsplinemodulationcomponent.h>
 
 // Utils
 #include <splineutils.h>
@@ -303,6 +304,9 @@ void ofApp::setupGui()
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
 
+	mLFOParameters.setName("LFO");
+	mLFOParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineLFOModulationComponent>()));
+
 	mSelectionParameters.setName("Selection");
 	mSelectionParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineSelectionComponent>()));
 
@@ -314,6 +318,7 @@ void ofApp::setupGui()
 	mGui.add(mXformParameters.getGroup());
 	mGui.add(mRotateParameters.getGroup());
 	mGui.add(mTraceParameters.getGroup());
+	mGui.add(mLFOParameters.getGroup());
 	mGui.add(mSelectionParameters.getGroup());
 	mGui.add(mFileParameters.getGroup());
 	mGui.setPosition(ofPoint(10, 10, 0.0f));

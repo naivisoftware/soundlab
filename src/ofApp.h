@@ -88,6 +88,7 @@ private:
 	OFAttributeWrapper			mColorParameters;
 	OFAttributeWrapper			mRotateParameters;
 	OFAttributeWrapper			mTraceParameters;
+	OFAttributeWrapper			mLFOParameters;
 	OFAttributeWrapper			mXformParameters;
 	OFAttributeWrapper			mSelectionParameters;
 	OFAttributeWrapper			mFileParameters;

@@ -33,7 +33,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	nap::OFSplineColorComponent& col_component = new_entity.addComponent<nap::OFSplineColorComponent>();
 	nap::OFTextComponent& text_component = new_entity.addComponent<nap::OFTextComponent>();
 	nap::OFRotateComponent& rotate_component = new_entity.addComponent<nap::OFRotateComponent>();
-	//nap::OFSplineLFOModulationComponent& lfo_component = new_entity.addComponent<nap::OFSplineLFOModulationComponent>();
+	nap::OFSplineLFOModulationComponent& lfo_component = new_entity.addComponent<nap::OFSplineLFOModulationComponent>();
 	nap::OFTraceComponent& trace_component = new_entity.addComponent<nap::OFTraceComponent>();
 	nap::OFSplineUpdateGPUComponent& gpu_component = new_entity.addComponent<nap::OFSplineUpdateGPUComponent>();
 	nap::OFSplineFromFileComponent& file_component = new_entity.addComponent<nap::OFSplineFromFileComponent>();
@@ -52,13 +52,12 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	tx_component.mScale.setValue({ 2.0f, 2.0f, 2.0f });
 
 	// Set shape
-	//int itype = mGui.mShapeSelection;
 	SplineType stype = SplineType::Hexagon;
 
 	// Set spline type
-	//ss_compomnent.mSplineCount.setValue(500);
-	//ss_compomnent.mSplineSize.setValue(200.0f);
-	//ss_compomnent.mSplineType.setValue(stype);
+	ss_compomnent.mSplineCount.setValue(500);
+	ss_compomnent.mSplineSize.setValue(200.0f);
+	ss_compomnent.mSplineType.setValue(stype);
 
 	// Test
 	file_component.mFile.setValue("svg/whirl.svg");
