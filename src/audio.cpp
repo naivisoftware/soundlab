@@ -33,20 +33,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     granulator = &patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
     granulator->channelCount.setValue(2);
     granulator->density.setRange(granulator->density.getMin(), 50);
-    grainParameters.addAttribute(granulator->density.proportionAttribute);
-    grainParameters.addAttribute(granulator->position.attribute);
-    grainParameters.addAttribute(granulator->amplitude.proportionAttribute);
-    grainParameters.addAttribute(granulator->amplitudeDev.attribute);
-    grainParameters.addAttribute(granulator->duration.proportionAttribute);
-    grainParameters.addAttribute(granulator->durationDev.attribute);
-    grainParameters.addAttribute(granulator->pitch.attribute);
-    grainParameters.addAttribute(granulator->transpose.attribute);
-    grainParameters.addAttribute(granulator->positionDev.attribute);
-    grainParameters.addAttribute(granulator->irregularity.proportionAttribute);
-    grainParameters.addAttribute(granulator->pitchDev.proportionAttribute);
-    grainParameters.addAttribute(granulator->panDev.proportionAttribute);
-    grainParameters.addAttribute(granulator->shape.attribute);
-    grainParameters.addAttribute(granulator->attackDecay.proportionAttribute);
     
     granulator->positionSpeed.setValue(0);
     
@@ -54,13 +40,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     resonator = &patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
     resonator->channelCount.setValue(2);
     resonator->inputChannelCount.setValue(2);
-    resonParameters.addAttribute(resonator->amplitude.attribute);
-    resonParameters.addAttribute(resonator->attack.attribute);
-    resonParameters.addAttribute(resonator->releaseTime.attribute);
-    resonParameters.addAttribute(resonator->damping.proportionAttribute);
-    resonParameters.addAttribute(resonator->feedback.proportionAttribute);
-    resonParameters.addAttribute(resonator->detune.proportionAttribute);
-    resonParameters.addAttribute(resonator->polarity.attribute);
     
     // audio output
     auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
@@ -109,6 +88,31 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
         resonatorSequenceChoosers.emplace_back(&resSeqChooser);
     }
     
+    // add granulator parameters
+    grainParameters.addAttribute(granulator->density.proportionAttribute);
+    grainParameters.addAttribute(granulator->position.attribute);
+    grainParameters.addAttribute(granulator->amplitude.proportionAttribute);
+    grainParameters.addAttribute(granulator->amplitudeDev.attribute);
+    grainParameters.addAttribute(granulator->duration.proportionAttribute);
+    grainParameters.addAttribute(granulator->durationDev.attribute);
+    grainParameters.addAttribute(granulator->pitch.attribute);
+    grainParameters.addAttribute(granulator->transpose.attribute);
+    grainParameters.addAttribute(granulator->positionDev.attribute);
+    grainParameters.addAttribute(granulator->irregularity.proportionAttribute);
+    grainParameters.addAttribute(granulator->pitchDev.proportionAttribute);
+    grainParameters.addAttribute(granulator->panDev.proportionAttribute);
+    grainParameters.addAttribute(granulator->shape.attribute);
+    grainParameters.addAttribute(granulator->attackDecay.proportionAttribute);
+    
+    // add resonator parameters
+    resonParameters.addAttribute(resonator->amplitude.attribute);
+    resonParameters.addAttribute(resonator->attack.attribute);
+    resonParameters.addAttribute(resonator->releaseTime.attribute);
+    resonParameters.addAttribute(resonator->damping.proportionAttribute);
+    resonParameters.addAttribute(resonator->feedback.proportionAttribute);
+    resonParameters.addAttribute(resonator->detune.proportionAttribute);
+    resonParameters.addAttribute(resonator->polarity.attribute);
+
     // granulator animators
     auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
     densityAnimator.schedulerInput.connect(output.schedulerOutput);
@@ -140,12 +144,11 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     positionParameters.setName("position modulation");
     densityParameters.setName("density modulation");
     
-    granulatorPanel.setName(name + " granulator");
-    granulatorPanel.setup(grainParameters.getGroup());
-    granulatorPanel.add(positionParameters.getGroup());
-    granulatorPanel.add(densityParameters.getGroup());
-    
-    resonatorPanel.setup(resonParameters.getGroup());
+    panel.setName(name);
+    panel.setup(grainParameters.getGroup());
+    panel.add(positionParameters.getGroup());
+    panel.add(densityParameters.getGroup());
+    panel.add(resonParameters.getGroup());
 }
 
 

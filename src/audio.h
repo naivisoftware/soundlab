@@ -42,8 +42,7 @@ public:
     OFAttributeWrapper resonParameters;
     OFAttributeWrapper positionParameters;
     OFAttributeWrapper densityParameters;
-    ofxPanel granulatorPanel;
-    ofxPanel resonatorPanel;
+    ofxPanel panel;
 };
 
 
@@ -54,8 +53,7 @@ public:
     void play(int player, int partIndex);
     void play(int player, const std::string& partName);
     
-    ofxPanel& getGranulatorGuiForPlayer(int index) { return players[index]->granulatorPanel; }
-    ofxPanel& getResonatorGuiForPlayer(int index) { return players[index]->resonatorPanel; }
+    ofxPanel& getGuiForPlayer(int index) { return players[index]->panel; }
     
     int getPlayerCount() { return players.size(); }
     

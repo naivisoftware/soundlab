@@ -84,10 +84,8 @@ void ofApp::draw()
 
 	mGui.draw();
 	mLaserGui.draw();
-    audioComposition->getGranulatorGuiForPlayer(0).draw();
-    audioComposition->getResonatorGuiForPlayer(0).draw();
-    audioComposition->getGranulatorGuiForPlayer(1).draw();
-    audioComposition->getResonatorGuiForPlayer(1).draw();
+    audioComposition->getGuiForPlayer(0).draw();
+    audioComposition->getGuiForPlayer(1).draw();
 }
 
 
@@ -341,16 +339,12 @@ void ofApp::setupGui()
     int x = mGui.getWidth() + 25;
 	mLaserGui.setPosition(ofPoint(x, 10, 0.0f));
     
-    audioComposition->getGranulatorGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
-    x += audioComposition->getGranulatorGuiForPlayer(0).getWidth() + 25;
+    audioComposition->getGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
+    x += audioComposition->getGuiForPlayer(0).getWidth() + 25;
     
-    audioComposition->getResonatorGuiForPlayer(0).setPosition(ofPoint(x, 10, 0.0f));
-    x += audioComposition->getResonatorGuiForPlayer(0).getWidth() + 25;
+    audioComposition->getGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
+    x += audioComposition->getGuiForPlayer(1).getWidth() + 25;
     
-    audioComposition->getGranulatorGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
-    x += audioComposition->getGranulatorGuiForPlayer(1).getWidth() + 25;
-    
-    audioComposition->getResonatorGuiForPlayer(1).setPosition(ofPoint(x, 10, 0.0f));
 
 }
 
