@@ -23,7 +23,7 @@ using namespace nap;
 using namespace std;
 
 
-AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonComponent& jsonComponent)
+AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonComponent& inJsonComponent) : jsonComponent(inJsonComponent)
 {
     entity = &root.addEntity(name);
     
@@ -42,22 +42,22 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     resonator->inputChannelCount.setValue(2);
     
     // audio output
-    auto& output = patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
-    output.channelCount.setValue(2);
-    output.audioInput.connect(granulator->output);
-    output.audioInput.connect(resonator->audioOutput);
+    output = &patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
+    output->channelCount.setValue(2);
+    output->audioInput.connect(granulator->output);
+    output->audioInput.connect(resonator->audioOutput);
     resonator->audioInput.connect(granulator->output);
     
     // sequencers
     for (auto i = 0; i < 2; ++i)
     {
         auto& grainSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("grainSequencer" + to_string(i + 1));
-        grainSeq.schedulerInput.connect(output.schedulerOutput);
+        grainSeq.schedulerInput.connect(output->schedulerOutput);
         granulator->cloudInput.connect(grainSeq.output);
         grainSequencers.emplace_back(&grainSeq);
         
         auto& resSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("resonatorSequencer" + to_string(i + 1));
-        resSeq.schedulerInput.connect(output.schedulerOutput);
+        resSeq.schedulerInput.connect(output->schedulerOutput);
         resonator->input.connect(resSeq.output);
         resonatorSequencers.emplace_back(&resSeq);
         
@@ -114,32 +114,34 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     resonParameters.addAttribute(resonator->polarity.attribute);
 
     // granulator animators
-    auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
-    densityAnimator.schedulerInput.connect(output.schedulerOutput);
-    granulator->density.proportionPlug.connect(densityAnimator.output);
-    densityAnimator.startValue.link(granulator->density.proportionAttribute);
-    auto& densitySeqChooser = entity->addComponent<nap::JsonChooser>();
-    densitySeqChooser.setJsonComponent(jsonComponent);
-    densitySeqChooser.setTarget(densityAnimator);
-    densitySeqChooser.optionsJsonPtr.setValue("/densitySequences");
-    densityParameters.addAttribute(densityAnimator.playing);
-    densityParameters.addAttribute(densityAnimator.speed.proportionAttribute);
-    densitySeqChooser.choice.setName("sequence");
-    densityParameters.addAttribute(densitySeqChooser.choice);
-    
-    auto& positionAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("positionAnimator");
-    positionAnimator.controlInterval.setValue(10); // high control rate
-    positionAnimator.schedulerInput.connect(output.schedulerOutput);
-    granulator->position.proportionPlug.connect(positionAnimator.output);
-    positionAnimator.startValue.link(granulator->position.proportionAttribute);
-    auto& posSeqChooser = entity->addComponent<nap::JsonChooser>();
-    posSeqChooser.setJsonComponent(jsonComponent);
-    posSeqChooser.setTarget(positionAnimator);
-    posSeqChooser.optionsJsonPtr.setValue("/positionSequences");
-    positionParameters.addAttribute(positionAnimator.playing);
-    positionParameters.addAttribute(positionAnimator.speed.proportionAttribute);
-    posSeqChooser.choice.setName("sequence");
-    positionParameters.addAttribute(posSeqChooser.choice);
+    createModulator(granulator->density, densityParameters);
+//    auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
+//    densityAnimator.schedulerInput.connect(output->schedulerOutput);
+//    granulator->density.proportionPlug.connect(densityAnimator.output);
+//    densityAnimator.startValue.link(granulator->density.proportionAttribute);
+//    auto& densitySeqChooser = entity->addComponent<nap::JsonChooser>();
+//    densitySeqChooser.setJsonComponent(jsonComponent);
+//    densitySeqChooser.setTarget(densityAnimator);
+//    densitySeqChooser.optionsJsonPtr.setValue("/densitySequences");
+//    densityParameters.addAttribute(densityAnimator.playing);
+//    densityParameters.addAttribute(densityAnimator.speed.proportionAttribute);
+//    densitySeqChooser.choice.setName("sequence");
+//    densityParameters.addAttribute(densitySeqChooser.choice);
+
+    createModulator(granulator->position, positionParameters);
+//    auto& positionAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("positionAnimator");
+//    positionAnimator.controlInterval.setValue(10); // high control rate
+//    positionAnimator.schedulerInput.connect(output->schedulerOutput);
+//    granulator->position.proportionPlug.connect(positionAnimator.output);
+//    positionAnimator.startValue.link(granulator->position.proportionAttribute);
+//    auto& posSeqChooser = entity->addComponent<nap::JsonChooser>();
+//    posSeqChooser.setJsonComponent(jsonComponent);
+//    posSeqChooser.setTarget(positionAnimator);
+//    posSeqChooser.optionsJsonPtr.setValue("/positionSequences");
+//    positionParameters.addAttribute(positionAnimator.playing);
+//    positionParameters.addAttribute(positionAnimator.speed.proportionAttribute);
+//    posSeqChooser.choice.setName("sequence");
+//    positionParameters.addAttribute(posSeqChooser.choice);
     
     grainParameters.setName("granulator");
     resonParameters.setName("resonator");
@@ -147,10 +149,47 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     densityParameters.setName("density modulation");
     
     panel.setName(name);
-    panel.setup(grainParameters.getGroup());
+    panel.setup();
+    panel.add(grainParameters.getGroup());
     panel.add(positionParameters.getGroup());
     panel.add(densityParameters.getGroup());
     panel.add(resonParameters.getGroup());
+    panel.minimizeAll();
+}
+
+
+void AudioPlayer::createModulator(lib::ValueControl& control, OFAttributeWrapper& parameters)
+{
+    auto& animator = patchComponent->getPatch().addOperator<lib::RampSequencer>("animator");
+    animator.schedulerInput.connect(output->schedulerOutput);
+    control.proportionPlug.connect(animator.output);
+    animator.startValue.link(control.proportionAttribute);
+    
+    animator.sequence.setValue({ 0, 1 });
+    animator.times.addAttribute(5000);
+    animator.times.addAttribute(5000);
+    
+    auto& centerValue = animator.addChild<NumericAttribute<float>>("center");
+    centerValue.setRange(0., 1.);
+    centerValue.setValue(0.5);
+    
+    auto& range = animator.addChild<NumericAttribute<float>>("range");
+    range.setRange(0., 1.);
+    range.setValue(1.);
+    
+    std::function<void(const float&)> calcSequence = [&](const float&){
+        animator.sequence.getValueRef()[0] = std::max<float>(centerValue.getValue() - (range.getValue()/2.), 0);
+        animator.sequence.getValueRef()[1] = std::min<float>(centerValue.getValue() + (range.getValue()/2.), 1);
+    };
+    
+    centerValue.valueChangedSignal.connect(calcSequence);
+    range.valueChangedSignal.connect(calcSequence);
+    
+    parameters.addAttribute(animator.playing);
+    parameters.addAttribute(centerValue);
+    parameters.addAttribute(range);
+    parameters.addAttribute(animator.speed.proportionAttribute);
+    
 }
 
 
