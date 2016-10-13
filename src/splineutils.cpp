@@ -37,6 +37,7 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	nap::OFTraceComponent& trace_component = new_entity.addComponent<nap::OFTraceComponent>();
 	nap::OFSplineUpdateGPUComponent& gpu_component = new_entity.addComponent<nap::OFSplineUpdateGPUComponent>();
 	nap::OFSplineFromFileComponent& file_component = new_entity.addComponent<nap::OFSplineFromFileComponent>();
+	nap::OFScaleComponent& scale_component = new_entity.addComponent<nap::OFScaleComponent>();
 
 	// Add material
 	nap::OFMaterial& spline_mat = new_entity.addComponent<nap::OFMaterial>();

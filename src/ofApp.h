@@ -86,10 +86,11 @@ private:
 	ofxPanel					mAudioGui;
 
 	OFAttributeWrapper			mColorParameters;
+	OFAttributeWrapper			mXformParameters;
 	OFAttributeWrapper			mRotateParameters;
+	OFAttributeWrapper			mScaleParameters;
 	OFAttributeWrapper			mTraceParameters;
 	OFAttributeWrapper			mLFOParameters;
-	OFAttributeWrapper			mXformParameters;
 	OFAttributeWrapper			mSelectionParameters;
 	OFAttributeWrapper			mFileParameters;
 	

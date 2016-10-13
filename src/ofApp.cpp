@@ -98,6 +98,7 @@ void ofApp::exit()
 	mLaserService->Stop();
 }
 
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
@@ -316,12 +317,13 @@ void ofApp::setupGui()
 	mColorParameters.setName("Color");
 	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
 
-	mXformParameters.setName("Transform");
-	mXformParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
-
 	mRotateParameters.setName("Rotation");
 	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
 	
+	mScaleParameters.setName("Scale");
+	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
+	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
+
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
 
@@ -337,8 +339,8 @@ void ofApp::setupGui()
 	// Add parameters to gui
 	mSplineGui.setup();
 	mSplineGui.add(mColorParameters.getGroup());
-	mSplineGui.add(mXformParameters.getGroup());
 	mSplineGui.add(mRotateParameters.getGroup());
+	mSplineGui.add(mScaleParameters.getGroup());
 	mSplineGui.add(mTraceParameters.getGroup());
 	mSplineGui.add(mLFOParameters.getGroup());
 	mSplineGui.add(mSelectionParameters.getGroup());
