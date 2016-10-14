@@ -19,6 +19,9 @@
 #include <Lib/Utility/Data/RampSequencer.h>
 #include <Lib/Utility/Functions/MathFunctions.h>
 
+#include <4dService/SpeakerGrid.h>
+#include <4dService/SpatialGranulator.h>
+
 using namespace nap;
 using namespace std;
 
@@ -27,19 +30,38 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
 {
     entity = &root.addEntity(name);
     
+    transform = &entity->addComponent<spatial::Transform>("transform");
+    transform->scale.setValue(glm::vec3(1, 1, 1));
     patchComponent = &entity->addComponent<PatchComponent>("patch");
     
     // granulator
-    granulator = &patchComponent->getPatch().addOperator<lib::audio::Granulator>("granulator");
-    granulator->channelCount.setValue(2);
+    granulator = &patchComponent->getPatch().addOperator<spatial::SpatialGranulator>("granulator");
+    granulator->channelCount.setValue(8);
     granulator->density.setRange(granulator->density.getMin(), 50);
-    
     granulator->positionSpeed.setValue(0);
+    auto& x = granulator->addChild<NumericAttribute<float>>("x");
+    auto& z = granulator->addChild<NumericAttribute<float>>("z");
+    auto& size = granulator->addChild<NumericAttribute<float>>("size");
+    x.setRange(-20, 20);
+    x.setValue(0);
+    z.setRange(-20, 20);
+    z.setValue(0);
+    size.setRange(0, 10);
+    size.setValue(0);
+    std::function<void(const float&)> posChanged = [&](const float& value){
+        transform->position.setValue(glm::vec3(x.getValue(), 0, z.getValue()));
+    };
+    std::function<void(const float&)> sizeChanged = [&](const float& value){
+        transform->scale.setValue(glm::vec3(value, value, value));
+    };
+    x.valueChangedSignal.connect(posChanged);
+    z.valueChangedSignal.connect(posChanged);
+    size.valueChangedSignal.connect(sizeChanged);
     
     // resonator
     resonator = &patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
-    resonator->channelCount.setValue(2);
-    resonator->inputChannelCount.setValue(2);
+    resonator->channelCount.setValue(8);
+    resonator->inputChannelCount.setValue(8);
     
     // audio output
     output = &patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
@@ -103,6 +125,9 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     grainParameters.addAttribute(granulator->panDev.proportionAttribute);
     grainParameters.addAttribute(granulator->shape.attribute);
     grainParameters.addAttribute(granulator->attackDecay.proportionAttribute);
+    grainParameters.addAttribute(x);
+    grainParameters.addAttribute(z);
+    grainParameters.addAttribute(size);
     
     // add resonator parameters
     resonParameters.addAttribute(resonator->amplitude.attribute);
@@ -115,33 +140,8 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
 
     // granulator animators
     createModulator(granulator->density, densityParameters);
-//    auto& densityAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("densityAnimator");
-//    densityAnimator.schedulerInput.connect(output->schedulerOutput);
-//    granulator->density.proportionPlug.connect(densityAnimator.output);
-//    densityAnimator.startValue.link(granulator->density.proportionAttribute);
-//    auto& densitySeqChooser = entity->addComponent<nap::JsonChooser>();
-//    densitySeqChooser.setJsonComponent(jsonComponent);
-//    densitySeqChooser.setTarget(densityAnimator);
-//    densitySeqChooser.optionsJsonPtr.setValue("/densitySequences");
-//    densityParameters.addAttribute(densityAnimator.playing);
-//    densityParameters.addAttribute(densityAnimator.speed.proportionAttribute);
-//    densitySeqChooser.choice.setName("sequence");
-//    densityParameters.addAttribute(densitySeqChooser.choice);
 
     createModulator(granulator->position, positionParameters);
-//    auto& positionAnimator = patchComponent->getPatch().addOperator<lib::RampSequencer>("positionAnimator");
-//    positionAnimator.controlInterval.setValue(10); // high control rate
-//    positionAnimator.schedulerInput.connect(output->schedulerOutput);
-//    granulator->position.proportionPlug.connect(positionAnimator.output);
-//    positionAnimator.startValue.link(granulator->position.proportionAttribute);
-//    auto& posSeqChooser = entity->addComponent<nap::JsonChooser>();
-//    posSeqChooser.setJsonComponent(jsonComponent);
-//    posSeqChooser.setTarget(positionAnimator);
-//    posSeqChooser.optionsJsonPtr.setValue("/positionSequences");
-//    positionParameters.addAttribute(positionAnimator.playing);
-//    positionParameters.addAttribute(positionAnimator.speed.proportionAttribute);
-//    posSeqChooser.choice.setName("sequence");
-//    positionParameters.addAttribute(posSeqChooser.choice);
     
     grainParameters.setName("granulator");
     resonParameters.setName("resonator");
@@ -194,7 +194,7 @@ void AudioPlayer::createModulator(lib::ValueControl& control, OFAttributeWrapper
 
 
 AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPath)
-{
+{    
     entity = &root.addEntity("audio");
     
     jsonComponent = &entity->addComponent<JsonComponent>("json");
@@ -214,6 +214,8 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
         auto& audioFile = audioFiles.addComponent<lib::audio::AudioFileComponent>();
         audioFile.fileName.setValue(ofFile(audioFileName).getAbsolutePath());
     }
+    
+    auto& speakerGrid = entity->addComponent<spatial::SpeakerGrid>();
     
     // add the player
     for (auto i = 0; i < 2; ++i)

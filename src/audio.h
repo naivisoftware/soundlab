@@ -19,6 +19,9 @@
 #include <Lib/Audio/Unit/OutputUnit.h>
 #include <Lib/Utility/Data/Sequencer.h>
 #include <Lib/Utility/Data/RampSequencer.h>
+
+#include <4dService/Transform.h>
+
 #include <jsoncomponent.h>
 #include <jsonchooser.h>
 
@@ -33,6 +36,7 @@ public:
     void createModulator(lib::ValueControl& control, OFAttributeWrapper& parameters);
     
     nap::Entity* entity = nullptr;
+    spatial::Transform* transform;
     nap::PatchComponent* patchComponent = nullptr;
     lib::audio::ResonatorUnit* resonator = nullptr;
     lib::audio::Granulator* granulator = nullptr;

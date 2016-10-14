@@ -21,6 +21,8 @@
 #include <splineutils.h>
 #include <Utils/nofUtils.h>
 
+#include <4dService/SpatialService.h>
+
 using namespace lib;
 using namespace lib::audio;
 using namespace nap;
@@ -288,6 +290,7 @@ void ofApp::resetCamera()
 void ofApp::createAudio()
 {
     mCore.addService<AudioFileService>();
+    mCore.addService<spatial::SpatialService>();
 
 	audioService = &mCore.addService<AudioService>();
 	audioService->setBufferSize(64);
