@@ -42,11 +42,11 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     auto& x = granulator->addChild<NumericAttribute<float>>("x");
     auto& z = granulator->addChild<NumericAttribute<float>>("z");
     auto& size = granulator->addChild<NumericAttribute<float>>("size");
-    x.setRange(-20, 20);
+    x.setRange(-2, 2);
     x.setValue(0);
-    z.setRange(-20, 20);
+    z.setRange(-2, 2);
     z.setValue(0);
-    size.setRange(0, 10);
+    size.setRange(0, 2);
     size.setValue(0);
     std::function<void(const float&)> posChanged = [&](const float& value){
         transform->position.setValue(glm::vec3(x.getValue(), 0, z.getValue()));
@@ -65,7 +65,8 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     
     // audio output
     output = &patchComponent->getPatch().addOperator<lib::audio::OutputUnit>("output");
-    output->channelCount.setValue(2);
+    output->channelCount.setValue(8);
+    output->routing.setValue({ 0, 1, -1, -1, 2, 3, -1, -1 }); // use channel 0, 1, 4 and 5 only
     output->audioInput.connect(granulator->output);
     output->audioInput.connect(resonator->audioOutput);
     resonator->audioInput.connect(granulator->output);
@@ -147,14 +148,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     resonParameters.setName("resonator");
     positionParameters.setName("position modulation");
     densityParameters.setName("density modulation");
-    
-    panel.setName(name);
-    panel.setup();
-    panel.add(grainParameters.getGroup());
-    panel.add(positionParameters.getGroup());
-    panel.add(densityParameters.getGroup());
-    panel.add(resonParameters.getGroup());
-    panel.minimizeAll();
 }
 
 
@@ -193,6 +186,19 @@ void AudioPlayer::createModulator(lib::ValueControl& control, OFAttributeWrapper
 }
 
 
+void AudioPlayer::setupGui(ofxPanel& panel)
+{
+    panel.setName(entity->getName());
+    panel.setup();
+    panel.add(grainParameters.getGroup());
+    panel.add(positionParameters.getGroup());
+    panel.add(densityParameters.getGroup());
+    panel.add(resonParameters.getGroup());
+    panel.minimizeAll();    
+}
+
+
+
 AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPath)
 {    
     entity = &root.addEntity("audio");
@@ -227,6 +233,7 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
 //    mCurrentPartIndex = jsonComponent->getNumber<int>("/start", 0);
 //    play(0, mCurrentPartIndex);
 //    play(1, mCurrentPartIndex);
+
 }
 
 

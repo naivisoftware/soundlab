@@ -89,8 +89,9 @@ void ofApp::draw()
 	ofEnableAlphaBlending();
 	mSplineGui.draw();
 	mLaserGui.draw();
-    audioComposition->getGuiForPlayer(0).draw();
-    audioComposition->getGuiForPlayer(1).draw();
+    
+    for (auto& audioGui : audioGuis)
+        audioGui->draw();
 }
 
 
@@ -171,12 +172,12 @@ void ofApp::windowResized(int w, int h)
 	mLaserGui.setPosition(current_point);
 
 	// Position audio gui 1
-	current_point.x = w - (audioComposition->getGuiForPlayer(0).getWidth() * 2) - (spacing * 2);
-	audioComposition->getGuiForPlayer(0).setPosition(current_point);
+	current_point.x = w - (audioGuis[0]->getWidth() * 2) - (spacing * 2);
+	audioGuis[0]->setPosition(current_point);
 
 	// Position audio gui 2
-	current_point.x += (audioComposition->getGuiForPlayer(1).getWidth() + spacing);
-	audioComposition->getGuiForPlayer(1).setPosition(current_point);
+	current_point.x += (audioGuis[1]->getWidth() + spacing);
+	audioGuis[1]->setPosition(current_point);
 }
 
 //--------------------------------------------------------------
@@ -305,7 +306,7 @@ void ofApp::createAudio()
 	nap::Logger::info("opening sound device: %d", sound_id);
 	soundStream.setDeviceID(sound_id);
 
-	soundStream.setup(this, 2, 0, audioService->getSampleRate(), 256, 4);
+	soundStream.setup(this, 4, 0, audioService->getSampleRate(), 256, 4);
 
 }
 
@@ -323,9 +324,9 @@ void ofApp::setupGui()
 	mRotateParameters.setName("Rotation");
 	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
 	
-	mScaleParameters.setName("Scale");
-	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
-	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
+//	mScaleParameters.setName("Scale");
+//	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
+//	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
 
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
@@ -363,6 +364,12 @@ void ofApp::setupGui()
 	mLaserGui.add(mLaserCamParameters.getGroup());
 	mLaserGui.add(mLaserServiceParameters.getGroup());
 	mLaserGui.minimizeAll();
+
+    for (auto i = 0; i < audioComposition->getPlayerCount(); ++i)
+    {
+        audioGuis.emplace_back(std::make_unique<ofxPanel>());
+        audioComposition->setupGuiForPlayer(*audioGuis.back(), i);
+    }
 }
 
 

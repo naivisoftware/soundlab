@@ -129,6 +129,17 @@
 		D242C50F1D9E7FF400B6546C /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C50A1D9E7FF400B6546C /* ofxXmlSettings.cpp */; settings = {ASSET_TAGS = (); }; };
 		D242C5131D9E8D1E00B6546C /* ResonatorUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C5111D9E8D1E00B6546C /* ResonatorUnit.cpp */; settings = {ASSET_TAGS = (); }; };
 		D242C5161D9E8E9000B6546C /* ResonatorVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C5141D9E8E9000B6546C /* ResonatorVoice.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DADF1DB0D58D005EE74F /* Common.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE11DB0D58D005EE74F /* Plane.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB111DB0D58D005EE74F /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE31DB0D58D005EE74F /* Source.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB121DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB131DB0D58D005EE74F /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE71DB0D58D005EE74F /* Utilities.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB1F1DB0D58D005EE74F /* SpatialGranulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB221DB0D58D005EE74F /* SpatialPanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB231DB0D58D005EE74F /* SpatialService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB091DB0D58D005EE74F /* SpatialService.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB241DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0D1DB0D58D005EE74F /* Transform.cpp */; settings = {ASSET_TAGS = (); }; };
+		D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB261DB0E5B0005EE74F /* Panner.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260252C1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D260252A1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -149,6 +160,7 @@
 		D28BE2FB1DA25141001E1ACB /* jsoncomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D28BE2F91DA25141001E1ACB /* jsoncomponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D28BE3001DA29183001E1ACB /* AudioFileService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D28BE2FE1DA29183001E1ACB /* AudioFileService.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2B002AE1DA37F0400E4DECE /* arrayattribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B002AC1DA37F0400E4DECE /* arrayattribute.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2D9E3C81DB128DB00727A32 /* SpatialGrainVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */; settings = {ASSET_TAGS = (); }; };
 		D308EC8C4D9F6BBE7EC32541 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B07A19DF7BDE6B4259735412 /* ofxButton.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -453,6 +465,28 @@
 		D242C5121D9E8D1E00B6546C /* ResonatorUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResonatorUnit.h; sourceTree = "<group>"; };
 		D242C5141D9E8E9000B6546C /* ResonatorVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResonatorVoice.cpp; sourceTree = "<group>"; };
 		D242C5151D9E8E9000B6546C /* ResonatorVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResonatorVoice.h; sourceTree = "<group>"; };
+		D251DADF1DB0D58D005EE74F /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
+		D251DAE01DB0D58D005EE74F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		D251DAE11DB0D58D005EE74F /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		D251DAE21DB0D58D005EE74F /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		D251DAE31DB0D58D005EE74F /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Source.cpp; sourceTree = "<group>"; };
+		D251DAE41DB0D58D005EE74F /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
+		D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGrid.cpp; sourceTree = "<group>"; };
+		D251DAE61DB0D58D005EE74F /* SpeakerGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGrid.h; sourceTree = "<group>"; };
+		D251DAE71DB0D58D005EE74F /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
+		D251DAE81DB0D58D005EE74F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGranulator.cpp; sourceTree = "<group>"; };
+		D251DB021DB0D58D005EE74F /* SpatialGranulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGranulator.h; sourceTree = "<group>"; };
+		D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialPanner.cpp; sourceTree = "<group>"; };
+		D251DB081DB0D58D005EE74F /* SpatialPanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialPanner.h; sourceTree = "<group>"; };
+		D251DB091DB0D58D005EE74F /* SpatialService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialService.cpp; sourceTree = "<group>"; };
+		D251DB0A1DB0D58D005EE74F /* SpatialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialService.h; sourceTree = "<group>"; };
+		D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGrid.cpp; sourceTree = "<group>"; };
+		D251DB0C1DB0D58D005EE74F /* SpeakerGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGrid.h; sourceTree = "<group>"; };
+		D251DB0D1DB0D58D005EE74F /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		D251DB0E1DB0D58D005EE74F /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		D251DB261DB0E5B0005EE74F /* Panner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Panner.cpp; sourceTree = "<group>"; };
+		D251DB271DB0E5B0005EE74F /* Panner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Panner.h; sourceTree = "<group>"; };
 		D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFileComponent.cpp; sourceTree = "<group>"; };
 		D25F02F01D9AAF4A003AB96B /* AudioFileComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileComponent.h; sourceTree = "<group>"; };
 		D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioBufferStream.cpp; sourceTree = "<group>"; };
@@ -491,6 +525,8 @@
 		D28BE2FF1DA29183001E1ACB /* AudioFileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileService.h; sourceTree = "<group>"; };
 		D2B002AC1DA37F0400E4DECE /* arrayattribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrayattribute.cpp; sourceTree = "<group>"; };
 		D2B002AD1DA37F0400E4DECE /* arrayattribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrayattribute.h; sourceTree = "<group>"; };
+		D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGrainVoice.cpp; sourceTree = "<group>"; };
+		D2D9E3C71DB128DB00727A32 /* SpatialGrainVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGrainVoice.h; sourceTree = "<group>"; };
 		D6AF0D0C4554CAF37CD4251C /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		DAA91A6C2A981A23466EA81A /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -927,6 +963,8 @@
 		D228690D1D9576AE00682676 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D251DB261DB0E5B0005EE74F /* Panner.cpp */,
+				D251DB271DB0E5B0005EE74F /* Panner.h */,
 				D228690E1D9576AE00682676 /* AudioBufferStream.h */,
 				D228690F1D9576AE00682676 /* AudioFile */,
 				D22869121D9576AE00682676 /* AudioStream.cpp */,
@@ -1094,6 +1132,44 @@
 			path = Resonator;
 			sourceTree = "<group>";
 		};
+		D251DADE1DB0D58D005EE74F /* 4d */ = {
+			isa = PBXGroup;
+			children = (
+				D251DADF1DB0D58D005EE74F /* Common.cpp */,
+				D251DAE01DB0D58D005EE74F /* Common.h */,
+				D251DAE11DB0D58D005EE74F /* Plane.cpp */,
+				D251DAE21DB0D58D005EE74F /* Plane.h */,
+				D251DAE31DB0D58D005EE74F /* Source.cpp */,
+				D251DAE41DB0D58D005EE74F /* Source.h */,
+				D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */,
+				D251DAE61DB0D58D005EE74F /* SpeakerGrid.h */,
+				D251DAE71DB0D58D005EE74F /* Utilities.cpp */,
+				D251DAE81DB0D58D005EE74F /* Utilities.h */,
+			);
+			name = 4d;
+			path = ../nap/4dsound/4d;
+			sourceTree = "<group>";
+		};
+		D251DAE91DB0D58D005EE74F /* 4dService */ = {
+			isa = PBXGroup;
+			children = (
+				D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */,
+				D251DB021DB0D58D005EE74F /* SpatialGranulator.h */,
+				D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */,
+				D251DB081DB0D58D005EE74F /* SpatialPanner.h */,
+				D251DB091DB0D58D005EE74F /* SpatialService.cpp */,
+				D251DB0A1DB0D58D005EE74F /* SpatialService.h */,
+				D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */,
+				D251DB0C1DB0D58D005EE74F /* SpeakerGrid.h */,
+				D251DB0D1DB0D58D005EE74F /* Transform.cpp */,
+				D251DB0E1DB0D58D005EE74F /* Transform.h */,
+				D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */,
+				D2D9E3C71DB128DB00727A32 /* SpatialGrainVoice.h */,
+			);
+			name = 4dService;
+			path = ../nap/4dsound/4dService;
+			sourceTree = "<group>";
+		};
 		D260252D1D957CED0012AAD0 /* napgui */ = {
 			isa = PBXGroup;
 			children = (
@@ -1177,6 +1253,8 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				D251DADE1DB0D58D005EE74F /* 4d */,
+				D251DAE91DB0D58D005EE74F /* 4dService */,
 				D28BE2FD1DA26200001E1ACB /* audiosettings.json */,
 				D260252D1D957CED0012AAD0 /* napgui */,
 				D22869B01D95780800682676 /* napof */,
@@ -1319,6 +1397,7 @@
 				D22868631D95767D00682676 /* cexport.cpp in Sources */,
 				D22869F71D95780800682676 /* napofsimplecamcomponent.cpp in Sources */,
 				D22869161D9576AE00682676 /* AudioObject.cpp in Sources */,
+				D251DB111DB0D58D005EE74F /* Source.cpp in Sources */,
 				D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */,
 				D22868711D95767D00682676 /* modulemanager.cpp in Sources */,
 				D22868671D95767D00682676 /* core.cpp in Sources */,
@@ -1333,6 +1412,7 @@
 				D228691B1D9576AE00682676 /* CrossfadeObject.cpp in Sources */,
 				D22868C51D95769500682676 /* OscComponent.cpp in Sources */,
 				D22869241D9576AE00682676 /* Oscillator.cpp in Sources */,
+				D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */,
 				D228686E1D95767D00682676 /* link.cpp in Sources */,
 				D242C50D1D9E7FF400B6546C /* tinyxmlerror.cpp in Sources */,
 				D225D3261DAAA014003CAB28 /* nofattributewrapper.cpp in Sources */,
@@ -1343,14 +1423,19 @@
 				D22869F41D95780800682676 /* napofrendercomponent.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				D228692E1D9576AE00682676 /* OutputUnit.cpp in Sources */,
+				D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */,
 				D22869301D9576AE00682676 /* Unit.cpp in Sources */,
 				D228691C1D9576AE00682676 /* Delay.cpp in Sources */,
 				D242C5131D9E8D1E00B6546C /* ResonatorUnit.cpp in Sources */,
+				D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				D22868C31D95769500682676 /* MathFunctions.cpp in Sources */,
+				D2D9E3C81DB128DB00727A32 /* SpatialGrainVoice.cpp in Sources */,
 				D22868751D95767D00682676 /* operator.cpp in Sources */,
+				D251DB121DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */,
 				D22868C01D95769500682676 /* DataTypes.cpp in Sources */,
 				D228691D1D9576AE00682676 /* DelayObject.cpp in Sources */,
+				D251DB131DB0D58D005EE74F /* Utilities.cpp in Sources */,
 				D22868661D95767D00682676 /* configure.cpp in Sources */,
 				A680F8A59954562DB8777D24 /* splineutils.cpp in Sources */,
 				D22868801D95767D00682676 /* xmlserializer.cpp in Sources */,
@@ -1397,7 +1482,10 @@
 				D22869AF1D9577E700682676 /* ofetherdream.cpp in Sources */,
 				D22868C41D95769500682676 /* UtilityFunctions.cpp in Sources */,
 				D228692D1D9576AE00682676 /* InputUnit.cpp in Sources */,
+				D251DB221DB0D58D005EE74F /* SpatialPanner.cpp in Sources */,
 				D260253E1D957CED0012AAD0 /* boxlayout.cpp in Sources */,
+				D251DB231DB0D58D005EE74F /* SpatialService.cpp in Sources */,
+				D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */,
 				D242C50F1D9E7FF400B6546C /* ofxXmlSettings.cpp in Sources */,
 				D26025401D957CED0012AAD0 /* gridlayout.cpp in Sources */,
 				D22869A51D95776900682676 /* netherdream.cpp in Sources */,
@@ -1429,6 +1517,7 @@
 				D225D3271DAAA014003CAB28 /* nofparamattrlink.cpp in Sources */,
 				D22869281D9576AE00682676 /* Effect.cpp in Sources */,
 				20C6C6351D615148B2203E63 /* ofxPanel.cpp in Sources */,
+				D251DB1F1DB0D58D005EE74F /* SpatialGranulator.cpp in Sources */,
 				D26025551D957E530012AAD0 /* svgtiny_gradient.cpp in Sources */,
 				2068C3FB4EC238D25C2F2FEC /* ofxSlider.cpp in Sources */,
 				D228687A1D95767D00682676 /* service.cpp in Sources */,
@@ -1446,6 +1535,7 @@
 				D26025411D957CED0012AAD0 /* layoutcomponent.cpp in Sources */,
 				D2286A031D95780800682676 /* nofSpline.cpp in Sources */,
 				D22868791D95767D00682676 /* serializer.cpp in Sources */,
+				D251DB241DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */,
 				D22869171D9576AE00682676 /* AudioObjectManager.cpp in Sources */,
 				D22868611D95767D00682676 /* attribute.cpp in Sources */,
 				D22869251D9576AE00682676 /* StreamPlayer.cpp in Sources */,
@@ -1551,6 +1641,7 @@
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../of_v0.9.3_osx_release/libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
 				HEADER_SEARCH_PATHS = (
@@ -1568,6 +1659,7 @@
 					../nap/stijnlibaudio,
 					../nap/netherdream/netherdream,
 					../napnaivi/modules/napgui/src,
+					../nap/4dsound,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1599,6 +1691,7 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../of_v0.9.3_osx_release/libs/glut/lib/osx\"";
+				GCC_FAST_MATH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
 				HEADER_SEARCH_PATHS = (
@@ -1616,6 +1709,7 @@
 					../nap/stijnlibaudio,
 					../nap/netherdream/netherdream,
 					../napnaivi/modules/napgui/src,
+					../nap/4dsound,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";

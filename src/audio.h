@@ -34,6 +34,7 @@ public:
     AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonComponent& jsonComponent);
     
     void createModulator(lib::ValueControl& control, OFAttributeWrapper& parameters);
+    void setupGui(ofxPanel& panel);
     
     nap::Entity* entity = nullptr;
     spatial::Transform* transform;
@@ -51,7 +52,6 @@ public:
     OFAttributeWrapper resonParameters;
     OFAttributeWrapper positionParameters;
     OFAttributeWrapper densityParameters;
-    ofxPanel panel;
 };
 
 
@@ -62,7 +62,7 @@ public:
     void play(int player, int partIndex);
     void play(int player, const std::string& partName);
     
-    ofxPanel& getGuiForPlayer(int index) { return players[index]->panel; }
+    void setupGuiForPlayer(ofxPanel& panel, int player) { players[player]->setupGui(panel); }
     
     int getPlayerCount() { return players.size(); }
     

@@ -76,14 +76,12 @@ private:
 	// Sound
 	ofSoundStream soundStream;
 	lib::audio::AudioService* audioService = nullptr;
-	lib::gui::OFControlPanel granulatorPanel;
-    lib::gui::OFControlPanel resonatorPanel;
     std::unique_ptr<AudioComposition> audioComposition = nullptr;
 
 	// Gui (TEST)
 	ofxPanel					mSplineGui;
 	ofxPanel					mLaserGui;
-	ofxPanel					mAudioGui;
+    std::vector<std::unique_ptr<ofxPanel>> audioGuis;
 
 	OFAttributeWrapper			mColorParameters;
 	OFAttributeWrapper			mXformParameters;
