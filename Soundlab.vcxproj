@@ -95,7 +95,7 @@
       <PreprocessorDefinitions>POCO_STATIC;DPOCO_STATIC;POCO_NO_UNWINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\openFrameworks\addons\ofxGui\src;..\..\openFrameworks\addons\ofxXmlSettings\libs;..\..\openFrameworks\addons\ofxXmlSettings\src;.\src;..\..\nap\modules\napinput\src;..\..\nap\modules\napof\src;..\..\nap\modules\napgui\src;..\..\nap\core\src;..\..\nap\modules\napetherservice\src;..\..\netherdream\netherdream;..\..\stijnlib\thirdparty;..\..\stijnlib\stijnlibaudio;..\..\stijnlib\stijnlibutility</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\openFrameworks\addons\ofxGui\src;..\..\openFrameworks\addons\ofxXmlSettings\libs;..\..\openFrameworks\addons\ofxXmlSettings\src;.\src;..\..\nap\modules\napinput\src;..\..\nap\modules\napof\src;..\..\nap\modules\napgui\src;..\..\nap\core\src;..\..\nap\modules\napetherservice\src;..\..\netherdream\netherdream;..\..\stijnlib\thirdparty;..\..\stijnlib\stijnlibaudio;..\..\stijnlib\stijnlibutility;..\..\stijnlib\4dsound</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
@@ -142,7 +142,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
       <PreprocessorDefinitions>POCO_STATIC;POCO_NO_UNWINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\openFrameworks\addons\ofxGui\src;..\..\openFrameworks\addons\ofxXmlSettings\libs;..\..\openFrameworks\addons\ofxXmlSettings\src;.\src;..\..\nap\modules\napinput\src;..\..\nap\modules\napof\src;..\..\nap\modules\napgui\src;..\..\nap\core\src;..\..\nap\modules\napetherservice\src;..\..\netherdream\netherdream;..\..\stijnlib\thirdparty;..\..\stijnlib\stijnlibaudio;..\..\stijnlib\stijnlibutility</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\openFrameworks\addons\ofxGui\src;..\..\openFrameworks\addons\ofxXmlSettings\libs;..\..\openFrameworks\addons\ofxXmlSettings\src;.\src;..\..\nap\modules\napinput\src;..\..\nap\modules\napof\src;..\..\nap\modules\napgui\src;..\..\nap\core\src;..\..\nap\modules\napetherservice\src;..\..\netherdream\netherdream;..\..\stijnlib\thirdparty;..\..\stijnlib\stijnlibaudio;..\..\stijnlib\stijnlibutility;..\..\stijnlib\4dsound</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <UndefinePreprocessorDefinitions>
@@ -230,8 +230,8 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <ProjectReference Include="..\..\nap\modules\napetherservice\napetherservice.vcxproj">
       <Project>{86f522d8-ae08-4020-9cb4-e15dbce73221}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\stijnlib\stijnlibaudio\stijnlibaudio.vcxproj">
-      <Project>{bdfb74a1-6649-4575-903c-1e8a01f87d64}</Project>
+    <ProjectReference Include="..\..\stijnlib\4dsound\4dsound.vcxproj">
+      <Project>{3ac74e0c-668f-41d8-bb94-b3cf9fe6b356}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

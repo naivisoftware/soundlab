@@ -19,7 +19,7 @@
 #include <Lib/Utility/Data/RampSequencer.h>
 #include <Lib/Utility/Functions/MathFunctions.h>
 
-#include <4dService/SpeakerGrid.h>
+#include <4dService/SpeakerGridComponent.h>
 #include <4dService/SpatialGranulator.h>
 
 using namespace nap;
@@ -221,7 +221,7 @@ AudioComposition::AudioComposition(nap::Entity& root, const std::string& jsonPat
         audioFile.fileName.setValue(ofFile(audioFileName).getAbsolutePath());
     }
     
-    auto& speakerGrid = entity->addComponent<spatial::SpeakerGrid>();
+    auto& speakerGrid = entity->addComponent<spatial::SpeakerGridComponent>();
     
     // add the player
     for (auto i = 0; i < 2; ++i)

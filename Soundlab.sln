@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stijnlibutility", "..\..\st
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "thirdparty", "..\..\stijnlib\thirdparty\thirdparty.vcxproj", "{71738A29-3863-497F-A9AB-50EDB20AAE48}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4dsound", "..\..\stijnlib\4dsound\4dsound.vcxproj", "{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -121,6 +123,14 @@ Global
 		{71738A29-3863-497F-A9AB-50EDB20AAE48}.Release|Win32.Build.0 = Release|Win32
 		{71738A29-3863-497F-A9AB-50EDB20AAE48}.Release|x64.ActiveCfg = Release|x64
 		{71738A29-3863-497F-A9AB-50EDB20AAE48}.Release|x64.Build.0 = Release|x64
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Debug|Win32.Build.0 = Debug|Win32
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Debug|x64.ActiveCfg = Debug|x64
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Debug|x64.Build.0 = Debug|x64
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Release|Win32.ActiveCfg = Release|Win32
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Release|Win32.Build.0 = Release|Win32
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Release|x64.ActiveCfg = Release|x64
+		{3AC74E0C-668F-41D8-BB94-B3CF9FE6B356}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

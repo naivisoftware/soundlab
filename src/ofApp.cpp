@@ -324,9 +324,9 @@ void ofApp::setupGui()
 	mRotateParameters.setName("Rotation");
 	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
 	
-//	mScaleParameters.setName("Scale");
-//	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
-//	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
+	mScaleParameters.setName("Scale");
+	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
+	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
 
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
