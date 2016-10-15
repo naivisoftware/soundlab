@@ -11,7 +11,7 @@ int main( )
 	window_settings.glVersionMinor = 3;
 	window_settings.windowMode = OF_WINDOW;
 
-	window_settings.width = 1024;
+	window_settings.width = 1280;
 	window_settings.height = 1024;
 
 	// Create window

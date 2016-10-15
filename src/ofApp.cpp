@@ -21,6 +21,7 @@
 #include <splineutils.h>
 #include <Utils/nofUtils.h>
 #include <4dService/SpatialService.h>
+#include <settingserializer.h>
 
 // Gui
 #include <gui.h>
@@ -49,6 +50,9 @@ void ofApp::setup()
 
 	// Create initial spline
 	createSpline();
+
+	// Create session
+	createSession();
 
 	// Setup gui (always last)
 	setupGui();
@@ -298,6 +302,26 @@ void ofApp::createSpline()
 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
 	assert(ether_cam != nullptr);
 	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
+}
+
+
+/**
+@brief Creates the session entity
+**/
+void ofApp::createSession()
+{
+	mSessionEntity = &mCore.addEntity("Session");
+	nap::NumericAttribute<float>& warmth_attr = mSessionEntity->addChild<nap::NumericAttribute<float>>("Warmth");
+	warmth_attr.setRange(0.0f, 1.0f);
+	warmth_attr.setValue(0.5f);
+	warmth_attr.setClamped(true);
+
+	nap::NumericAttribute<float>& intensity_attr = mSessionEntity->addChild<nap::NumericAttribute<float>>("Intensity");
+	intensity_attr.setRange(0.0f, 1.0f);
+	intensity_attr.setValue(0.5f);
+	intensity_attr.setClamped(true);
+
+	mSessionEntity->addAttribute<std::string>("Name");
 }
 
 

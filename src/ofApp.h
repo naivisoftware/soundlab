@@ -16,7 +16,6 @@
 // OF Includes
 #include <openFrameworks/Gui/OFControlPanel.h>
 #include <Utils/nofattributewrapper.h>
-
 #include <audio.h>
 
 namespace nap
@@ -63,6 +62,7 @@ public:
 	nap::Entity*						getSpline()				{ return mSplineEntity; }
 	nap::EtherDreamService*				getLaserService()		{ return mLaserService; }
 	AudioComposition*					getAudioComposition()	{ return audioComposition.get(); }
+	nap::Entity*						getSession()			{ return mSessionEntity; }
 
 private:
 	// Services
@@ -77,17 +77,20 @@ private:
 	void								resetCamera();
 	void								createAudio();
 	void								createSpline();
+	void								createSession();
 
 	nap::Entity*						mCamera = nullptr;			//< Scene camera
 	nap::Entity*						mLaserEntity = nullptr;		//< Laser
 	nap::Entity*						mAudioEntity = nullptr;		//< Audio
 	nap::Entity*						mSplineEntity = nullptr;	//< Active Spline
+	nap::Entity*						mSessionEntity = nullptr;	//< Active session
 
 	// Sound
 	ofSoundStream soundStream;
 	lib::audio::AudioService*			audioService = nullptr;
     std::unique_ptr<AudioComposition>	audioComposition = nullptr;
 
+	// Gui + Serialization
 	Gui*								mGui;
 	void								setupGui();
 

@@ -59,6 +59,9 @@
     <ClCompile Include="src\gui.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\settingserializer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="src\jsonchooser.h" />
     <ClInclude Include="src\gui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settingserializer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include <napofsplinemodulationcomponent.h>
 #include <napoftracecomponent.h>
 #include <napetherservice.h>
+#include <settingserializer.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -37,7 +38,7 @@ void Gui::Setup()
 	mFileParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>()));
 
 	// Add parameters to gui
-	mSplineGui.setup();
+	mSplineGui.setup("spline");
 	mSplineGui.add(mColorParameters.getGroup());
 	mSplineGui.add(mRotateParameters.getGroup());
 	mSplineGui.add(mScaleParameters.getGroup());
@@ -46,6 +47,7 @@ void Gui::Setup()
 	mSplineGui.add(mSelectionParameters.getGroup());
 	mSplineGui.add(mFileParameters.getGroup());
 	mSplineGui.minimizeAll();
+	mGuis.emplace_back(&mSplineGui);
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -59,31 +61,57 @@ void Gui::Setup()
 	mLaserCamParameters.addAttribute(mApp.getLaser()->getComponent<nap::EtherDreamCamera>()->mFrustrumHeight);
 
 	// Setup laser
-	mLaserGui.setup();
+	mLaserGui.setup("laser");
 	mLaserGui.add(mLaserCamParameters.getGroup());
 	mLaserGui.add(mLaserServiceParameters.getGroup());
 	mLaserGui.minimizeAll();
+	mGuis.emplace_back(&mLaserGui);
+
+	//////////////////////////////////////////////////////////////////////////
+
+	mSessionParameters.setName("Session");
+	auto warmth_attr = mApp.getSession()->getChild<nap::NumericAttribute<float>>("Warmth");
+	auto intens_attr = mApp.getSession()->getChild<nap::NumericAttribute<float>>("Intensity");
+	mSessionParameters.addAttribute(*warmth_attr);
+	mSessionParameters.addAttribute(*intens_attr);
+	
+	mSessionGui.setup("session");
+	mSessionGui.add(mSessionParameters.getGroup());
+
+	mLoad.setup("Load");
+	mLoad.addListener(this, &Gui::loadClicked);
+	mSave.setup("Save");
+	mSessionGui.add(&mLoad);
+	mSave.addListener(this, &Gui::saveClicked);
+	mSessionGui.add(&mSave);
+	mSessionGui.minimizeAll();
+	
+	mGuis.emplace_back(&mSessionGui);
+
+	//////////////////////////////////////////////////////////////////////////
 
 	// Setup audio gui
 	for (auto i = 0; i < mApp.getAudioComposition()->getPlayerCount(); ++i)
 	{
 		audioGuis.emplace_back(std::make_unique<ofxPanel>());
 		mApp.getAudioComposition()->setupGuiForPlayer(*audioGuis.back(), i);
+		audioGuis.back()->setName("audio player_" + std::to_string(i));
+		mGuis.emplace_back(audioGuis.back().get());
 	}
 }
 
 
 /**
-@brief Draws all the guis
+@brief Draws all the gui components
 **/
 void Gui::Draw()
 {
 	// Draw Gui
 	ofEnableAlphaBlending();
-	mSplineGui.draw();
-	mLaserGui.draw();
-	for (auto& audioGui : audioGuis) 
-		audioGui->draw();
+
+	// Draw all guis
+	for (auto& gui : mGuis)
+		gui->draw();
 }
 
 
@@ -101,6 +129,10 @@ void Gui::Position(int screenWidth, int screenHeight)
 
 	// Position laser gui
 	mLaserGui.setPosition(current_point);
+	current_point.x += mLaserGui.getWidth() + spacing;
+
+	// Position session
+	mSessionGui.setPosition(current_point);
 
 	// Position audio gui 1
 	current_point.x = screenWidth - (audioGuis[0]->getWidth() * 2) - (spacing * 2);
@@ -109,4 +141,45 @@ void Gui::Position(int screenWidth, int screenHeight)
 	// Position audio gui 2
 	current_point.x += (audioGuis[1]->getWidth() + spacing);
 	audioGuis[1]->setPosition(current_point);
+}
+
+
+/**
+@brief Loads all the gui settings
+**/
+void Gui::loadClicked()
+{
+	static std::string sCurrentDir = ofFilePath::getAbsolutePath(ofFilePath::getCurrentExeDir(), false);
+	static std::string sExtension = "xml";
+
+	ofFileDialogResult result = ofSystemLoadDialog("Load Settings", false, sCurrentDir);
+	if (!result.bSuccess)
+		return;
+
+	// Check what type it is
+	ofFile file(result.filePath);
+
+	SettingSerializer serializer;
+	serializer.loadSettings(file.getEnclosingDirectory(), *this);
+}
+
+
+/**
+@brief Saves all the gui settings
+**/
+void Gui::saveClicked()
+{
+	ofFileDialogResult result = ofSystemSaveDialog("Settings", "Name");
+	if (!result.bSuccess)
+		return;
+
+	ofFile file(result.getPath());
+	if (file.exists())
+	{
+		nap::Logger::warn("file already exists: %s", result.getPath().c_str());
+		return;
+	}
+
+	SettingSerializer serializer;
+	serializer.saveSettings(file.getEnclosingDirectory(), result.getName(), *this);
 }
