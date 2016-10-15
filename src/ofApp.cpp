@@ -8,6 +8,7 @@
 #include <napofservice.h>
 #include <napofshaderbinding.h>
 #include <settings.h>
+#include <presetcomponent.h>
 
 // Etherdream Includes
 #include <napetherservice.h>
@@ -128,7 +129,7 @@ void ofApp::mouseMoved(int x, int y ){
 void ofApp::mouseDragged(int x, int y, int button)
 {
 	// Don't transform when move is disabled
-	if (!mSessionEntity->getAttribute<bool>("Move")->getValue())
+	if (!mSessionEntity->getAttribute<bool>("MoveSpline")->getValue())
 		return;
 
 	// Otherwise move based on previous loc
@@ -357,6 +358,16 @@ void ofApp::createSpline()
 	nap::Entity& spline_e = mCore.addEntity("Splines");
 	mSplineEntity = &addSpline(spline_e, { 0.0f, 0.0f, 0.0f });
 
+	nap::NumericAttribute<float>& warmth_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("Warmth");
+	warmth_attr.setRange(0.0f, 1.0f);
+	warmth_attr.setValue(0.5f);
+	warmth_attr.setClamped(true);
+
+	nap::NumericAttribute<float>& intensity_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("Intensity");
+	intensity_attr.setRange(0.0f, 1.0f);
+	intensity_attr.setValue(0.5f);
+	intensity_attr.setClamped(true);
+
 	// Set as entity to draw
 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
 	assert(ether_cam != nullptr);
@@ -369,21 +380,18 @@ void ofApp::createSpline()
 **/
 void ofApp::createSession()
 {
+	// Add move attribute for spline
 	mSessionEntity = &mCore.addEntity("Session");
-	nap::NumericAttribute<float>& warmth_attr = mSessionEntity->addChild<nap::NumericAttribute<float>>("Warmth");
-	warmth_attr.setRange(0.0f, 1.0f);
-	warmth_attr.setValue(0.5f);
-	warmth_attr.setClamped(true);
-
-	nap::NumericAttribute<float>& intensity_attr = mSessionEntity->addChild<nap::NumericAttribute<float>>("Intensity");
-	intensity_attr.setRange(0.0f, 1.0f);
-	intensity_attr.setValue(0.5f);
-	intensity_attr.setClamped(true);
-
-	nap::Attribute<bool>& move_attr = mSessionEntity->addAttribute<bool>("Move");
+	nap::Attribute<bool>& move_attr = mSessionEntity->addAttribute<bool>("MoveSpline");
 	move_attr.setValue(false);
 
-	mSessionEntity->addAttribute<std::string>("Name");
+	// Add preset component
+	nap::PresetComponent& preset_comp = mSessionEntity->addComponent<nap::PresetComponent>("Presets");
+	ofDirectory preset_dir("saves");
+	preset_comp.setDirectory(preset_dir);
+
+	// Connect to preset changes
+	preset_comp.index.valueChangedSignal.connect(mPresetChanged);
 }
 
 
@@ -392,6 +400,36 @@ void ofApp::setupGui()
 {
 	mGui = new Gui(*this);
 	mGui->Setup();
+}
+
+
+/**
+@brief Occurs when the preset index changes, loads a new preset from one that is already cached
+**/
+void ofApp::presetIndexChanged(const int& idx)
+{
+	nap::PresetComponent* preset_component = mSessionEntity->getComponent<nap::PresetComponent>();
+	assert(preset_component != nullptr);
+	nap::Preset* preset = preset_component->getPreset(idx);
+	assert(preset != nullptr);
+	SettingSerializer serializer;
+	serializer.loadSettings(*preset, *mGui);
+
+	// HACK, THESE SETTINGS ARE NOT DESERIALIZED CORRECTLY
+	// CAUSES A SET OF PARAMETERS TO NO BE IN THE RIGHT STATE
+	nap::OFRotateComponent* rotate_comp = mSplineEntity->getComponent<nap::OFRotateComponent>();
+	if (rotate_comp->mEnableUpdates.getValue())
+	{
+		rotate_comp->mReset.trigger();
+	}
+
+	/*
+	nap::OFScaleComponent* scale_comp = mSplineEntity->getComponent<nap::OFScaleComponent>();
+	if (scale_comp->mEnableUpdates.getValue())
+	{
+		scale_comp->mReset.trigger();
+	}
+	*/
 }
 
 

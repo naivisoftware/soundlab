@@ -6,6 +6,7 @@
 #include <napoftracecomponent.h>
 #include <napetherservice.h>
 #include <settingserializer.h>
+#include <presetcomponent.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -39,6 +40,9 @@ void Gui::Setup()
 	mFileParameters.setName("Spline File");
 	mFileParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>()));
 
+	mTagParameters.setName("Tag");
+	mTagParameters.addObject(*mApp.getSpline());
+
 	// Add parameters to gui
 	mSplineGui.setup("spline");
 	mSplineGui.add(mColorParameters.getGroup());
@@ -49,6 +53,7 @@ void Gui::Setup()
 	mSplineGui.add(mLFOParameters.getGroup());
 	mSplineGui.add(mSelectionParameters.getGroup());
 	mSplineGui.add(mFileParameters.getGroup());
+	mSplineGui.add(mTagParameters.getGroup());
 	mSplineGui.minimizeAll();
 	mGuis.emplace_back(&mSplineGui);
 
@@ -72,21 +77,23 @@ void Gui::Setup()
 
 	//////////////////////////////////////////////////////////////////////////
 
+	// Setup session parameters
 	mSessionParameters.setName("Session");
 	mSessionParameters.addObject(*mApp.getSession());
-	
+	mSessionParameters.addObject(*mApp.getSession()->getComponent<nap::PresetComponent>());
+
+	// Add session parameters to the ui
 	mSessionGui.setup("session");
 	mSessionGui.add(mSessionParameters.getGroup());
 
+	// Add load / save
 	mLoad.setup("Load");
 	mLoad.addListener(this, &Gui::loadClicked);
-	mSave.setup("Save");
 	mSessionGui.add(&mLoad);
+	mSave.setup("Save");
 	mSave.addListener(this, &Gui::saveClicked);
 	mSessionGui.add(&mSave);
 	mSessionGui.minimizeAll();
-	
-	mGuis.emplace_back(&mSessionGui);
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -112,6 +119,9 @@ void Gui::Draw()
 	// Draw all guis
 	for (auto& gui : mGuis)
 		gui->draw();
+
+	// Draw session gui (not serializable)
+	mSessionGui.draw();
 }
 
 

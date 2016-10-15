@@ -97,6 +97,8 @@ private:
 	// Gui + Serialization
 	Gui*								mGui;
 	void								setupGui();
+	void								presetIndexChanged(const int& idx);
+	NSLOT(mPresetChanged, const int&, presetIndexChanged)
 
 	// Hook up
 	void grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params);

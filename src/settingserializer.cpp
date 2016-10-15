@@ -45,6 +45,35 @@ void SettingSerializer::loadSettings(const std::string& dir, const Gui& gui)
 }
 
 
+/**
+@brief Loads all the settings from a cached preset
+**/
+void SettingSerializer::loadSettings(const nap::Preset& preset, const Gui& gui)
+{
+	nap::Logger::info("loading preset: %s", preset.mPresetName.c_str());
+	for (const auto& part : preset.mParts)
+	{
+		if (!part->mLoaded)
+		{
+			nap::Logger::warn("unable to load preset: %s, part: %s", preset.mPresetName.c_str(), part->mPartName.c_str());
+			continue;
+		}
+		
+		// Find matching gui for part
+		auto result = std::find_if(gui.getGuis().begin(), gui.getGuis().end(), [&](const auto& gui)
+		{
+			return gui->getName() == part->mPartName;
+		});
+
+		if (result == gui.getGuis().end())
+		{
+			nap::Logger::warn("unable to apply settings for preset: %s part: %s", preset.mPresetName, part->mPartName.c_str());
+			continue;
+		}
+
+		(*result)->loadFrom(part->mSerializer);
+	}
+}
 
 /**
 @brief Saves all settings to disk

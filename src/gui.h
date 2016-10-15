@@ -41,6 +41,7 @@ private:
 	OFAttributeWrapper			mLaserCamParameters;
 	OFAttributeWrapper			mGranulatorParameters;
 	OFAttributeWrapper			mSessionParameters;
+	OFAttributeWrapper			mTagParameters;
 
 	// All gui wrappers
 	ofxPanel					mSplineGui;

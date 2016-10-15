@@ -203,11 +203,13 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\openFrameworks\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="src\settingserializer.cpp" />
+    <ClCompile Include="src\presetcomponent.cpp" />
     <ClCompile Include="src\splineutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\audio.h" />
     <ClInclude Include="src\gui.h" />
+    <ClInclude Include="src\presetcomponent.h" />
     <ClInclude Include="src\settingserializer.h" />
     <ClInclude Include="src\jsonchooser.h" />
     <ClInclude Include="src\jsoncomponent.h" />

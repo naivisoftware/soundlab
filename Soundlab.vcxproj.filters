@@ -62,6 +62,9 @@
     <ClCompile Include="src\settingserializer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\presetcomponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -143,6 +146,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\settingserializer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presetcomponent.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
