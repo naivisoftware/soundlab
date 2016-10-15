@@ -279,7 +279,8 @@ void ofApp::createAudio()
 	nap::Logger::info("opening sound device: %d", sound_id);
 	soundStream.setDeviceID(sound_id);
 
-	soundStream.setup(this, 4, 0, audioService->getSampleRate(), 256, 4);
+    int channelCount = gGetAppSetting<int>("AudioChannelCount", 2);
+	soundStream.setup(this, channelCount, 0, audioService->getSampleRate(), 256, 4);
 
 }
 

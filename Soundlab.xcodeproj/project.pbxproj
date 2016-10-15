@@ -140,6 +140,7 @@
 		D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0D1DB0D58D005EE74F /* Transform.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB261DB0E5B0005EE74F /* Panner.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25CD4B51DB24CFF00E713F8 /* SpeakerGridComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D25CD4B91DB25E4300E713F8 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25CD4B71DB25E4300E713F8 /* gui.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260252C1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D260252A1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -487,6 +488,8 @@
 		D251DB271DB0E5B0005EE74F /* Panner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Panner.h; sourceTree = "<group>"; };
 		D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGridComponent.cpp; sourceTree = "<group>"; };
 		D25CD4B41DB24CFF00E713F8 /* SpeakerGridComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGridComponent.h; sourceTree = "<group>"; };
+		D25CD4B71DB25E4300E713F8 /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gui.cpp; sourceTree = "<group>"; };
+		D25CD4B81DB25E4300E713F8 /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
 		D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFileComponent.cpp; sourceTree = "<group>"; };
 		D25F02F01D9AAF4A003AB96B /* AudioFileComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileComponent.h; sourceTree = "<group>"; };
 		D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioBufferStream.cpp; sourceTree = "<group>"; };
@@ -1276,6 +1279,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D25CD4B71DB25E4300E713F8 /* gui.cpp */,
+				D25CD4B81DB25E4300E713F8 /* gui.h */,
 				D225D3281DAAA13F003CAB28 /* jsonchooser.cpp */,
 				D225D3291DAAA13F003CAB28 /* jsonchooser.h */,
 				D28BE2F91DA25141001E1ACB /* jsoncomponent.cpp */,
@@ -1530,6 +1535,7 @@
 				D228687B1D95767D00682676 /* serviceablecomponent.cpp in Sources */,
 				D22868811D95767D00682676 /* typeinfo.cpp in Sources */,
 				D242C50E1D9E7FF400B6546C /* tinyxmlparser.cpp in Sources */,
+				D25CD4B91DB25E4300E713F8 /* gui.cpp in Sources */,
 				D22869181D9576AE00682676 /* Butterworth.cpp in Sources */,
 				D22869191D9576AE00682676 /* ControlObject.cpp in Sources */,
 				D22868731D95767D00682676 /* objectpath.cpp in Sources */,

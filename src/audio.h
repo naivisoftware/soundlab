@@ -63,7 +63,7 @@ public:
     void play(int player, const std::string& partName);
     
     void setupGuiForPlayer(ofxPanel& panel, int player) { players[player]->setupGui(panel); }
-    
+    nap::Signal<lib::TimeValue, const lib::audio::GrainParameters&>& getGrainSignalForPlayer(int player) { return players[player]->granulator->grainSignal; }
     int getPlayerCount() { return players.size(); }
     
 private:
