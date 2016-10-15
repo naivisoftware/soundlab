@@ -17,12 +17,14 @@ void Gui::Setup()
 	mColorParameters.setName("Color");
 	mColorParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineColorComponent>()));
 
-	mRotateParameters.setName("Rotation");
+	mXformParameters.setName("Xform");
+	mXformParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFTransform>()));
+
+	mRotateParameters.setName("AnimateRotation");
 	mRotateParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFRotateComponent>()));
 
-	mScaleParameters.setName("Scale");
+	mScaleParameters.setName("AnimateScale");
 	mScaleParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFScaleComponent>()));
-	mScaleParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFTransform>()));
 
 	mTraceParameters.setName("Tracer");
 	mTraceParameters.addAttribute(mApp.getLaser()->getComponent<nap::EtherDreamCamera>()->mTraceMode);
@@ -40,6 +42,7 @@ void Gui::Setup()
 	// Add parameters to gui
 	mSplineGui.setup("spline");
 	mSplineGui.add(mColorParameters.getGroup());
+	mSplineGui.add(mXformParameters.getGroup());
 	mSplineGui.add(mRotateParameters.getGroup());
 	mSplineGui.add(mScaleParameters.getGroup());
 	mSplineGui.add(mTraceParameters.getGroup());
@@ -70,10 +73,7 @@ void Gui::Setup()
 	//////////////////////////////////////////////////////////////////////////
 
 	mSessionParameters.setName("Session");
-	auto warmth_attr = mApp.getSession()->getChild<nap::NumericAttribute<float>>("Warmth");
-	auto intens_attr = mApp.getSession()->getChild<nap::NumericAttribute<float>>("Intensity");
-	mSessionParameters.addAttribute(*warmth_attr);
-	mSessionParameters.addAttribute(*intens_attr);
+	mSessionParameters.addObject(*mApp.getSession());
 	
 	mSessionGui.setup("session");
 	mSessionGui.add(mSessionParameters.getGroup());

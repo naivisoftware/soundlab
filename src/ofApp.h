@@ -78,6 +78,10 @@ private:
 	void								createAudio();
 	void								createSpline();
 	void								createSession();
+	
+	// Utility for dragging
+	ofVec3f								mStartCoordinates;
+	ofVec3f								mOffsetCoordinates;
 
 	nap::Entity*						mCamera = nullptr;			//< Scene camera
 	nap::Entity*						mLaserEntity = nullptr;		//< Laser

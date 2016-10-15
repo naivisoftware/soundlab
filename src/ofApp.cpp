@@ -25,6 +25,7 @@
 
 // Gui
 #include <gui.h>
+#include <assert.h>
 
 using namespace lib;
 using namespace lib::audio;
@@ -120,15 +121,73 @@ void ofApp::mouseMoved(int x, int y ){
 
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
 
-}
+/**
+@brief Moves the spline based on the drag difference
+**/
+void ofApp::mouseDragged(int x, int y, int button)
+{
+	// Don't transform when move is disabled
+	if (!mSessionEntity->getAttribute<bool>("Move")->getValue())
+		return;
+
+	// Otherwise move based on previous loc
+	nap::OFSimpleCamComponent* cam = mCamera->getComponent<nap::OFSimpleCamComponent>();
+	assert(cam != nullptr);
+
+	if (cam->getProjectionMode() == nap::ProjectionMode::Perspective)
+	{
+		nap::Logger::warn("Can't move shapes in perspective mode");
+		return;
+	}
+
+	nap::OFTransform* xform = mSplineEntity->getComponent<nap::OFTransform>();
+	assert(xform != nullptr);
+
+	// Get screen coordinates
+	ofVec3f screen_coords(float(x), float(y), 0.0f);
+
+	// Get world coordinates from screen
+	ofVec3f world_coordinates = cam->mCamera.getValue().screenToWorld(screen_coords, ofGetCurrentViewport());
+	
+	// Calculate new transform
+	//ofVec3f new_xform = ((world_coordinates - mStartCoordinates) + mStartCoordinates) + mOffsetCoordinates;
+	ofVec3f new_xform = world_coordinates + mOffsetCoordinates;
+	xform->mTranslate.setValue(new_xform);
+}	
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button)
 {
+	// only handle left mouse clicks
+	if (button != OF_MOUSE_BUTTON_1)
+		return;
 
+	// get cam
+	nap::OFSimpleCamComponent* cam = mCamera->getComponent<nap::OFSimpleCamComponent>();
+	assert(cam != nullptr);
+
+	// ensure we're in orthographic mode
+	if (cam->getProjectionMode() == nap::ProjectionMode::Perspective)
+	{
+		nap::Logger::warn("Can't add or select shapes in perspective mode");
+		return;
+	}
+
+	// Get screen coordinates
+	nap::OFTransform* xform = mSplineEntity->getComponent<nap::OFTransform>();
+	assert(xform);
+	ofVec3f screen_coordinates(float(x), float(y), 0.0f);
+
+	// Get world coordinates
+	ofVec3f world_coordinates = cam->mCamera.getValue().screenToWorld(screen_coordinates, ofGetCurrentViewport());
+	world_coordinates.z = xform->mTranslate.getValue().z;
+
+	// Store world coordinates
+	mStartCoordinates = world_coordinates;
+	
+	// Set position
+	mOffsetCoordinates = xform->mTranslate.getValue() - world_coordinates;
 }
 
 //--------------------------------------------------------------
@@ -320,6 +379,9 @@ void ofApp::createSession()
 	intensity_attr.setRange(0.0f, 1.0f);
 	intensity_attr.setValue(0.5f);
 	intensity_attr.setClamped(true);
+
+	nap::Attribute<bool>& move_attr = mSessionEntity->addAttribute<bool>("Move");
+	move_attr.setValue(false);
 
 	mSessionEntity->addAttribute<std::string>("Name");
 }
