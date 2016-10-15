@@ -137,9 +137,9 @@
 		D251DB1F1DB0D58D005EE74F /* SpatialGranulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB221DB0D58D005EE74F /* SpatialPanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB231DB0D58D005EE74F /* SpatialService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB091DB0D58D005EE74F /* SpatialService.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB241DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0D1DB0D58D005EE74F /* Transform.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB261DB0E5B0005EE74F /* Panner.cpp */; settings = {ASSET_TAGS = (); }; };
+		D25CD4B51DB24CFF00E713F8 /* SpeakerGridComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */; settings = {ASSET_TAGS = (); }; };
 		D260252C1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D260252A1D957CDD0012AAD0 /* napoflayoutplanecomponent.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -481,12 +481,12 @@
 		D251DB081DB0D58D005EE74F /* SpatialPanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialPanner.h; sourceTree = "<group>"; };
 		D251DB091DB0D58D005EE74F /* SpatialService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialService.cpp; sourceTree = "<group>"; };
 		D251DB0A1DB0D58D005EE74F /* SpatialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialService.h; sourceTree = "<group>"; };
-		D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGrid.cpp; sourceTree = "<group>"; };
-		D251DB0C1DB0D58D005EE74F /* SpeakerGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGrid.h; sourceTree = "<group>"; };
 		D251DB0D1DB0D58D005EE74F /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		D251DB0E1DB0D58D005EE74F /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		D251DB261DB0E5B0005EE74F /* Panner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Panner.cpp; sourceTree = "<group>"; };
 		D251DB271DB0E5B0005EE74F /* Panner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Panner.h; sourceTree = "<group>"; };
+		D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGridComponent.cpp; sourceTree = "<group>"; };
+		D25CD4B41DB24CFF00E713F8 /* SpeakerGridComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGridComponent.h; sourceTree = "<group>"; };
 		D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFileComponent.cpp; sourceTree = "<group>"; };
 		D25F02F01D9AAF4A003AB96B /* AudioFileComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileComponent.h; sourceTree = "<group>"; };
 		D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioBufferStream.cpp; sourceTree = "<group>"; };
@@ -1153,14 +1153,14 @@
 		D251DAE91DB0D58D005EE74F /* 4dService */ = {
 			isa = PBXGroup;
 			children = (
+				D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */,
+				D25CD4B41DB24CFF00E713F8 /* SpeakerGridComponent.h */,
 				D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */,
 				D251DB021DB0D58D005EE74F /* SpatialGranulator.h */,
 				D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */,
 				D251DB081DB0D58D005EE74F /* SpatialPanner.h */,
 				D251DB091DB0D58D005EE74F /* SpatialService.cpp */,
 				D251DB0A1DB0D58D005EE74F /* SpatialService.h */,
-				D251DB0B1DB0D58D005EE74F /* SpeakerGrid.cpp */,
-				D251DB0C1DB0D58D005EE74F /* SpeakerGrid.h */,
 				D251DB0D1DB0D58D005EE74F /* Transform.cpp */,
 				D251DB0E1DB0D58D005EE74F /* Transform.h */,
 				D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */,
@@ -1512,6 +1512,7 @@
 				D28BE3001DA29183001E1ACB /* AudioFileService.cpp in Sources */,
 				D22869331D9576AE00682676 /* MidiProcessor.cpp in Sources */,
 				D228692A1D9576AE00682676 /* GrainVoice.cpp in Sources */,
+				D25CD4B51DB24CFF00E713F8 /* SpeakerGridComponent.cpp in Sources */,
 				D22869FB1D95780800682676 /* napofsplinecomponent.cpp in Sources */,
 				D228691F1D9576AE00682676 /* FFT.cpp in Sources */,
 				D225D3271DAAA014003CAB28 /* nofparamattrlink.cpp in Sources */,
@@ -1535,7 +1536,6 @@
 				D26025411D957CED0012AAD0 /* layoutcomponent.cpp in Sources */,
 				D2286A031D95780800682676 /* nofSpline.cpp in Sources */,
 				D22868791D95767D00682676 /* serializer.cpp in Sources */,
-				D251DB241DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */,
 				D22869171D9576AE00682676 /* AudioObjectManager.cpp in Sources */,
 				D22868611D95767D00682676 /* attribute.cpp in Sources */,
 				D22869251D9576AE00682676 /* StreamPlayer.cpp in Sources */,
