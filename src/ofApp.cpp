@@ -20,8 +20,10 @@
 // Utils
 #include <splineutils.h>
 #include <Utils/nofUtils.h>
-
 #include <4dService/SpatialService.h>
+
+// Gui
+#include <gui.h>
 
 using namespace lib;
 using namespace lib::audio;
@@ -45,23 +47,10 @@ void ofApp::setup()
 	// Create audio service + devices
 	createAudio();
 
-	//////////////////////////////////////////////////////////////////////////
-	// TEST
-	//////////////////////////////////////////////////////////////////////////
+	// Create initial spline
+	createSpline();
 
-	// Create spline entity and add first spline
-	nap::Entity& spline_e = mCore.addEntity("Splines");
-	mSplineEntity = &addSpline(spline_e, { 0.0f, 0.0f, 0.0f});
-
-	// Set as entity to draw
- 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
- 	assert(ether_cam != nullptr);
- 	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
-
-	//////////////////////////////////////////////////////////////////////////
-	// GUI
-	//////////////////////////////////////////////////////////////////////////
-
+	// Setup gui (always last)
 	setupGui();
 }
 
@@ -85,13 +74,8 @@ void ofApp::draw()
 	ofSetColor(ccolor);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetWindowHeight() - 10);
 
-	// Draw Gui
-	ofEnableAlphaBlending();
-	mSplineGui.draw();
-	mLaserGui.draw();
-    
-    for (auto& audioGui : audioGuis)
-        audioGui->draw();
+	// Draw gui
+	mGui->Draw();
 }
 
 
@@ -161,23 +145,7 @@ void ofApp::mouseExited(int x, int y){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h)
 {
-	int spacing = gGetAppSetting<int>("GuiSpacing", 25);
-
-	// Position spline gui
-	ofPoint current_point(10, 10);
-	mSplineGui.setPosition(current_point);
-	current_point.x += mSplineGui.getWidth() + spacing;
-
-	// Position laser gui
-	mLaserGui.setPosition(current_point);
-
-	// Position audio gui 1
-	current_point.x = w - (audioGuis[0]->getWidth() * 2) - (spacing * 2);
-	audioGuis[0]->setPosition(current_point);
-
-	// Position audio gui 2
-	current_point.x += (audioGuis[1]->getWidth() + spacing);
-	audioGuis[1]->setPosition(current_point);
+	mGui->Position(w, h);
 }
 
 //--------------------------------------------------------------
@@ -281,13 +249,18 @@ void ofApp::flipProjectionMethod()
 }
 
 
+/**
+@brief Rests the camera to it's original position
+**/
 void ofApp::resetCamera()
 {
 	mCamera->getComponent<nap::OFSimpleCamComponent>()->reset();
 }
 
 
-
+/**
+@brief Creates audio service and audio related entities / components
+**/
 void ofApp::createAudio()
 {
     mCore.addService<AudioFileService>();
@@ -311,65 +284,27 @@ void ofApp::createAudio()
 }
 
 
+/**
+@brief Creates the spline entity
+**/
+void ofApp::createSpline()
+{
+	// Create spline
+	nap::Entity& spline_e = mCore.addEntity("Splines");
+	mSplineEntity = &addSpline(spline_e, { 0.0f, 0.0f, 0.0f });
+
+	// Set as entity to draw
+	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
+	assert(ether_cam != nullptr);
+	ether_cam->mRenderEntity.setTarget(*mSplineEntity);
+}
+
+
 // Test for figuring out auto mapping of objects later on
 void ofApp::setupGui()
 {
-	// Default gui setip
-	ofxGuiSetFont(gGetAppSetting<std::string>("GuiFont", "Arial"), gGetAppSetting<int>("GuiFontSize", 8));
-
-	// Populate parameters for spline modulation
-	mColorParameters.setName("Color");
-	mColorParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineColorComponent>()));
-
-	mRotateParameters.setName("Rotation");
-	mRotateParameters.addObject(*(mSplineEntity->getComponent<nap::OFRotateComponent>()));
-	
-	mScaleParameters.setName("Scale");
-	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFScaleComponent>()));
-	mScaleParameters.addObject(*(mSplineEntity->getComponent<nap::OFTransform>()));
-
-	mTraceParameters.setName("Tracer");
-	mTraceParameters.addObject(*(mSplineEntity->getComponent<nap::OFTraceComponent>()));
-
-	mLFOParameters.setName("LFO");
-	mLFOParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineLFOModulationComponent>()));
-
-	mSelectionParameters.setName("Selection");
-	mSelectionParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineSelectionComponent>()));
-
-	mFileParameters.setName("Spline File");
-	mFileParameters.addObject(*(mSplineEntity->getComponent<nap::OFSplineFromFileComponent>()));
-
-	// Add parameters to gui
-	mSplineGui.setup();
-	mSplineGui.add(mColorParameters.getGroup());
-	mSplineGui.add(mRotateParameters.getGroup());
-	mSplineGui.add(mScaleParameters.getGroup());
-	mSplineGui.add(mTraceParameters.getGroup());
-	mSplineGui.add(mLFOParameters.getGroup());
-	mSplineGui.add(mSelectionParameters.getGroup());
-	mSplineGui.add(mFileParameters.getGroup());
-	mSplineGui.minimizeAll();
-
-	//////////////////////////////////////////////////////////////////////////
-
-	// Populate parameters for laser service
-	mLaserServiceParameters.setName("LaserService");
-	mLaserServiceParameters.addObject(*mLaserService);
-
-	mLaserCamParameters.setName("LaserCamera");
-	mLaserCamParameters.addObject(*(mLaserEntity->getComponent<nap::EtherDreamCamera>()));
-
-	mLaserGui.setup();
-	mLaserGui.add(mLaserCamParameters.getGroup());
-	mLaserGui.add(mLaserServiceParameters.getGroup());
-	mLaserGui.minimizeAll();
-
-    for (auto i = 0; i < audioComposition->getPlayerCount(); ++i)
-    {
-        audioGuis.emplace_back(std::make_unique<ofxPanel>());
-        audioComposition->setupGuiForPlayer(*audioGuis.back(), i);
-    }
+	mGui = new Gui(*this);
+	mGui->Setup();
 }
 
 
