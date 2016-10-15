@@ -42,12 +42,12 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     auto& x = granulator->addChild<NumericAttribute<float>>("x");
     auto& z = granulator->addChild<NumericAttribute<float>>("z");
     auto& size = granulator->addChild<NumericAttribute<float>>("size");
-    x.setRange(-2, 2);
+    x.setRange(-3, 3);
     x.setValue(0);
-    z.setRange(-2, 2);
+    z.setRange(-3, 3);
     z.setValue(0);
     size.setRange(0, 2);
-    size.setValue(0);
+    size.setValue(2);
     std::function<void(const float&)> posChanged = [&](const float& value){
         transform->position.setValue(glm::vec3(x.getValue(), 0, z.getValue()));
     };
@@ -123,7 +123,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     grainParameters.addAttribute(granulator->positionDev.attribute);
     grainParameters.addAttribute(granulator->irregularity.proportionAttribute);
     grainParameters.addAttribute(granulator->pitchDev.proportionAttribute);
-    grainParameters.addAttribute(granulator->panDev.proportionAttribute);
     grainParameters.addAttribute(granulator->shape.attribute);
     grainParameters.addAttribute(granulator->attackDecay.proportionAttribute);
     grainParameters.addAttribute(x);
@@ -182,6 +181,7 @@ void AudioPlayer::createModulator(lib::ValueControl& control, OFAttributeWrapper
     parameters.addAttribute(centerValue);
     parameters.addAttribute(range);
     parameters.addAttribute(animator.speed.proportionAttribute);
+    parameters.addAttribute(animator.irregularity);
     
 }
 
