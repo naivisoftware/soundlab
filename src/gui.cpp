@@ -35,10 +35,14 @@ void Gui::Setup()
 	mLFOParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineLFOModulationComponent>()));
 
 	mSelectionParameters.setName("Selection");
-	mSelectionParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>()));
+	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
+	spline_selection_comp->mSplineUpdated.connect(mSplineUpdateModeChanged);
+	mSelectionParameters.addObject(*spline_selection_comp);
 
+	nap::OFSplineFromFileComponent* spline_file_comp = mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>();
 	mFileParameters.setName("Spline File");
-	mFileParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>()));
+	spline_file_comp->mSplineUpdated.connect(mSplineUpdateModeChanged);
+	mFileParameters.addObject(*spline_file_comp);
 
 	mTagParameters.setName("Tag");
 	mTagParameters.addObject(*mApp.getSpline());
@@ -229,4 +233,24 @@ void Gui::saveClicked()
 	
 	// Load all presets
 	preset_comp->loadPresets();
+}
+
+
+// Reacts to the update modes of the 2 spline generation components
+// This is a bit of a hack but allows the one to disable the other, ensuring correct serialization / deserialization
+void Gui::updateModeChanged(const nap::Object& obj)
+{
+	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
+	assert(spline_selection_comp != nullptr);
+	
+	nap::OFSplineFromFileComponent* spline_file_comp = mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>();
+	assert(spline_file_comp != nullptr);
+
+	if (&obj == spline_selection_comp)
+	{
+		spline_file_comp->mAutoUpdate.setValue(false);
+		return;
+	}
+
+	spline_selection_comp->mAutoUpdate.setValue(false);
 }

@@ -58,4 +58,8 @@ private:
 	void						loadClicked();
 	void						saveAsClicked();
 	void						saveClicked();
+
+	// Utility slots
+	NSLOT(mSplineUpdateModeChanged, const nap::Object&, updateModeChanged)
+	void updateModeChanged(const nap::Object& obj);
 };
