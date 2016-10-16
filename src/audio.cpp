@@ -89,8 +89,9 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
         grainSeqChooser.setJsonComponent(jsonComponent);
         grainSeqChooser.setTarget(grainSeq);
         grainSeqChooser.optionsJsonPtr.setValue("/granulatorSequences");
+        grainSeq.playing.setName("playing" + to_string(i + 1));
         grainParameters.addAttribute(grainSeq.playing);
-        grainSeqChooser.choice.setName("sequence");
+        grainSeqChooser.choice.setName("sequence" + to_string(i + 1));
         grainParameters.addAttribute(grainSeqChooser.choice);
         grainSequenceChoosers.emplace_back(&grainSeqChooser);
         
@@ -98,15 +99,16 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
         grainInputChooser.setJsonComponent(jsonComponent);
         grainInputChooser.setTarget(grainSeq.sequences);
         grainInputChooser.optionsJsonPtr.setValue("/granulatorInputs");
-        grainInputChooser.choice.setName("input audio");
+        grainInputChooser.choice.setName("input audio" + to_string(i + 1));
         grainParameters.addAttribute(grainInputChooser.choice);
         
         auto& resSeqChooser = entity->addComponent<nap::JsonChooser>();
         resSeqChooser.setJsonComponent(jsonComponent);
         resSeqChooser.setTarget(resSeq);
         resSeqChooser.optionsJsonPtr.setValue("/resonatorSequences");
+        resSeq.playing.setName("resPlaying" + to_string(i + 1));
         resonParameters.addAttribute(resSeq.playing);
-        resSeqChooser.choice.setName("sequence");
+        resSeqChooser.choice.setName("sequence" + to_string(i + 1));
         resonParameters.addAttribute(resSeqChooser.choice);
         resonatorSequenceChoosers.emplace_back(&resSeqChooser);
     }
@@ -118,7 +120,6 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     grainParameters.addAttribute(granulator->amplitudeDev.attribute);
     grainParameters.addAttribute(granulator->duration.proportionAttribute);
     grainParameters.addAttribute(granulator->durationDev.attribute);
-    grainParameters.addAttribute(granulator->pitch.attribute);
     grainParameters.addAttribute(granulator->transpose.attribute);
     grainParameters.addAttribute(granulator->positionDev.attribute);
     grainParameters.addAttribute(granulator->irregularity.proportionAttribute);
@@ -141,6 +142,8 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     // granulator animators
     createModulator(granulator->density, densityParameters);
     createModulator(granulator->position, positionParameters);
+//    createModulator(x, xPosParameters);
+//    createModulator(y, yPosParameters);
     
     // global tonality modulation
     auto& tonality = entity->addChild<nap::NumericAttribute<int>>("tonality");
@@ -206,7 +209,9 @@ void AudioPlayer::setupGui(ofxPanel& panel)
     panel.add(positionParameters.getGroup());
     panel.add(densityParameters.getGroup());
     panel.add(resonParameters.getGroup());
-    panel.minimizeAll();    
+//    panel.add(xPosParameters.getGroup());
+//    panel.add(yPosParameters.getGroup());
+    panel.minimizeAll();
 }
 
 
