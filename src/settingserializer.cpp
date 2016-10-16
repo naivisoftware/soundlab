@@ -67,7 +67,7 @@ void SettingSerializer::loadSettings(const nap::Preset& preset, const Gui& gui)
 
 		if (result == gui.getGuis().end())
 		{
-			nap::Logger::warn("unable to apply settings for preset: %s part: %s", preset.mPresetName, part->mPartName.c_str());
+			nap::Logger::warn("unable to apply settings for preset: %s part: %s", preset.mPresetName.c_str(), part->mPartName.c_str());
 			continue;
 		}
 

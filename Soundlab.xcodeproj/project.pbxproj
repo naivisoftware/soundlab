@@ -129,6 +129,8 @@
 		D242C50F1D9E7FF400B6546C /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C50A1D9E7FF400B6546C /* ofxXmlSettings.cpp */; settings = {ASSET_TAGS = (); }; };
 		D242C5131D9E8D1E00B6546C /* ResonatorUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C5111D9E8D1E00B6546C /* ResonatorUnit.cpp */; settings = {ASSET_TAGS = (); }; };
 		D242C5161D9E8E9000B6546C /* ResonatorVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C5141D9E8E9000B6546C /* ResonatorVoice.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2430EDB1DB38F3A00BE4FFE /* presetcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430ED71DB38F3A00BE4FFE /* presetcomponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2430EDC1DB38F3A00BE4FFE /* settingserializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DADF1DB0D58D005EE74F /* Common.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE11DB0D58D005EE74F /* Plane.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB111DB0D58D005EE74F /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE31DB0D58D005EE74F /* Source.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -466,6 +468,10 @@
 		D242C5121D9E8D1E00B6546C /* ResonatorUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResonatorUnit.h; sourceTree = "<group>"; };
 		D242C5141D9E8E9000B6546C /* ResonatorVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResonatorVoice.cpp; sourceTree = "<group>"; };
 		D242C5151D9E8E9000B6546C /* ResonatorVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResonatorVoice.h; sourceTree = "<group>"; };
+		D2430ED71DB38F3A00BE4FFE /* presetcomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = presetcomponent.cpp; sourceTree = "<group>"; };
+		D2430ED81DB38F3A00BE4FFE /* presetcomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = presetcomponent.h; sourceTree = "<group>"; };
+		D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settingserializer.cpp; sourceTree = "<group>"; };
+		D2430EDA1DB38F3A00BE4FFE /* settingserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingserializer.h; sourceTree = "<group>"; };
 		D251DADF1DB0D58D005EE74F /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
 		D251DAE01DB0D58D005EE74F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		D251DAE11DB0D58D005EE74F /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
@@ -1279,6 +1285,10 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D2430ED71DB38F3A00BE4FFE /* presetcomponent.cpp */,
+				D2430ED81DB38F3A00BE4FFE /* presetcomponent.h */,
+				D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */,
+				D2430EDA1DB38F3A00BE4FFE /* settingserializer.h */,
 				D25CD4B71DB25E4300E713F8 /* gui.cpp */,
 				D25CD4B81DB25E4300E713F8 /* gui.h */,
 				D225D3281DAAA13F003CAB28 /* jsonchooser.cpp */,
@@ -1424,7 +1434,9 @@
 				D22869F81D95780800682676 /* napofsimpleshapecomponent.cpp in Sources */,
 				D22868741D95767D00682676 /* objectutils.cpp in Sources */,
 				D22868C61D95769500682676 /* OscService.cpp in Sources */,
+				D2430EDC1DB38F3A00BE4FFE /* settingserializer.cpp in Sources */,
 				D22869321D9576AE00682676 /* AudioStream.cpp in Sources */,
+				D2430EDB1DB38F3A00BE4FFE /* presetcomponent.cpp in Sources */,
 				D22869F41D95780800682676 /* napofrendercomponent.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				D228692E1D9576AE00682676 /* OutputUnit.cpp in Sources */,
