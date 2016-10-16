@@ -52,6 +52,9 @@ public:
     OFAttributeWrapper resonParameters;
     OFAttributeWrapper positionParameters;
     OFAttributeWrapper densityParameters;
+    OFAttributeWrapper globalParameters;
+    
+    std::vector<float> tonalities = { 3/4.f, 8/10.f, 7/8.f, 1, 9.f/8.f, 6.f/5.f, 4.f/3.f };
 };
 
 

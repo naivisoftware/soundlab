@@ -43,11 +43,8 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     auto& z = granulator->addChild<NumericAttribute<float>>("z");
     auto& size = granulator->addChild<NumericAttribute<float>>("size");
     x.setRange(-3, 3);
-    x.setValue(0);
     z.setRange(-3, 3);
-    z.setValue(0);
-    size.setRange(0, 2);
-    size.setValue(2);
+    size.setRange(0, 3);
     std::function<void(const float&)> posChanged = [&](const float& value){
         transform->position.setValue(glm::vec3(x.getValue(), 0, z.getValue()));
     };
@@ -57,6 +54,9 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     x.valueChangedSignal.connect(posChanged);
     z.valueChangedSignal.connect(posChanged);
     size.valueChangedSignal.connect(sizeChanged);
+    x.setValue(0);
+    z.setValue(0);
+    size.setValue(3);
     
     // resonator
     resonator = &patchComponent->getPatch().addOperator<lib::audio::ResonatorUnit>("resonator");
@@ -140,9 +140,20 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
 
     // granulator animators
     createModulator(granulator->density, densityParameters);
-
     createModulator(granulator->position, positionParameters);
     
+    // global tonality modulation
+    auto& tonality = entity->addChild<nap::NumericAttribute<int>>("tonality");
+    auto tonalityChanged = [&](const int& value){
+        resonator->pitch.setValue(tonalities[value]);
+        granulator->pitch.setValue(tonalities[value]);
+    };
+    tonality.setRange(0, tonalities.size() - 1);
+    tonality.valueChangedSignal.connect(tonalityChanged);
+    tonality.setValue(3);
+    globalParameters.addAttribute(tonality);
+    
+    globalParameters.setName("global");
     grainParameters.setName("granulator");
     resonParameters.setName("resonator");
     positionParameters.setName("position modulation");
@@ -190,6 +201,7 @@ void AudioPlayer::setupGui(ofxPanel& panel)
 {
     panel.setName(entity->getName());
     panel.setup();
+    panel.add(globalParameters.getGroup());
     panel.add(grainParameters.getGroup());
     panel.add(positionParameters.getGroup());
     panel.add(densityParameters.getGroup());
