@@ -22,6 +22,7 @@ namespace nap
 {
 	class OFService;
 	class EtherDreamService;
+	class Preset;
 }
 
 namespace lib
@@ -63,6 +64,7 @@ public:
 	nap::EtherDreamService*				getLaserService()		{ return mLaserService; }
 	AudioComposition*					getAudioComposition()	{ return audioComposition.get(); }
 	nap::Entity*						getSession()			{ return mSessionEntity; }
+	nap::Preset*						getCurrentPreset()		{ return mCurrentPreset; }
 
 private:
 	// Services
@@ -98,6 +100,7 @@ private:
 	Gui*								mGui;
 	void								setupGui();
 	void								presetIndexChanged(const int& idx);
+	nap::Preset*						mCurrentPreset = nullptr;
 	NSLOT(mPresetChanged, const int&, presetIndexChanged)
 
 	// Hook up

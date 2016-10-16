@@ -413,10 +413,10 @@ void ofApp::presetIndexChanged(const int& idx)
 {
 	nap::PresetComponent* preset_component = mSessionEntity->getComponent<nap::PresetComponent>();
 	assert(preset_component != nullptr);
-	nap::Preset* preset = preset_component->getPreset(idx);
+	mCurrentPreset = preset_component->getPreset(idx);
 	assert(preset != nullptr);
 	SettingSerializer serializer;
-	serializer.loadSettings(*preset, *mGui);
+	serializer.loadSettings(*mCurrentPreset, *mGui);
 
 	// HACK, THESE SETTINGS ARE NOT DESERIALIZED CORRECTLY
 	// CAUSES A SET OF PARAMETERS TO NO BE IN THE RIGHT STATE
