@@ -86,18 +86,30 @@ namespace nap
 	}
 
 
+	void PresetComponent::setPreset(std::string& name)
+	{
+		int idx(0);
+		for (auto& preset : mPresets)
+		{
+			if (preset->mPresetName == name)
+			{
+				index.setValue(idx);
+				return;
+			}
+			idx++;
+		}
+		
+		nap::Logger::warn(*this, "unable to find preset with name: %s", name.c_str());
+	}
+
+
+
 	/**
 	@brief Returns the current preset
 	**/
 	Preset* PresetComponent::getCurrentPreset()
 	{
-		if (presetName.getValue() == "")
-		{
-			nap::Logger::warn("Currently no preset is selected");
-			return nullptr;
-		}
-
-		return mPresets[index.getValue()].get();
+		return mCurrentPreset;
 	}
 
 
@@ -112,22 +124,43 @@ namespace nap
 			return;
 		}
 
+		// Get current preset name to match later on
+		std::string current_preset_name = mCurrentPreset != nullptr ? mCurrentPreset->mPresetName : "";
+
 		// Clear existing presets
 		mPresets.clear();
 
+		// Make sure we don't have a current preset
+		mCurrentPreset = nullptr;
+
 		// Walk over all the internal directories
 		mPresetDir.listDir();
-		for (auto& file : mPresetDir.getFiles())
+		int preset_idx(0), current_preset_idx(-1);
+			for (auto& file : mPresetDir.getFiles())
 		{
 			if(!file.isDirectory())
 				continue;
 
+			std::unique_ptr<Preset> new_preset = std::make_unique<Preset>(file.getAbsolutePath());
+			if (new_preset->mPresetName == current_preset_name)
+			{
+				mCurrentPreset = new_preset.get();
+				current_preset_idx = preset_idx;
+			}
+
 			// Add an entry
-			mPresets.emplace_back(std::make_unique<Preset>(file.getAbsolutePath()));
-			nap::Logger::info("loading preset: %s", file.getBaseName().c_str());
+			mPresets.emplace_back(std::move(new_preset));
+			preset_idx++;
 		}
 
+		// Update range
 		index.setRange(0, gMax<int>(mPresets.size() - 1, 0));
+
+		// Set new preset value based on string match
+		if (mCurrentPreset != nullptr)
+		{
+			index.setValue(current_preset_idx);
+		}
 	}
 
 
@@ -138,7 +171,8 @@ namespace nap
 	{
 		Preset* preset = getPreset(idx);
 		assert(preset != nullptr);
-		presetName.setValue(preset->mPresetName);
+		mCurrentPreset = preset;
+		presetName.setValue(mCurrentPreset->mPresetName);
 	}
 
 

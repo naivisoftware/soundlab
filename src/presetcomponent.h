@@ -63,6 +63,7 @@ namespace nap
 		void									setDirectory(const ofDirectory& dir)	{ mPresetDir = dir; loadPresets(); }
 		const ofDirectory&						getDirectory() const					{ return mPresetDir; }
 		Preset*									getPreset(int index);
+		void									setPreset(std::string& name);
 		int										getPresetCount()						{ return mPresets.size(); }
 		Preset*									getCurrentPreset();
 
@@ -73,6 +74,7 @@ namespace nap
 		// Preset directory
 		ofDirectory mPresetDir;
 		std::vector<std::unique_ptr<Preset>>	mPresets;
+		nap::Preset*							mCurrentPreset = nullptr;
 
 		// Preset Name
 		NSLOT(mPresetChanged, const int&, presetChanged)

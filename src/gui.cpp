@@ -36,12 +36,12 @@ void Gui::Setup()
 
 	mSelectionParameters.setName("Selection");
 	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
-	spline_selection_comp->mSplineUpdated.connect(mSplineUpdateModeChanged);
+	spline_selection_comp->mSplineUpdated.connect(mSplineUpdated);
 	mSelectionParameters.addObject(*spline_selection_comp);
 
 	nap::OFSplineFromFileComponent* spline_file_comp = mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>();
 	mFileParameters.setName("Spline File");
-	spline_file_comp->mSplineUpdated.connect(mSplineUpdateModeChanged);
+	spline_file_comp->mSplineUpdated.connect(mSplineUpdated);
 	mFileParameters.addObject(*spline_file_comp);
 
 	mTagParameters.setName("Tag");
@@ -180,15 +180,16 @@ void Gui::loadClicked()
 	static std::string sCurrentDir = ofFilePath::getAbsolutePath(ofFilePath::getCurrentExeDir(), false);
 	static std::string sExtension = "xml";
 
-	ofFileDialogResult result = ofSystemLoadDialog("Load Settings", false, sCurrentDir);
+	ofFileDialogResult result = ofSystemLoadDialog("Load Settings", true, sCurrentDir);
 	if (!result.bSuccess)
 		return;
 
 	// Check what type it is
-	ofFile file(result.filePath);
+	std::string preset_name = result.fileName;
 
-	SettingSerializer serializer;
-	serializer.loadSettings(file.getEnclosingDirectory(), *this);
+	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	assert(preset_comp != nullptr);
+	preset_comp->setPreset(preset_name);
 }
 
 
@@ -226,7 +227,10 @@ void Gui::saveClicked()
 	assert(preset_comp != nullptr);
 	nap::Preset* current_preset = preset_comp->getCurrentPreset();
 	if (current_preset == nullptr)
+	{
+		nap::Logger::info("there's currently no active preset!");
 		return;
+	}
 
 	SettingSerializer serializer;
 	serializer.saveSettings("saves", current_preset->mPresetName, *this);
@@ -238,7 +242,7 @@ void Gui::saveClicked()
 
 // Reacts to the update modes of the 2 spline generation components
 // This is a bit of a hack but allows the one to disable the other, ensuring correct serialization / deserialization
-void Gui::updateModeChanged(const nap::Object& obj)
+void Gui::splineUpdated(const nap::Object& obj)
 {
 	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
 	assert(spline_selection_comp != nullptr);
