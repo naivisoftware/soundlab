@@ -81,6 +81,13 @@
     },    
 
     "resonatorSequences": {
+        "drone": {
+            "times": [ 2000, 2000 ],
+            "sequences": {
+                "duration": [ 6000 ],
+                "frequency": [ 200, 300 ]
+            }
+        },
         "melody1": {
             "times": [ 2000, 2000 ],
             "sequences": {
@@ -92,17 +99,10 @@
             "times": [ 1500, 1500 ],
             "sequences": {
                 "duration": [ 4000 ],
-                "frequency": [ 300, 400, 450, 350 ]
+                "frequency": [ 300, 400, 450, 350, 320 ]
             }
         },
-        "melody3": {
-            "times": [ 1500, 1500 ],
-            "sequences": {
-                "duration": [ 4000 ],
-                "frequency": [ 266.66666666667, 400, 320, 355.55555555556, 177.77777777778 ]
-            }
-        },
-        "drone": {
+        "lowdrone": {
             "times": [ 1500, 1500 ],
             "sequences": {
                 "duration": [ 4000 ],
