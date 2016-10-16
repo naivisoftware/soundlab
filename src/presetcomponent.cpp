@@ -43,7 +43,8 @@ namespace nap
 
 		// Set preset name
 		mPresetName = preset_location.getBaseName();
-		
+		mFileName = preset_location.getAbsolutePath();
+
 		// Wrap in dir
 		ofDirectory preset_dir(directory);
 		preset_dir.listDir();
@@ -83,6 +84,19 @@ namespace nap
 		}
 		return mPresets[index].get();
 	}
+
+
+	/**
+	@brief Returns the current preset
+	**/
+	Preset* PresetComponent::getCurrentPreset()
+	{
+		if (presetName.getValue() == "")
+			return nullptr;
+
+		return mPresets[index.getValue()].get();
+	}
+
 
 	/**
 	@brief Loads all the presets
@@ -202,7 +216,7 @@ namespace nap
 		float min_time = time.getValue() - (time.getValue() * offset.getValue());
 		float max_time = time.getValue() + (time.getValue() * offset.getValue());
 		mTargetTime = ofRandom(min_time, max_time);
-		std::cout << "new target time: " << mTargetTime;
+		nap::Logger::info("new preset target time: %f",  mTargetTime);
 	}
 
 }

@@ -64,6 +64,7 @@ namespace nap
 		const ofDirectory&						getDirectory() const					{ return mPresetDir; }
 		Preset*									getPreset(int index);
 		int										getPresetCount()						{ return mPresets.size(); }
+		Preset*									getCurrentPreset();
 
 		// Loading
 		void									loadPresets();

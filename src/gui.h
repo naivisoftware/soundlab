@@ -53,7 +53,9 @@ private:
 
 	// Load and Save buttons
 	ofxButton					mLoad;
+	ofxButton					mSaveAs;
 	ofxButton					mSave;
 	void						loadClicked();
+	void						saveAsClicked();
 	void						saveClicked();
 };

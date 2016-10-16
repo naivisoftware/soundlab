@@ -95,9 +95,14 @@ void Gui::Setup()
 	mLoad.setup("Load");
 	mLoad.addListener(this, &Gui::loadClicked);
 	mSessionGui.add(&mLoad);
+
 	mSave.setup("Save");
 	mSave.addListener(this, &Gui::saveClicked);
 	mSessionGui.add(&mSave);
+
+	mSaveAs.setup("SaveAs");
+	mSaveAs.addListener(this, &Gui::saveAsClicked);
+	mSessionGui.add(&mSaveAs);
 
 	mSessionGui.add(mPresetParameters.getGroup());
 	mSessionGui.add(mPresetAutomationParameters.getGroup());
@@ -186,7 +191,7 @@ void Gui::loadClicked()
 /**
 @brief Saves all the gui settings
 **/
-void Gui::saveClicked()
+void Gui::saveAsClicked()
 {
 	ofFileDialogResult result = ofSystemSaveDialog("Settings", "Name");
 	if (!result.bSuccess)
@@ -201,4 +206,30 @@ void Gui::saveClicked()
 
 	SettingSerializer serializer;
 	serializer.saveSettings(file.getEnclosingDirectory(), result.getName(), *this);
+
+	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	preset_comp->loadPresets();
+}
+
+
+
+void Gui::saveClicked()
+{
+	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	if (preset_comp->getPresetCount() == 0)
+	{
+		nap::Logger::warn("Currently no preset loaded");
+		return;
+	}
+
+	nap::Preset* preset = preset_comp->getCurrentPreset();
+	if (preset == nullptr)
+	{
+		nap::Logger::warn("Currently no preset selected");
+		 return;
+	}
+	
+	SettingSerializer serializer;
+	serializer.saveSettings("saves", preset->mPresetName, *this);
+	preset_comp->loadPresets();
 }
