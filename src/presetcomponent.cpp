@@ -124,7 +124,89 @@ namespace nap
 		presetName.setValue(preset->mPresetName);
 	}
 
+
+	/**
+	@brief Preset switch component constructor
+	**/
+	PresetSwitchComponent::PresetSwitchComponent()
+	{
+		mEnableUpdates.setValue(false);
+
+		// When update is enabled / disabled -> reset time and target time
+		mEnableUpdates.valueChangedSignal.connect(mUpdateChanged);
+
+		// Connect time and offset
+		time.valueChangedSignal.connect(mSpeedChanged);
+		offset.valueChangedSignal.connect(mOffsetChanged);
+
+		reset();
+	}
+
+
+	/**
+	@brief Switches preset when time has elapsed
+	**/
+	void PresetSwitchComponent::onUpdate()
+	{
+		// Get
+		float current_time = ofGetElapsedTimef();
+
+		// Check time difference
+		float diff_time = current_time - mStartTime;
+		if (diff_time < mTargetTime)
+			return;
+
+		// Reset the system
+		reset();
+
+		// Time passed, select new preset
+		PresetComponent* preset_comp = mPresetComponent.get();
+		if (preset_comp == nullptr)
+		{
+			nap::Logger::warn(*this, "can't switch preset, no preset component found");
+			return;
+		}
+
+		// Don't do anything when there are no presets
+		if (preset_comp->getPresetCount() == 0)
+			return;
+
+		int new_preset_idx = gMin<int>((int)ofRandom(preset_comp->getPresetCount()), preset_comp->getPresetCount()-1);
+		std::cout << "new preset" << new_preset_idx;
+		preset_comp->index.setValue(new_preset_idx);
+	}
+	
+	/**
+	@brief Reset all time codes
+	**/
+	void PresetSwitchComponent::reset()
+	{
+		mStartTime = ofGetElapsedTimef();
+		updateTargetTime();
+	}
+
+	/**
+	@brief When enable update changes, reset target time
+	**/
+	void PresetSwitchComponent::updateChanged(const bool& value)
+	{
+		reset();
+	}
+
+
+	/**
+	@brief updates the target timr
+	**/
+	void PresetSwitchComponent::updateTargetTime()
+	{
+		float min_time = time.getValue() - (time.getValue() * offset.getValue());
+		float max_time = time.getValue() + (time.getValue() * offset.getValue());
+		mTargetTime = ofRandom(min_time, max_time);
+		std::cout << "new target time: " << mTargetTime;
+	}
+
 }
 
 
 RTTI_DEFINE(nap::PresetComponent)
+RTTI_DEFINE(nap::PresetSwitchComponent)

@@ -80,7 +80,12 @@ void Gui::Setup()
 	// Setup session parameters
 	mSessionParameters.setName("Session");
 	mSessionParameters.addObject(*mApp.getSession());
-	mSessionParameters.addObject(*mApp.getSession()->getComponent<nap::PresetComponent>());
+
+	mPresetParameters.setName("PresetSelection");
+	mPresetParameters.addObject(*mApp.getSession()->getComponent<nap::PresetComponent>());
+
+	mPresetAutomationParameters.setName("PresetAutomation");
+	mPresetAutomationParameters.addObject(*mApp.getSession()->getComponent<nap::PresetSwitchComponent>());
 
 	// Add session parameters to the ui
 	mSessionGui.setup("session");
@@ -93,6 +98,10 @@ void Gui::Setup()
 	mSave.setup("Save");
 	mSave.addListener(this, &Gui::saveClicked);
 	mSessionGui.add(&mSave);
+
+	mSessionGui.add(mPresetParameters.getGroup());
+	mSessionGui.add(mPresetAutomationParameters.getGroup());
+
 	mSessionGui.minimizeAll();
 
 	//////////////////////////////////////////////////////////////////////////

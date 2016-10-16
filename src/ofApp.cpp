@@ -390,6 +390,9 @@ void ofApp::createSession()
 	ofDirectory preset_dir("saves");
 	preset_comp.setDirectory(preset_dir);
 
+	// Add preset switcher
+	nap::PresetSwitchComponent& preset_switcher = mSessionEntity->addComponent<nap::PresetSwitchComponent>("PresetSwitchet");
+
 	// Connect to preset changes
 	preset_comp.index.valueChangedSignal.connect(mPresetChanged);
 }
@@ -422,14 +425,6 @@ void ofApp::presetIndexChanged(const int& idx)
 	{
 		rotate_comp->mReset.trigger();
 	}
-
-	/*
-	nap::OFScaleComponent* scale_comp = mSplineEntity->getComponent<nap::OFScaleComponent>();
-	if (scale_comp->mEnableUpdates.getValue())
-	{
-		scale_comp->mReset.trigger();
-	}
-	*/
 }
 
 

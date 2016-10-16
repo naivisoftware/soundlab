@@ -41,6 +41,8 @@ private:
 	OFAttributeWrapper			mLaserCamParameters;
 	OFAttributeWrapper			mGranulatorParameters;
 	OFAttributeWrapper			mSessionParameters;
+	OFAttributeWrapper			mPresetParameters;
+	OFAttributeWrapper			mPresetAutomationParameters;
 	OFAttributeWrapper			mTagParameters;
 
 	// All gui wrappers
