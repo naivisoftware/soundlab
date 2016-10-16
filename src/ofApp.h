@@ -22,7 +22,7 @@ namespace nap
 {
 	class OFService;
 	class EtherDreamService;
-	class Preset;
+	struct Preset;
 }
 
 namespace lib

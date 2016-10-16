@@ -208,6 +208,9 @@ void Gui::saveAsClicked()
 	serializer.saveSettings(file.getEnclosingDirectory(), result.getName(), *this);
 
 	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	assert(preset_comp != nullptr);
+	
+	// Reload the presets
 	preset_comp->loadPresets();
 }
 
@@ -215,18 +218,15 @@ void Gui::saveAsClicked()
 
 void Gui::saveClicked()
 {
-	nap::Preset* current_preset = mApp.getCurrentPreset();
+	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	assert(preset_comp != nullptr);
+	nap::Preset* current_preset = preset_comp->getCurrentPreset();
 	if (current_preset == nullptr)
-	{
-		nap::Logger::warn("Currently no preset selected");
 		return;
-	}
-	
+
 	SettingSerializer serializer;
 	serializer.saveSettings("saves", current_preset->mPresetName, *this);
 	
-	// Reload presets
-	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
-	assert(preset_comp != nullptr);
+	// Load all presets
 	preset_comp->loadPresets();
 }

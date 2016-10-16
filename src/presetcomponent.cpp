@@ -92,7 +92,10 @@ namespace nap
 	Preset* PresetComponent::getCurrentPreset()
 	{
 		if (presetName.getValue() == "")
+		{
+			nap::Logger::warn("Currently no preset is selected");
 			return nullptr;
+		}
 
 		return mPresets[index.getValue()].get();
 	}
