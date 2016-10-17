@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="open.svg">
+   sodipodi:docname="cross.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:zoom="1.4"
+     inkscape:cx="391.37439"
+     inkscape:cy="264.87509"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -34,7 +34,34 @@
      inkscape:window-height="1018"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="0,1"
+       position="-577.14286,500"
+       id="guide2985" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-398.57143,250"
+       id="guide2987" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="250,356.42857"
+       id="guide2989" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="500,363.57143"
+       id="guide2991" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="33.335034,374.76659"
+       id="guide3207" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="374.76659,374.76659"
+       id="guide3209" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -43,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -51,12 +78,12 @@
      inkscape:label="Laag 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-52.36217)">
+     transform="translate(0,-52.362183)">
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 218,528 c 0,0 -96,-120 50,-232 146,-112 388,76 272,112 -116,36 -256,-96 -228,-28 28,68 -6,126 -24,138 -18,12 24,-12 132,48 108,60 78,122 8,116 C 358,676 272,540 260,570 248,600 212,702 162,672 112,642 56,618 134,574 212,530 38,414 38,414"
-       id="path3041"
+       d="M 374.28571,499.28571 374.28571,750 500,624.28571 l -250,0 z"
+       id="path3213"
        inkscape:connector-curvature="0"
-       transform="translate(0,52.36217)" />
+       transform="translate(0,52.362183)" />
   </g>
 </svg>

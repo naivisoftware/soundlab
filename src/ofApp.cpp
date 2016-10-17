@@ -276,7 +276,7 @@ void ofApp::createLaserEntity()
 
 	// Add color
 	nap::Attribute<ofVec3f>& color_attr = material.addAttribute<ofVec3f>("mColor");
-	color_attr.setValue({ 1.0f, 0.0f, 0.0f });
+	color_attr.setValue({ 1.0f, 1.0f, 1.0f });
 
 	// Connect to signal changes
 	laser_cam.mFrustrumWidth.valueChangedSignal.connect(plane.mWidth.setValueSlot);
