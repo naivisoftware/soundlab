@@ -408,7 +408,18 @@ void ofApp::createSession()
 void ofApp::createAutomation()
 {
 	mAutomationEntity = &mCore.addEntity("Automation");
-	mAutomationEntity->addComponent<nap::IntensityComponent>();
+	nap::IntensityComponent& intensity_comp =mAutomationEntity->addComponent<nap::IntensityComponent>();
+
+	nap::Entity* spline = getSpline();
+	assert(spline != nullptr);
+	OFSplineColorComponent* color_comp = spline->getComponent<OFSplineColorComponent>();
+
+	if (color_comp == nullptr)
+	{
+		nap::Logger::warn("color component not found, can't automate intensity");
+		return;
+	}
+	intensity_comp.colorComponent.setTarget(*color_comp);
 }
 
 

@@ -1,0 +1,10 @@
+<Automation>
+	<Intensity>
+		<Update>1</Update>
+		<Influence>0.846939</Influence>
+		<FinalScale>1</FinalScale>
+		<Range>0, 0.105435</Range>
+		<Damping>0.102041</Damping>
+	</Intensity>
+<Automation/>
+</Automation>

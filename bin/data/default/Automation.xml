@@ -1,0 +1,9 @@
+<Automation>
+	<Intensity>
+		<Update>0</Update>
+		<Influence>0</Influence>
+		<FinalScale>1</FinalScale>
+		<Range>0, 1</Range>
+		<Damping>0.05</Damping>
+	</Intensity>
+</Automation>

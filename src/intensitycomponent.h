@@ -5,6 +5,7 @@
 #include <napofupdatecomponent.h>
 #include <ofVec2f.h>
 #include <napofattributes.h>
+#include <napofsplinecomponent.h>
 
 namespace lib
 {
@@ -24,11 +25,16 @@ namespace nap
 		RTTI_ENABLE_DERIVED_FROM(OFUpdatableComponent)
 
 	public:
-		IntensityComponent() = default;
+		IntensityComponent();
 		
 		// Parameters
 		NumericAttribute<float>		influence	{ this, "Influence", 0.0f, 0.0f, 1.0f };
+		NumericAttribute<float>		scale		{ this, "FinalScale", 1.0f, 0.0f, 1.0f };
 		NumericAttribute<ofVec2f>	range		{ this, "Range", {0.0f, 1.0f}, {0.0f, 0.001f}, {1.0f, 1.0f} };
+		NumericAttribute<float>		damping		{ this, "Damping", 0.05f, 0.0f, 1.0f };
+
+		// Link
+		Link colorComponent	{ *this };
 
 		// Update call
 		virtual void onUpdate() override;
@@ -36,6 +42,13 @@ namespace nap
 	private:
 		// Audio service
 		lib::audio::AudioService* mAudioService = nullptr;
+
+		NSLOT(mAdded, const Object&, onAdded)
+		void onAdded(const Object& obj);
+
+		// Smooth Damp
+		float mCurrentAmp = 0.0f;
+		float mCurrentVel = 0.0f;
 	};
 }
 
