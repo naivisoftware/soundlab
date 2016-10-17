@@ -65,6 +65,7 @@ public:
 	AudioComposition*					getAudioComposition()	{ return audioComposition.get(); }
 	nap::Entity*						getSession()			{ return mSessionEntity; }
 	nap::Preset*						getCurrentPreset()		{ return mCurrentPreset; }
+	nap::Entity*						getAutomation()			{ return mAutomationEntity; }
 
 private:
 	// Services
@@ -80,16 +81,18 @@ private:
 	void								createAudio();
 	void								createSpline();
 	void								createSession();
+	void								createAutomation();
 	
 	// Utility for dragging
 	ofVec3f								mStartCoordinates;
 	ofVec3f								mOffsetCoordinates;
 
-	nap::Entity*						mCamera = nullptr;			//< Scene camera
-	nap::Entity*						mLaserEntity = nullptr;		//< Laser
-	nap::Entity*						mAudioEntity = nullptr;		//< Audio
-	nap::Entity*						mSplineEntity = nullptr;	//< Active Spline
-	nap::Entity*						mSessionEntity = nullptr;	//< Active session
+	nap::Entity*						mCamera = nullptr;				//< Scene camera
+	nap::Entity*						mLaserEntity = nullptr;			//< Laser
+	nap::Entity*						mAudioEntity = nullptr;			//< Audio
+	nap::Entity*						mSplineEntity = nullptr;		//< Active Spline
+	nap::Entity*						mSessionEntity = nullptr;		//< Active session
+	nap::Entity*						mAutomationEntity = nullptr;	//< Automation Entity
 
 	// Sound
 	ofSoundStream soundStream;

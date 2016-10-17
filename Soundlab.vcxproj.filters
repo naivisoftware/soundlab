@@ -65,6 +65,9 @@
     <ClCompile Include="src\presetcomponent.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\intensitycomponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -151,6 +154,7 @@
     <ClInclude Include="src\presetcomponent.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\intensitycomponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

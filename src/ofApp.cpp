@@ -17,6 +17,7 @@
 #include <napofimagecomponent.h>
 #include <napofattributes.h>
 #include <napofsplinemodulationcomponent.h>
+#include <intensitycomponent.h>
 
 // Utils
 #include <splineutils.h>
@@ -37,6 +38,7 @@ void ofApp::setup()
 {
 	mOFService = &mCore.addService<nap::OFService>();
  	mLaserService = &mCore.addService<nap::EtherDreamService>();
+	audioService = &mCore.addService<AudioService>();
 
 	// HACK, shouldn't be here
 	nap::registerOfShaderBindings();
@@ -55,6 +57,9 @@ void ofApp::setup()
 
 	// Create session
 	createSession();
+
+	// Create automation
+	createAutomation();
 
 	// Setup gui (always last)
 	setupGui();
@@ -330,7 +335,6 @@ void ofApp::createAudio()
     mCore.addService<AudioFileService>();
     mCore.addService<spatial::SpatialService>();
 
-	audioService = &mCore.addService<AudioService>();
 	audioService->setBufferSize(64);
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
@@ -395,6 +399,16 @@ void ofApp::createSession()
 
 	// Connect to preset changes
 	preset_comp.index.valueChangedSignal.connect(mPresetChanged);
+}
+
+
+/**
+@brief Create automation entity + components
+**/
+void ofApp::createAutomation()
+{
+	mAutomationEntity = &mCore.addEntity("Automation");
+	mAutomationEntity->addComponent<nap::IntensityComponent>();
 }
 
 

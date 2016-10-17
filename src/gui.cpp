@@ -7,6 +7,7 @@
 #include <napetherservice.h>
 #include <settingserializer.h>
 #include <presetcomponent.h>
+#include <intensitycomponent.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -113,6 +114,18 @@ void Gui::Setup()
 
 	mSessionGui.minimizeAll();
 
+
+	//////////////////////////////////////////////////////////////////////////
+
+	mIntensityParameters.setName("Intensity");
+	mIntensityParameters.addObject(*mApp.getAutomation()->getComponent<nap::IntensityComponent>());
+
+	mAutomationGui.setup();
+	mAutomationGui.setName("Automation");
+	mAutomationGui.add(mIntensityParameters.getGroup());
+	mAutomationGui.minimizeAll();
+	mGuis.emplace_back(&mAutomationGui);
+
 	//////////////////////////////////////////////////////////////////////////
 
 	// Setup audio gui
@@ -161,6 +174,10 @@ void Gui::Position(int screenWidth, int screenHeight)
 
 	// Position session
 	mSessionGui.setPosition(current_point);
+	current_point.x += mSessionGui.getWidth() + spacing;
+
+	// Position automation
+	mAutomationGui.setPosition(current_point);
 
 	// Position audio gui 1
 	current_point.x = screenWidth - (audioGuis[0]->getWidth() * 2) - (spacing * 2);
