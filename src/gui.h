@@ -45,6 +45,7 @@ private:
 	OFAttributeWrapper			mPresetAutomationParameters;
 	OFAttributeWrapper			mTagParameters;
 	OFAttributeWrapper			mIntensityParameters;
+	OFAttributeWrapper			mAmpScaleParameters;
 
 	// All gui wrappers
 	ofxPanel					mSplineGui;
