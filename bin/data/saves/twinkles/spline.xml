@@ -5,7 +5,7 @@
 		<Looping>0</Looping>
 		<CycleSpeed>0</CycleSpeed>
 		<Offset>0</Offset>
-		<Intensity>0.475587</Intensity>
+		<Intensity>1</Intensity>
 		<Frequency>1</Frequency>
 		<PulseWidth>0.489796</PulseWidth>
 		<Power>1</Power>
@@ -14,10 +14,10 @@
 	</Color>
 	<Xform>
 		<Translation>0, 0, 0</Translation>
-		<Rotation>0, 0, 2314.19</Rotation>
-		<Scale>3.47617, 3.47617, 3.47617</Scale>
+		<Rotation>0, 0, 394.183</Rotation>
+		<Scale>4.95462, 4.95462, 4.95462</Scale>
 		<Pivot>0, 0, 0</Pivot>
-		<UniformScale>0.244901</UniformScale>
+		<UniformScale>0.244898</UniformScale>
 	</Xform>
 	<AnimateRotation>
 		<Update>1</Update>
@@ -37,7 +37,7 @@
 		<BlendMode>0</BlendMode>
 	</AnimateScale>
 	<Tracer>
-		<EnableTracer>1</EnableTracer>
+		<EnableTracer>0</EnableTracer>
 		<Draw>1</Draw>
 		<BlendAlpha>0</BlendAlpha>
 		<Speed>0.033</Speed>
@@ -65,7 +65,7 @@
 		<AutoUpdate>1</AutoUpdate>
 		<Reload>0</Reload>
 		<Browse>0</Browse>
-		<File>svg\cross_two.svg</File>
+		<File>svg\maze_two.svg</File>
 		<Size>1</Size>
 		<PointCount>500</PointCount>
 	</Spline_File>

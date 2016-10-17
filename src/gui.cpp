@@ -7,7 +7,7 @@
 #include <napetherservice.h>
 #include <settingserializer.h>
 #include <presetcomponent.h>
-#include <intensitycomponent.h>
+#include <ampcomponent.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -118,11 +118,15 @@ void Gui::Setup()
 	//////////////////////////////////////////////////////////////////////////
 
 	mIntensityParameters.setName("Intensity");
-	mIntensityParameters.addObject(*mApp.getAutomation()->getComponent<nap::IntensityComponent>());
+	mIntensityParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpIntensityComponent>());
+
+	mAmpScaleParameters.setName("Scale");
+	mAmpScaleParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpScaleComponent>());
 
 	mAutomationGui.setup();
 	mAutomationGui.setName("Automation");
 	mAutomationGui.add(mIntensityParameters.getGroup());
+	mAutomationGui.add(mAmpScaleParameters.getGroup());
 	mAutomationGui.minimizeAll();
 	mGuis.emplace_back(&mAutomationGui);
 

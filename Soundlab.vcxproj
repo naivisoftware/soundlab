@@ -183,9 +183,9 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ampcomponent.cpp" />
     <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\gui.cpp" />
-    <ClCompile Include="src\intensitycomponent.cpp" />
     <ClCompile Include="src\jsonchooser.cpp" />
     <ClCompile Include="src\jsoncomponent.cpp" />
     <ClCompile Include="src\settings.cpp" />
@@ -208,6 +208,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
     <ClCompile Include="src\splineutils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ampcomponent.h" />
     <ClInclude Include="src\audio.h" />
     <ClInclude Include="src\gui.h" />
     <ClInclude Include="src\intensitycomponent.h" />

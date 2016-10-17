@@ -1,6 +1,6 @@
 <audio_player_0>
 	<global>
-		<tonality>3</tonality>
+		<tonality>5</tonality>
 	</global>
 	<granulator>
 		<playing1>1</playing1>
@@ -9,12 +9,12 @@
 		<playing2>0</playing2>
 		<sequence2>0</sequence2>
 		<input_audio2>0</input_audio2>
-		<density__>0.561071</density__>
-		<position>0.275</position>
-		<amplitude__>0.336735</amplitude__>
+		<density__>0</density__>
+		<position>0.357646</position>
+		<amplitude__>0.540816</amplitude__>
 		<amplitudeDev>0</amplitudeDev>
-		<grainSize__>0.308084</grainSize__>
-		<grainSizeDev>0</grainSizeDev>
+		<grainSize__>0.0765306</grainSize__>
+		<grainSizeDev>0.173469</grainSizeDev>
 		<transpose>0</transpose>
 		<diffusion>10</diffusion>
 		<irregularity__>0.5</irregularity__>
@@ -27,9 +27,9 @@
 	</granulator>
 	<position_modulation>
 		<playing>1</playing>
-		<center>0.5</center>
-		<range>1</range>
-		<speed__>0.499812</speed__>
+		<center>0.790816</center>
+		<range>0.234694</range>
+		<speed__>0.0510204</speed__>
 		<irregularity>0</irregularity>
 	</position_modulation>
 	<density_modulation>
@@ -40,15 +40,15 @@
 		<irregularity>0</irregularity>
 	</density_modulation>
 	<resonator>
-		<resPlaying1>0</resPlaying1>
-		<sequence1>0</sequence1>
+		<resPlaying1>1</resPlaying1>
+		<sequence1>1</sequence1>
 		<resPlaying2>0</resPlaying2>
 		<sequence2>0</sequence2>
-		<amplitude>0.4</amplitude>
+		<amplitude>0.545918</amplitude>
 		<attack>10</attack>
-		<release>500</release>
+		<release>2142.86</release>
 		<damping__>0</damping__>
-		<feedback__>0.430467</feedback__>
+		<feedback__>0.897959</feedback__>
 		<detune__>0.2</detune__>
 		<polarity>0</polarity>
 	</resonator>

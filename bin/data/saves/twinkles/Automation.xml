@@ -1,14 +1,14 @@
 <Automation>
 	<Intensity>
-		<Update>1</Update>
-		<Influence>0.846939</Influence>
+		<Update>0</Update>
+		<Influence>0.637755</Influence>
 		<FinalScale>1</FinalScale>
-		<Range>0, 0.105435</Range>
-		<Damping>0.102041</Damping>
+		<Range>0.333611, 0.386287</Range>
+		<Damping>0.306122</Damping>
 	</Intensity>
 <Automation/>
 <Scale>
-		<Update>1</Update>
+		<Update>0</Update>
 		<Influence>1</Influence>
 		<Range>0.0889214, 0.29267</Range>
 		<DefaultValue>0.244898</DefaultValue>

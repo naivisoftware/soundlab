@@ -17,7 +17,7 @@
 #include <napofimagecomponent.h>
 #include <napofattributes.h>
 #include <napofsplinemodulationcomponent.h>
-#include <intensitycomponent.h>
+#include <ampcomponent.h>
 
 // Utils
 #include <splineutils.h>
@@ -408,18 +408,20 @@ void ofApp::createSession()
 void ofApp::createAutomation()
 {
 	mAutomationEntity = &mCore.addEntity("Automation");
-	nap::IntensityComponent& intensity_comp =mAutomationEntity->addComponent<nap::IntensityComponent>();
+	nap::AmpIntensityComponent& intensity_comp =mAutomationEntity->addComponent<nap::AmpIntensityComponent>();
+	nap::AmpScaleComponent& scale_comp = mAutomationEntity->addComponent<nap::AmpScaleComponent>();
 
+	// Set color component for intensity
 	nap::Entity* spline = getSpline();
 	assert(spline != nullptr);
+	
 	OFSplineColorComponent* color_comp = spline->getComponent<OFSplineColorComponent>();
-
-	if (color_comp == nullptr)
-	{
-		nap::Logger::warn("color component not found, can't automate intensity");
-		return;
-	}
+	assert(color_comp != nullptr);
 	intensity_comp.colorComponent.setTarget(*color_comp);
+
+	OFTransform* xform = spline->getComponent<OFTransform>();
+	assert(xform != nullptr);
+	scale_comp.transformLink.setTarget(*xform);
 }
 
 
