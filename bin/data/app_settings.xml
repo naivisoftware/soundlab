@@ -1,5 +1,5 @@
-<SoundDeviceID>1</SoundDeviceID>
-<AudioChannelCount>2</AudioChannelCount>
+<SoundDeviceID>2</SoundDeviceID>
+<AudioChannelCount>4</AudioChannelCount>
 <GuiSpacing>25</GuiSpacing>
 <GuiFontSize>8</GuiFontSize>
 <GuiFont>Arial</GuiFont>

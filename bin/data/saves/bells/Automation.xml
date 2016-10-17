@@ -1,0 +1,19 @@
+<Automation>
+	<Intensity>
+		<Update>1</Update>
+		<Influence>0.704082</Influence>
+		<FinalScale>1</FinalScale>
+		<Range>0.0160351, 0.0534257</Range>
+		<Damping>0.132653</Damping>
+	</Intensity>
+<Automation/>
+<Scale>
+		<Update>0</Update>
+		<Influence>1</Influence>
+		<Range>0.114952, 0.230258</Range>
+		<DefaultValue>0.204082</DefaultValue>
+		<Scale>1.82398</Scale>
+		<Damping>0.183673</Damping>
+		<BlendMode>0</BlendMode>
+	</Scale>
+</Automation>
