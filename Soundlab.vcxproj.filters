@@ -68,6 +68,9 @@
     <ClCompile Include="src\ampcomponent.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\grainmodcomponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -156,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="src\intensitycomponent.h" />
     <ClInclude Include="src\ampcomponent.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\grainmodcomponent.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

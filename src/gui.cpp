@@ -8,6 +8,7 @@
 #include <settingserializer.h>
 #include <presetcomponent.h>
 #include <ampcomponent.h>
+#include <grainmodcomponent.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -117,20 +118,24 @@ void Gui::Setup()
 
 	//////////////////////////////////////////////////////////////////////////
 
-	mIntensityParameters.setName("Intensity");
+	mIntensityParameters.setName("RMSIntensity");
 	mIntensityParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpIntensityComponent>());
 
-	mAmpScaleParameters.setName("Scale");
+	mAmpScaleParameters.setName("RMSScale");
 	mAmpScaleParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpScaleComponent>());
 
-	mAmpRotateParameters.setName("Rotate");
+	mAmpRotateParameters.setName("RMSRotate");
 	mAmpRotateParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpRotateComponent>());
 
+	mGrainColorParameters.setName("GrainColor");
+	mGrainColorParameters.addObject(*mApp.getAutomation()->getComponent<nap::GrainColorModComponent>());
+
 	mAutomationGui.setup();
-	mAutomationGui.setName("Automation");
+	mAutomationGui.setName("automation");
 	mAutomationGui.add(mIntensityParameters.getGroup());
 	mAutomationGui.add(mAmpScaleParameters.getGroup());
 	mAutomationGui.add(mAmpRotateParameters.getGroup());
+	mAutomationGui.add(mGrainColorParameters.getGroup());
 	mAutomationGui.minimizeAll();
 	mGuis.emplace_back(&mAutomationGui);
 

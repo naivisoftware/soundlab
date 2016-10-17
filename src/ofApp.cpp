@@ -19,6 +19,7 @@
 #include <napofsplinemodulationcomponent.h>
 #include <ampcomponent.h>
 #include <napoftransform.h>
+#include <grainmodcomponent.h>
 
 // Utils
 #include <splineutils.h>
@@ -415,6 +416,10 @@ void ofApp::createAutomation()
 	nap::AmpScaleComponent& scale_comp = mAutomationEntity->addComponent<nap::AmpScaleComponent>();
 	nap::AmpRotateComponent& amp_rotate_comp = mAutomationEntity->addComponent<nap::AmpRotateComponent>();
 
+	nap::GrainColorModComponent& grain_color_mod = mAutomationEntity->addComponent<nap::GrainColorModComponent>();
+	assert(audioComposition != nullptr);
+	grain_color_mod.registerGrainSignal(*audioComposition);
+
 	// Set color component for intensity
 	nap::Entity* spline = getSpline();
 	assert(spline != nullptr);
@@ -422,6 +427,7 @@ void ofApp::createAutomation()
 	OFSplineColorComponent* color_comp = spline->getComponent<OFSplineColorComponent>();
 	assert(color_comp != nullptr);
 	intensity_comp.colorComponent.setTarget(*color_comp);
+	grain_color_mod.colorComp.setTarget(*color_comp);
 
 	OFTransform* xform = spline->getComponent<OFTransform>();
 	assert(xform != nullptr);
