@@ -66,8 +66,9 @@ namespace nap
 
 		// Damp attribute
 		NumericAttribute<float>		damp =				{ this, "Damp",  0.025f, 0.0f, 1.0f };
-		NumericAttribute<ofVec2f>	frequency_range =	{ this, "FrequencyRange", {1.0f, 10.0f} , {1.0f, 1.0f}, {10.0f, 10.0f } };
+		NumericAttribute<ofVec2f>	frequency_range =	{ this, "FrequencyRange", {1.0f, 10.0f} , {1.0f, 1.0f}, {25.0f, 25.0f } };
 		NumericAttribute<float>		frequency_chance =	{ this, "FrequencyChance", 0.0f, 0.0f, 1.0f };
+		NumericAttribute<float>		offset_chance =		{ this, "OffsetChance", 1.0f, 0.0f, 1.0f };
 
 		Link colorComp = { *this };
 

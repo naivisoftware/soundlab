@@ -106,7 +106,11 @@ namespace nap
 	// Occurs when triggered
 	void GrainColorModComponent::triggered(lib::TimeValue& time, const lib::audio::GrainParameters& params, float timeDiff)
 	{
-		mNewOffOffset = ofRandom(1.0f);
+		// Set new offset if allowed
+		if (ofRandom(1.0f) < offset_chance.getValue())
+		{
+			mNewOffOffset = ofRandom(1.0f);
+		}
 
 		// Make sure we have a color comp
 		if (!colorComp.isLinked())
