@@ -123,10 +123,14 @@ void Gui::Setup()
 	mAmpScaleParameters.setName("Scale");
 	mAmpScaleParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpScaleComponent>());
 
+	mAmpRotateParameters.setName("Rotate");
+	mAmpRotateParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpRotateComponent>());
+
 	mAutomationGui.setup();
 	mAutomationGui.setName("Automation");
 	mAutomationGui.add(mIntensityParameters.getGroup());
 	mAutomationGui.add(mAmpScaleParameters.getGroup());
+	mAutomationGui.add(mAmpRotateParameters.getGroup());
 	mAutomationGui.minimizeAll();
 	mGuis.emplace_back(&mAutomationGui);
 

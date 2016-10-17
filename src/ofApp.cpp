@@ -18,6 +18,7 @@
 #include <napofattributes.h>
 #include <napofsplinemodulationcomponent.h>
 #include <ampcomponent.h>
+#include <napoftransform.h>
 
 // Utils
 #include <splineutils.h>
@@ -412,6 +413,7 @@ void ofApp::createAutomation()
 	mAutomationEntity = &mCore.addEntity("Automation");
 	nap::AmpIntensityComponent& intensity_comp =mAutomationEntity->addComponent<nap::AmpIntensityComponent>();
 	nap::AmpScaleComponent& scale_comp = mAutomationEntity->addComponent<nap::AmpScaleComponent>();
+	nap::AmpRotateComponent& amp_rotate_comp = mAutomationEntity->addComponent<nap::AmpRotateComponent>();
 
 	// Set color component for intensity
 	nap::Entity* spline = getSpline();
@@ -424,6 +426,10 @@ void ofApp::createAutomation()
 	OFTransform* xform = spline->getComponent<OFTransform>();
 	assert(xform != nullptr);
 	scale_comp.transformLink.setTarget(*xform);
+
+	OFRotateComponent* rotate_comp = spline->getComponent<OFRotateComponent>();
+	assert(rotate_comp != nullptr);
+	amp_rotate_comp.rotateLink.setTarget(*rotate_comp);
 }
 
 

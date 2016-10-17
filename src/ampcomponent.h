@@ -28,9 +28,10 @@ namespace nap
 		AmpIntensityComponent();
 		
 		// Parameters
+		Attribute<bool>				invert		{ this, "Invert", false };
 		NumericAttribute<float>		influence	{ this, "Influence", 1.0f, 0.0f, 1.0f };
 		NumericAttribute<float>		scale		{ this, "FinalScale", 1.0f, 0.0f, 1.0f };
-		NumericAttribute<ofVec2f>	range		{ this, "Range", {0.0f, 1.0f}, {0.0f, 0.001f}, {1.0f, 1.0f} };
+		NumericAttribute<ofVec2f>	range		{ this, "Range", {0.025f, 0.3f}, {0.0f, 0.001f}, {1.0f, 1.0f} };
 		NumericAttribute<float>		damping		{ this, "Damping", 0.05f, 0.0f, 1.0f };
 
 		// Link
@@ -63,8 +64,9 @@ namespace nap
 		AmpScaleComponent();
 
 		// Parameters
+		Attribute<bool>				invert		{ this, "Invert", false };
 		NumericAttribute<float>		influence	{ this, "Influence", 1.0f, 0.0f, 1.0f };
-		NumericAttribute<ofVec2f>	range		{ this, "Range",{ 0.0f, 1.0f },{ 0.0f, 0.001f },{ 1.0f, 1.0f } };
+		NumericAttribute<ofVec2f>	range		{ this, "Range",{ 0.025f, 0.3f },{ 0.0f, 0.001f },{ 1.0f, 1.0f } };
 		NumericAttribute<float>		start		{ this, "DefaultValue", 1.0f, 0.0f, 1.0f };
 		NumericAttribute<float>		scale		{ this, "Scale", 1.0f, 0.0f, 2.5f };
 		NumericAttribute<float>		damping		{ this, "Damping", 0.05f, 0.0f, 1.0f };
@@ -87,7 +89,45 @@ namespace nap
 		float mCurrentAmp = 0.0f;
 		float mCurrentVel = 0.0f;
 	};
+
+
+	/**
+	@brief Modifies scale of spline based on rms amplitude
+	**/
+	class AmpRotateComponent : public OFUpdatableComponent
+	{
+		RTTI_ENABLE_DERIVED_FROM(OFUpdatableComponent)
+
+	public:
+		AmpRotateComponent();
+
+		// Parameters
+		Attribute<bool>				invert			{ this, "Invert", false };
+		NumericAttribute<float>		influence		{ this, "Influence", 1.0f, 0.0f, 1.0f };
+		NumericAttribute<ofVec2f>	range			{ this, "Range",{ 0.025f, 0.3f },{ 0.0f, 0.001f },{ 1.0f, 1.0f } };
+		NumericAttribute<float>		start			{ this, "DefaultValue", 0.0f, 0.0f, 100.0f };
+		NumericAttribute<float>		scale			{ this, "Scale", 1.0f, 0.0f, 1080.0f };
+		NumericAttribute<float>		damping			{ this, "Damping", 0.05f, 0.0f, 1.0f };
+
+		// Link
+		Link rotateLink{ *this };
+
+		// Update call
+		virtual void onUpdate() override;
+
+	private:
+		// Audio service
+		lib::audio::AudioService* mAudioService = nullptr;
+
+		NSLOT(mAdded, const Object&, onAdded)
+			void onAdded(const Object& obj);
+
+		// Smooth Damp
+		float mCurrentAmp = 0.0f;
+		float mCurrentVel = 0.0f;
+	};
 }
 
 RTTI_DECLARE(nap::AmpIntensityComponent)
 RTTI_DECLARE(nap::AmpScaleComponent)
+RTTI_DECLARE(nap::AmpRotateComponent)
