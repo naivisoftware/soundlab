@@ -131,6 +131,7 @@
 		D242C5161D9E8E9000B6546C /* ResonatorVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D242C5141D9E8E9000B6546C /* ResonatorVoice.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2430EDB1DB38F3A00BE4FFE /* presetcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430ED71DB38F3A00BE4FFE /* presetcomponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2430EDC1DB38F3A00BE4FFE /* settingserializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2430EDF1DB4E38F00BE4FFE /* SchedulerService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430EDD1DB4E38F00BE4FFE /* SchedulerService.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DADF1DB0D58D005EE74F /* Common.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE11DB0D58D005EE74F /* Plane.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB111DB0D58D005EE74F /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE31DB0D58D005EE74F /* Source.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -472,6 +473,8 @@
 		D2430ED81DB38F3A00BE4FFE /* presetcomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = presetcomponent.h; sourceTree = "<group>"; };
 		D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settingserializer.cpp; sourceTree = "<group>"; };
 		D2430EDA1DB38F3A00BE4FFE /* settingserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingserializer.h; sourceTree = "<group>"; };
+		D2430EDD1DB4E38F00BE4FFE /* SchedulerService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchedulerService.cpp; sourceTree = "<group>"; };
+		D2430EDE1DB4E38F00BE4FFE /* SchedulerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulerService.h; sourceTree = "<group>"; };
 		D251DADF1DB0D58D005EE74F /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
 		D251DAE01DB0D58D005EE74F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		D251DAE11DB0D58D005EE74F /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
@@ -827,6 +830,8 @@
 			children = (
 				D22868B01D95769500682676 /* Scheduler.cpp */,
 				D22868B11D95769500682676 /* Scheduler.h */,
+				D2430EDD1DB4E38F00BE4FFE /* SchedulerService.cpp */,
+				D2430EDE1DB4E38F00BE4FFE /* SchedulerService.h */,
 			);
 			path = Scheduler;
 			sourceTree = "<group>";
@@ -1451,6 +1456,7 @@
 				D22868751D95767D00682676 /* operator.cpp in Sources */,
 				D251DB121DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */,
 				D22868C01D95769500682676 /* DataTypes.cpp in Sources */,
+				D2430EDF1DB4E38F00BE4FFE /* SchedulerService.cpp in Sources */,
 				D228691D1D9576AE00682676 /* DelayObject.cpp in Sources */,
 				D251DB131DB0D58D005EE74F /* Utilities.cpp in Sources */,
 				D22868661D95767D00682676 /* configure.cpp in Sources */,
