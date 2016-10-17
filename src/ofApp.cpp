@@ -17,6 +17,7 @@
 #include <napofimagecomponent.h>
 #include <napofattributes.h>
 #include <napofsplinemodulationcomponent.h>
+#include <intensitycomponent.h>
 
 // Utils
 #include <splineutils.h>
@@ -37,6 +38,8 @@ void ofApp::setup()
 {
 	mOFService = &mCore.addService<nap::OFService>();
  	mLaserService = &mCore.addService<nap::EtherDreamService>();
+	audioService = &mCore.addService<AudioService>();
+    schedulerService = &mCore.addService<lib::SchedulerService>();
 
 	// HACK, shouldn't be here
 	nap::registerOfShaderBindings();
@@ -56,6 +59,9 @@ void ofApp::setup()
 	// Create session
 	createSession();
 
+	// Create automation
+	createAutomation();
+
 	// Setup gui (always last)
 	setupGui();
 }
@@ -65,6 +71,7 @@ void ofApp::setup()
 void ofApp::update()
 {
 	mOFService->update();
+    schedulerService->process(ofGetLastFrameTime() * 1000.);
 }
 
 //--------------------------------------------------------------
@@ -276,7 +283,7 @@ void ofApp::createLaserEntity()
 
 	// Add color
 	nap::Attribute<ofVec3f>& color_attr = material.addAttribute<ofVec3f>("mColor");
-	color_attr.setValue({ 1.0f, 0.0f, 0.0f });
+	color_attr.setValue({ 1.0f, 1.0f, 1.0f });
 
 	// Connect to signal changes
 	laser_cam.mFrustrumWidth.valueChangedSignal.connect(plane.mWidth.setValueSlot);
@@ -330,7 +337,6 @@ void ofApp::createAudio()
     mCore.addService<AudioFileService>();
     mCore.addService<spatial::SpatialService>();
 
-	audioService = &mCore.addService<AudioService>();
 	audioService->setBufferSize(64);
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
@@ -398,6 +404,16 @@ void ofApp::createSession()
 }
 
 
+/**
+@brief Create automation entity + components
+**/
+void ofApp::createAutomation()
+{
+	mAutomationEntity = &mCore.addEntity("Automation");
+	mAutomationEntity->addComponent<nap::IntensityComponent>();
+}
+
+
 // Test for figuring out auto mapping of objects later on
 void ofApp::setupGui()
 {
@@ -413,10 +429,10 @@ void ofApp::presetIndexChanged(const int& idx)
 {
 	nap::PresetComponent* preset_component = mSessionEntity->getComponent<nap::PresetComponent>();
 	assert(preset_component != nullptr);
-	nap::Preset* preset = preset_component->getPreset(idx);
-	assert(preset != nullptr);
+	mCurrentPreset = preset_component->getPreset(idx);
+	assert(mCurrentPreset != nullptr);
 	SettingSerializer serializer;
-	serializer.loadSettings(*preset, *mGui);
+	serializer.loadSettings(*mCurrentPreset, *mGui);
 
 	// HACK, THESE SETTINGS ARE NOT DESERIALIZED CORRECTLY
 	// CAUSES A SET OF PARAMETERS TO NO BE IN THE RIGHT STATE

@@ -12,6 +12,7 @@
 #include <Lib/Audio/Unit/AudioDevice.h>
 #include <Lib/Audio/Utility/AudioFile/AudioFileService.h>
 #include <Lib/Audio/Unit/Granular/Granulator.h>
+#include <Lib/Utility/Scheduler/SchedulerService.h>
 
 // OF Includes
 #include <openFrameworks/Gui/OFControlPanel.h>
@@ -22,6 +23,7 @@ namespace nap
 {
 	class OFService;
 	class EtherDreamService;
+	struct Preset;
 }
 
 namespace lib
@@ -63,6 +65,8 @@ public:
 	nap::EtherDreamService*				getLaserService()		{ return mLaserService; }
 	AudioComposition*					getAudioComposition()	{ return audioComposition.get(); }
 	nap::Entity*						getSession()			{ return mSessionEntity; }
+	nap::Preset*						getCurrentPreset()		{ return mCurrentPreset; }
+	nap::Entity*						getAutomation()			{ return mAutomationEntity; }
 
 private:
 	// Services
@@ -78,26 +82,30 @@ private:
 	void								createAudio();
 	void								createSpline();
 	void								createSession();
+	void								createAutomation();
 	
 	// Utility for dragging
 	ofVec3f								mStartCoordinates;
 	ofVec3f								mOffsetCoordinates;
 
-	nap::Entity*						mCamera = nullptr;			//< Scene camera
-	nap::Entity*						mLaserEntity = nullptr;		//< Laser
-	nap::Entity*						mAudioEntity = nullptr;		//< Audio
-	nap::Entity*						mSplineEntity = nullptr;	//< Active Spline
-	nap::Entity*						mSessionEntity = nullptr;	//< Active session
+	nap::Entity*						mCamera = nullptr;				//< Scene camera
+	nap::Entity*						mLaserEntity = nullptr;			//< Laser
+	nap::Entity*						mAudioEntity = nullptr;			//< Audio
+	nap::Entity*						mSplineEntity = nullptr;		//< Active Spline
+	nap::Entity*						mSessionEntity = nullptr;		//< Active session
+	nap::Entity*						mAutomationEntity = nullptr;	//< Automation Entity
 
 	// Sound
 	ofSoundStream soundStream;
 	lib::audio::AudioService*			audioService = nullptr;
+    lib::SchedulerService*              schedulerService = nullptr;
     std::unique_ptr<AudioComposition>	audioComposition = nullptr;
 
 	// Gui + Serialization
 	Gui*								mGui;
 	void								setupGui();
 	void								presetIndexChanged(const int& idx);
+	nap::Preset*						mCurrentPreset = nullptr;
 	NSLOT(mPresetChanged, const int&, presetIndexChanged)
 
 	// Hook up

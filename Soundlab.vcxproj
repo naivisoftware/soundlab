@@ -185,6 +185,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
   <ItemGroup>
     <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\gui.cpp" />
+    <ClCompile Include="src\intensitycomponent.cpp" />
     <ClCompile Include="src\jsonchooser.cpp" />
     <ClCompile Include="src\jsoncomponent.cpp" />
     <ClCompile Include="src\settings.cpp" />
@@ -209,6 +210,7 @@ if errorlevel 1 exit 0 else exit %errorlevel%</Command>
   <ItemGroup>
     <ClInclude Include="src\audio.h" />
     <ClInclude Include="src\gui.h" />
+    <ClInclude Include="src\intensitycomponent.h" />
     <ClInclude Include="src\presetcomponent.h" />
     <ClInclude Include="src\settingserializer.h" />
     <ClInclude Include="src\jsonchooser.h" />

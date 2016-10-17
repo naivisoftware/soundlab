@@ -44,11 +44,13 @@ private:
 	OFAttributeWrapper			mPresetParameters;
 	OFAttributeWrapper			mPresetAutomationParameters;
 	OFAttributeWrapper			mTagParameters;
+	OFAttributeWrapper			mIntensityParameters;
 
 	// All gui wrappers
 	ofxPanel					mSplineGui;
 	ofxPanel					mLaserGui;
 	ofxPanel					mSessionGui;
+	ofxPanel					mAutomationGui;
 	std::vector<std::unique_ptr<ofxPanel>> audioGuis;
 
 	// Load and Save buttons
@@ -58,4 +60,8 @@ private:
 	void						loadClicked();
 	void						saveAsClicked();
 	void						saveClicked();
+
+	// Utility slots
+	NSLOT(mSplineUpdated, const nap::Object&, splineUpdated)
+	void splineUpdated(const nap::Object& obj);
 };

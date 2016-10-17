@@ -50,7 +50,6 @@ void SettingSerializer::loadSettings(const std::string& dir, const Gui& gui)
 **/
 void SettingSerializer::loadSettings(const nap::Preset& preset, const Gui& gui)
 {
-	nap::Logger::info("loading preset: %s", preset.mPresetName.c_str());
 	for (const auto& part : preset.mParts)
 	{
 		if (!part->mLoaded)

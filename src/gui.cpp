@@ -7,6 +7,7 @@
 #include <napetherservice.h>
 #include <settingserializer.h>
 #include <presetcomponent.h>
+#include <intensitycomponent.h>
 
 // Sets up the gui using the objects found in ofapp
 void Gui::Setup()
@@ -35,10 +36,14 @@ void Gui::Setup()
 	mLFOParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineLFOModulationComponent>()));
 
 	mSelectionParameters.setName("Selection");
-	mSelectionParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>()));
+	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
+	spline_selection_comp->mSplineUpdated.connect(mSplineUpdated);
+	mSelectionParameters.addObject(*spline_selection_comp);
 
+	nap::OFSplineFromFileComponent* spline_file_comp = mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>();
 	mFileParameters.setName("Spline File");
-	mFileParameters.addObject(*(mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>()));
+	spline_file_comp->mSplineUpdated.connect(mSplineUpdated);
+	mFileParameters.addObject(*spline_file_comp);
 
 	mTagParameters.setName("Tag");
 	mTagParameters.addObject(*mApp.getSpline());
@@ -109,6 +114,18 @@ void Gui::Setup()
 
 	mSessionGui.minimizeAll();
 
+
+	//////////////////////////////////////////////////////////////////////////
+
+	mIntensityParameters.setName("Intensity");
+	mIntensityParameters.addObject(*mApp.getAutomation()->getComponent<nap::IntensityComponent>());
+
+	mAutomationGui.setup();
+	mAutomationGui.setName("Automation");
+	mAutomationGui.add(mIntensityParameters.getGroup());
+	mAutomationGui.minimizeAll();
+	mGuis.emplace_back(&mAutomationGui);
+
 	//////////////////////////////////////////////////////////////////////////
 
 	// Setup audio gui
@@ -157,6 +174,10 @@ void Gui::Position(int screenWidth, int screenHeight)
 
 	// Position session
 	mSessionGui.setPosition(current_point);
+	current_point.x += mSessionGui.getWidth() + spacing;
+
+	// Position automation
+	mAutomationGui.setPosition(current_point);
 
 	// Position audio gui 1
 	current_point.x = screenWidth - (audioGuis[0]->getWidth() * 2) - (spacing * 2);
@@ -176,15 +197,16 @@ void Gui::loadClicked()
 	static std::string sCurrentDir = ofFilePath::getAbsolutePath(ofFilePath::getCurrentExeDir(), false);
 	static std::string sExtension = "xml";
 
-	ofFileDialogResult result = ofSystemLoadDialog("Load Settings", false, sCurrentDir);
+	ofFileDialogResult result = ofSystemLoadDialog("Load Settings", true, sCurrentDir);
 	if (!result.bSuccess)
 		return;
 
 	// Check what type it is
-	ofFile file(result.filePath);
+	std::string preset_name = result.fileName;
 
-	SettingSerializer serializer;
-	serializer.loadSettings(file.getEnclosingDirectory(), *this);
+	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	assert(preset_comp != nullptr);
+	preset_comp->setPreset(preset_name);
 }
 
 
@@ -208,6 +230,9 @@ void Gui::saveAsClicked()
 	serializer.saveSettings(file.getEnclosingDirectory(), result.getName(), *this);
 
 	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
+	assert(preset_comp != nullptr);
+	
+	// Reload the presets
 	preset_comp->loadPresets();
 }
 
@@ -216,20 +241,37 @@ void Gui::saveAsClicked()
 void Gui::saveClicked()
 {
 	nap::PresetComponent* preset_comp = mApp.getSession()->getComponent<nap::PresetComponent>();
-	if (preset_comp->getPresetCount() == 0)
+	assert(preset_comp != nullptr);
+	nap::Preset* current_preset = preset_comp->getCurrentPreset();
+	if (current_preset == nullptr)
 	{
-		nap::Logger::warn("Currently no preset loaded");
+		nap::Logger::info("there's currently no active preset!");
 		return;
 	}
 
-	nap::Preset* preset = preset_comp->getCurrentPreset();
-	if (preset == nullptr)
-	{
-		nap::Logger::warn("Currently no preset selected");
-		 return;
-	}
-	
 	SettingSerializer serializer;
-	serializer.saveSettings("saves", preset->mPresetName, *this);
+	serializer.saveSettings("saves", current_preset->mPresetName, *this);
+	
+	// Load all presets
 	preset_comp->loadPresets();
+}
+
+
+// Reacts to the update modes of the 2 spline generation components
+// This is a bit of a hack but allows the one to disable the other, ensuring correct serialization / deserialization
+void Gui::splineUpdated(const nap::Object& obj)
+{
+	nap::OFSplineSelectionComponent* spline_selection_comp = mApp.getSpline()->getComponent<nap::OFSplineSelectionComponent>();
+	assert(spline_selection_comp != nullptr);
+	
+	nap::OFSplineFromFileComponent* spline_file_comp = mApp.getSpline()->getComponent<nap::OFSplineFromFileComponent>();
+	assert(spline_file_comp != nullptr);
+
+	if (&obj == spline_selection_comp)
+	{
+		spline_file_comp->mAutoUpdate.setValue(false);
+		return;
+	}
+
+	spline_selection_comp->mAutoUpdate.setValue(false);
 }

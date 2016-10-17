@@ -75,12 +75,12 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
     for (auto i = 0; i < 2; ++i)
     {
         auto& grainSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("grainSequencer" + to_string(i + 1));
-        grainSeq.schedulerInput.connect(output->schedulerOutput);
+//        grainSeq.schedulerInput.connect(output->schedulerOutput);
         granulator->cloudInput.connect(grainSeq.output);
         grainSequencers.emplace_back(&grainSeq);
         
         auto& resSeq = patchComponent->getPatch().addOperator<lib::Sequencer>("resonatorSequencer" + to_string(i + 1));
-        resSeq.schedulerInput.connect(output->schedulerOutput);
+//        resSeq.schedulerInput.connect(output->schedulerOutput);
         resonator->input.connect(resSeq.output);
         resonatorSequencers.emplace_back(&resSeq);
         
@@ -167,7 +167,7 @@ AudioPlayer::AudioPlayer(nap::Entity& root, const std::string& name, nap::JsonCo
 void AudioPlayer::createModulator(lib::ValueControl& control, OFAttributeWrapper& parameters)
 {
     auto& animator = patchComponent->getPatch().addOperator<lib::RampSequencer>("animator");
-    animator.schedulerInput.connect(output->schedulerOutput);
+//    animator.schedulerInput.connect(output->schedulerOutput);
     control.proportionPlug.connect(animator.output);
     animator.startValue.link(control.proportionAttribute);
     
