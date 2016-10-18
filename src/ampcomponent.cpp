@@ -3,6 +3,7 @@
 #include <Lib/Audio/Unit/AudioDevice.h>
 #include <Utils/nofUtils.h>
 #include <napoftransform.h>
+#include <napofsplinemodulationcomponent.h>
 
 namespace nap
 {
@@ -186,8 +187,56 @@ namespace nap
 		}
 	}
 
+
+	//////////////////////////////////////////////////////////////////////////
+
+
+	AmpLFOComponent::AmpLFOComponent()
+	{
+		added.connect(mAdded);
+		lfoLink.setTargetType(RTTI_OF(OFSplineLFOModulationComponent));
+		mEnableUpdates.setValue(false);
+	}
+
+
+	void AmpLFOComponent::onUpdate()
+	{
+		if (mAudioService == nullptr)
+			return;
+
+		if (!lfoLink.isLinked())
+			return;
+
+		// Calculate value
+		float amp = mAudioService->rmsAmplitude.getValue();
+		amp = gFit(amp, range.getValue().x, range.getValue().y, 0.0f, 1.0f);
+		amp = invert.getValue() ? 1.0f - amp : amp;
+
+		// Calculate new amp value
+		amp = amp * scale.getValue() * influence.getValue();
+		amp += start.getValue();
+
+		// Calculate smoothed value
+		mCurrentAmp = gSmoothDamp(mCurrentAmp, amp, mCurrentVel, damping.getValue(), 1000.0f, ofGetLastFrameTime());
+
+		// Set amplitude
+		OFSplineLFOModulationComponent* lfo_comp = lfoLink.getTarget<OFSplineLFOModulationComponent>();
+		lfo_comp->mAmplitude.setValue(mCurrentAmp);
+	}
+
+
+	void AmpLFOComponent::onAdded(const Object& obj)
+	{
+		mAudioService = this->getParent()->getCore().getService<lib::audio::AudioService>();
+		if (mAudioService == nullptr)
+		{
+			nap::Logger::warn(*this, "Unable to find audio service!");
+		}
+	}
+
 }
 
 RTTI_DEFINE(nap::AmpIntensityComponent)
 RTTI_DEFINE(nap::AmpScaleComponent)
 RTTI_DEFINE(nap::AmpRotateComponent)
+RTTI_DEFINE(nap::AmpLFOComponent)

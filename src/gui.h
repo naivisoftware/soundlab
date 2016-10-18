@@ -48,6 +48,9 @@ private:
 	OFAttributeWrapper			mAmpScaleParameters;
 	OFAttributeWrapper			mAmpRotateParameters;
 	OFAttributeWrapper			mGrainColorParameters;
+	OFAttributeWrapper			mGrainTraceParameters;
+	OFAttributeWrapper			mAmpLFOParameters;
+	OFAttributeWrapper			mGrainLfoParameters;
 
 	// All gui wrappers
 	ofxPanel					mSplineGui;

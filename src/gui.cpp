@@ -127,15 +127,27 @@ void Gui::Setup()
 	mAmpRotateParameters.setName("RMSRotate");
 	mAmpRotateParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpRotateComponent>());
 
+	mAmpLFOParameters.setName("RMSLfo");
+	mAmpLFOParameters.addObject(*mApp.getAutomation()->getComponent<nap::AmpLFOComponent>());
+
 	mGrainColorParameters.setName("GrainColor");
 	mGrainColorParameters.addObject(*mApp.getAutomation()->getComponent<nap::GrainColorModComponent>());
+
+	mGrainTraceParameters.setName("GrainTrace");
+	mGrainTraceParameters.addObject(*mApp.getAutomation()->getComponent<nap::GrainTraceModComponent>());
+
+	mGrainLfoParameters.setName("GrainLFO");
+	mGrainLfoParameters.addObject(*mApp.getAutomation()->getComponent<nap::GrainLFOModComponent>());
 
 	mAutomationGui.setup();
 	mAutomationGui.setName("automation");
 	mAutomationGui.add(mIntensityParameters.getGroup());
 	mAutomationGui.add(mAmpScaleParameters.getGroup());
 	mAutomationGui.add(mAmpRotateParameters.getGroup());
+	mAutomationGui.add(mAmpLFOParameters.getGroup());
 	mAutomationGui.add(mGrainColorParameters.getGroup());
+	mAutomationGui.add(mGrainTraceParameters.getGroup());
+	mAutomationGui.add(mGrainLfoParameters.getGroup());
 	mAutomationGui.minimizeAll();
 	mGuis.emplace_back(&mAutomationGui);
 

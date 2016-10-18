@@ -415,10 +415,17 @@ void ofApp::createAutomation()
 	nap::AmpIntensityComponent& intensity_comp =mAutomationEntity->addComponent<nap::AmpIntensityComponent>();
 	nap::AmpScaleComponent& scale_comp = mAutomationEntity->addComponent<nap::AmpScaleComponent>();
 	nap::AmpRotateComponent& amp_rotate_comp = mAutomationEntity->addComponent<nap::AmpRotateComponent>();
+	nap::AmpLFOComponent& amp_lfo_comp = mAutomationEntity->addComponent<nap::AmpLFOComponent>();
 
 	nap::GrainColorModComponent& grain_color_mod = mAutomationEntity->addComponent<nap::GrainColorModComponent>();
 	assert(audioComposition != nullptr);
 	grain_color_mod.registerGrainSignal(*audioComposition);
+
+	nap::GrainTraceModComponent& grain_trace_mod = mAutomationEntity->addComponent<nap::GrainTraceModComponent>();
+	grain_trace_mod.registerGrainSignal(*audioComposition);
+
+	nap::GrainLFOModComponent& grain_lfo_mod = mAutomationEntity->addComponent<nap::GrainLFOModComponent>();
+	grain_lfo_mod.registerGrainSignal(*audioComposition);
 
 	// Set color component for intensity
 	nap::Entity* spline = getSpline();
@@ -436,6 +443,16 @@ void ofApp::createAutomation()
 	OFRotateComponent* rotate_comp = spline->getComponent<OFRotateComponent>();
 	assert(rotate_comp != nullptr);
 	amp_rotate_comp.rotateLink.setTarget(*rotate_comp);
+
+	OFTraceComponent* trace_comp = spline->getComponent<OFTraceComponent>();
+	assert(trace_comp != nullptr);
+	grain_trace_mod.traceComp.setTarget(*trace_comp);
+
+	OFSplineLFOModulationComponent* lfo_comp = spline->getComponent<OFSplineLFOModulationComponent>();
+	assert(lfo_comp != nullptr);
+	amp_lfo_comp.lfoLink.setTarget(*lfo_comp);
+	grain_lfo_mod.lfoComp.setTarget(*lfo_comp);
+
 }
 
 
