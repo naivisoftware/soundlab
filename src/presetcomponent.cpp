@@ -223,7 +223,6 @@ namespace nap
 			return;
 
 		int new_preset_idx = gMin<int>((int)ofRandom(preset_comp->getPresetCount()), preset_comp->getPresetCount()-1);
-		std::cout << "new preset" << new_preset_idx;
 		preset_comp->index.setValue(new_preset_idx);
 	}
 	
@@ -253,7 +252,7 @@ namespace nap
 		float min_time = time.getValue() - (time.getValue() * offset.getValue());
 		float max_time = time.getValue() + (time.getValue() * offset.getValue());
 		mTargetTime = ofRandom(min_time, max_time);
-		nap::Logger::info("new preset target time: %f",  mTargetTime);
+//		nap::Logger::info("new preset target time: %f",  mTargetTime);
 	}
 
 }
