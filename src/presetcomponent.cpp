@@ -258,6 +258,8 @@ namespace nap
 		// Connect time and offset
 		time.valueChangedSignal.connect(mSpeedChanged);
 		offset.valueChangedSignal.connect(mOffsetChanged);
+		scale.valueChangedSignal.connect(mScaleChanged);
+		progress.setClamped(true);
 
 		reset();
 	}
@@ -273,11 +275,10 @@ namespace nap
 
 		// Check time difference
 		float diff_time = current_time - mStartTime;
+		progress.setValue(diff_time / mTargetTime);
+
 		if (diff_time < mTargetTime)
 			return;
-
-		// Reset the system
-		reset();
 
 		// Time passed, select new preset
 		PresetComponent* preset_comp = mPresetComponent.get();
@@ -291,8 +292,8 @@ namespace nap
 		if (preset_comp->getPresetCount() == 0)
 			return;
 
-		int new_preset_idx = gMin<int>((int)ofRandom(preset_comp->getPresetCount()), preset_comp->getPresetCount()-1);
-		preset_comp->index.setValue(new_preset_idx);
+		// Select a new preset when time has passed;
+		selectNewPreset(*preset_comp);
 	}
 	
 	/**
@@ -312,16 +313,55 @@ namespace nap
 		reset();
 	}
 
+	/*
+	@brief Updates the speed, only when override is turned off
+	*/
+	void PresetSwitchComponent::speedChanged(const float& value)
+	{
+		if (fromPreset.getValue())
+			return;
+		updateTargetTime();
+	}
+
+
+	// Selects a new preset
+	// Also updates the time if override is turned off (based on preset value)
+	void PresetSwitchComponent::selectNewPreset(PresetComponent& presetComp)
+	{
+		int new_preset_idx = presetComp.index;
+		if (presetComp.getPresetCount() > 1)
+		{
+			while (new_preset_idx == presetComp.index)
+			{
+				new_preset_idx = gMin<int>((int)ofRandom(presetComp.getPresetCount()), presetComp.getPresetCount() - 1);
+			}
+		}
+
+		// If we're picking the preset's value, do so
+		if (fromPreset.getValue())
+		{
+			// Set new time value
+			Preset* new_preset = presetComp.getPreset(new_preset_idx);
+			time.setValue(new_preset->mDuration);
+		}
+
+		// Reset
+		reset();
+
+		// Set new preset index
+		presetComp.index.setValue(new_preset_idx);
+	}
 
 	/**
-	@brief updates the target timr
+	@brief updates the target time
 	**/
 	void PresetSwitchComponent::updateTargetTime()
 	{
 		float min_time = time.getValue() - (time.getValue() * offset.getValue());
 		float max_time = time.getValue() + (time.getValue() * offset.getValue());
-		mTargetTime = ofRandom(min_time, max_time);
-//		nap::Logger::info("new preset target time: %f",  mTargetTime);
+		mTargetTime = ofRandom(min_time, max_time) * scale.getValue();
+
+		nap::Logger::info("new preset target time: %f",  mTargetTime);
 	}
 
 }

@@ -103,10 +103,13 @@ private:
 
 	// Gui + Serialization
 	Gui*								mGui;
+	nap::Preset*						mCurrentPreset = nullptr;
+
 	void								setupGui();
 	void								presetIndexChanged(const int& idx);
-	nap::Preset*						mCurrentPreset = nullptr;
-	NSLOT(mPresetChanged, const int&, presetIndexChanged)
+	void								seedChanged(const int& value);
+	NSLOT(mPresetChanged, const int&,	presetIndexChanged)
+	NSLOT(mSeedChanged, const int&,		seedChanged)
 
 	// Hook up
 	void grainTriggered(lib::TimeValue& time, const lib::audio::GrainParameters& params);

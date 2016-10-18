@@ -393,6 +393,12 @@ void ofApp::createSession()
 	nap::Attribute<bool>& move_attr = mSessionEntity->addAttribute<bool>("MoveSpline");
 	move_attr.setValue(false);
 
+	// Add seed attribute
+	nap::NumericAttribute<int>& seed_attr = mSessionEntity->addChild<nap::NumericAttribute<int>>("seed");
+	seed_attr.setValue(1);
+	seed_attr.setRange(1, 1000);
+	seed_attr.connectToValue(mSeedChanged);
+
 	// Add preset component
 	nap::PresetComponent& preset_comp = mSessionEntity->addComponent<nap::PresetComponent>("Presets");
 	ofDirectory preset_dir("saves");
@@ -483,6 +489,12 @@ void ofApp::presetIndexChanged(const int& idx)
 	{
 		rotate_comp->mReset.trigger();
 	}
+}
+
+
+void ofApp::seedChanged(const int& value)
+{
+	ofSeedRandom(value);
 }
 
 

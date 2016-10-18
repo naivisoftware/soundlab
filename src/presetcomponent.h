@@ -100,9 +100,12 @@ namespace nap
 		virtual void onUpdate() override;
 
 		// Settings
-		NumericAttribute<float> time  = { this, "Time", 1.0f, 0.25f, 60.0f };				//< Time it takes to switch to another preset
-		NumericAttribute<float> offset = { this, "RandomOffset", 0.0f, 0.0f, 1.0f };		//< Amount of random switch offset
-		
+		Attribute<bool>			fromPreset =	{ this, "UsePreset", true };
+		NumericAttribute<float> time  =			{ this, "Time", 1.0f, 0.25f, 60.0f };				//< Time it takes to switch to another preset
+		NumericAttribute<float> offset =		{ this, "Deviation", 0.0f, 0.0f, 1.0f };		//< Amount of random switch offset
+		NumericAttribute<float> scale =			{ this, "Scale", 1.0f, 0.0f, 2.0f };
+		NumericAttribute<float>	progress =		{ this, "Progress", 0.0f, 0.0f, 1.0f };
+
 		void reset();
 
 	private:
@@ -113,15 +116,18 @@ namespace nap
 		float mStartTime  = 0.0f;
 
 		// Reset Slot
-		NSLOT(mUpdateChanged, const bool&,  updateChanged)
-		NSLOT(mSpeedChanged,  const float&, speedChanged)
+		NSLOT(mUpdateChanged, const bool&, updateChanged)
+		NSLOT(mSpeedChanged, const float&, speedChanged)
 		NSLOT(mOffsetChanged, const float&, offsetChanged)
+		NSLOT(mScaleChanged, const float&, scaleChanged);
 		
 		void updateChanged(const bool& value);
-		void speedChanged(const float& value)	{ updateTargetTime(); }
+		void speedChanged(const float& value);
 		void offsetChanged(const float& value)	{ updateTargetTime(); }
+		void scaleChanged(const float& value)	{ updateTargetTime(); }
 
-
+		// Selects a new preset
+		void selectNewPreset(PresetComponent& presetComp);
 		
 		// Updates to a new target time
 		void updateTargetTime();

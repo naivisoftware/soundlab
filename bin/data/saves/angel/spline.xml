@@ -73,7 +73,7 @@
 		<Warmth>0.5</Warmth>
 		<Intensity>0.5</Intensity>
 	<PresetWeight>0.5</PresetWeight>
-		<PresetTime>0.5</PresetTime>
+		<PresetTime>40</PresetTime>
 	</Tag>
 <spline/>
 </spline>
