@@ -38,9 +38,10 @@ namespace nap
 
 		Preset(const std::string& directory);
 
-		std::string mFileName;		//< Directory holding the preset
-		std::string mPresetName;	//< Name of the preset
-		PresetParts mParts;			//< All the associated preset parts
+		std::string mFileName;				//< Directory holding the preset
+		std::string mPresetName;			//< Name of the preset
+		PresetParts mParts;					//< All the associated preset parts
+		float		mDuration = -1.0f;		//< Duration of the preset
 	};
 
 
@@ -75,6 +76,9 @@ namespace nap
 		ofDirectory mPresetDir;
 		std::vector<std::unique_ptr<Preset>>	mPresets;
 		nap::Preset*							mCurrentPreset = nullptr;
+
+		// Populate tag
+		void									populateTags(Preset& preset);
 
 		// Preset Name
 		NSLOT(mPresetChanged, const int&, presetChanged)

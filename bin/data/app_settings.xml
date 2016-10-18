@@ -3,3 +3,5 @@
 <GuiSpacing>25</GuiSpacing>
 <GuiFontSize>8</GuiFontSize>
 <GuiFont>Arial</GuiFont>
+<TagFile>spline</TagFile>
+<TagPath>Tag</TagPath>

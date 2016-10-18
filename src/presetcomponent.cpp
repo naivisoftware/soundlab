@@ -1,6 +1,8 @@
 #include <presetcomponent.h>
 #include <nap/logger.h>
 #include <Utils/nofUtils.h>
+#include <settings.h>
+#include <nap/stringutils.h>
 
 namespace nap
 {
@@ -58,7 +60,8 @@ namespace nap
 			}
 
 			// Add as a part
-			mParts.emplace_back(std::make_unique<PresetPart>(file.getAbsolutePath()));
+			std::unique_ptr<PresetPart> part_ptr = std::make_unique<PresetPart>(file.getAbsolutePath());
+			mParts.emplace_back(std::move(part_ptr));
 		}
 	}
 
@@ -148,6 +151,9 @@ namespace nap
 				current_preset_idx = preset_idx;
 			}
 
+			// populate preset part name
+			populateTags(*new_preset);
+
 			// Add an entry
 			mPresets.emplace_back(std::move(new_preset));
 			preset_idx++;
@@ -161,6 +167,69 @@ namespace nap
 		{
 			index.setValue(current_preset_idx);
 		}
+	}
+
+
+	/**
+	@brief Populates tag values in preset
+	**/
+	void PresetComponent::populateTags(Preset& preset)
+	{
+		// Find right part
+		std::string tag_file_name = gGetAppSetting<std::string>("TagFile", "spline");
+		const PresetPart* preset_part(nullptr);
+		for (const auto& part : preset.mParts)
+		{
+			if (part->mPartName == tag_file_name)
+			{
+				preset_part = part.get();
+				break;
+			}
+		}
+
+		// Make sure we have the part
+		if (preset_part == nullptr)
+		{
+			nap::Logger::warn(*this, "unable to fetch file: %s that contains tag information", tag_file_name.c_str());
+			return;
+		}
+
+		// Get root
+		const Poco::XML::Element* current_element = preset_part->mSerializer.getPocoElement();
+		if (current_element == nullptr)
+		{
+			nap::Logger::warn(*this, "tag file has no root element!");
+			return;
+		}
+
+		std::string tag_path = gGetAppSetting<std::string>("TagPath", "Tag");
+		std::vector<std::string> out_children;
+		gSplitString(tag_path, '/', out_children);
+
+		// Find child
+		const Poco::XML::Element* tag_element(nullptr);
+		for (const auto& child : out_children)
+		{
+			current_element = current_element->getChildElement(child);
+		}
+
+		// Make sure we have one
+		if (current_element == nullptr)
+		{
+			nap::Logger::warn("Unable to find tag element with path: %s", tag_path.c_str());
+			return;
+		}
+
+		// Fetch values
+		const Poco::XML::Element* time_element = current_element->getChildElement("PresetTime");
+		if (time_element == nullptr)
+		{
+			nap::Logger::warn(*this, "no preset time element found: %s", current_element->nodeName().c_str());
+			return;
+		}
+
+		float preset_time = std::atof(time_element->innerText().c_str());
+		preset.mDuration = preset_time;
 	}
 
 

@@ -372,9 +372,9 @@ void ofApp::createSpline()
 	warmth_attr.setClamped(true);
 
 	nap::NumericAttribute<float>& intensity_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("PresetTime");
-	intensity_attr.setRange(0.0f, 1.0f);
-	intensity_attr.setValue(0.5f);
-	intensity_attr.setClamped(true);
+	intensity_attr.setRange(0.0f, 60.0f);
+	intensity_attr.setValue(10.0f);
+	intensity_attr.setClamped(false);
 
 	// Set as entity to draw
 	nap::EtherDreamCamera* ether_cam = mLaserEntity->getComponent<nap::EtherDreamCamera>();
