@@ -366,12 +366,12 @@ void ofApp::createSpline()
 	nap::Entity& spline_e = mCore.addEntity("Splines");
 	mSplineEntity = &addSpline(spline_e, { 0.0f, 0.0f, 0.0f });
 
-	nap::NumericAttribute<float>& warmth_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("Warmth");
+	nap::NumericAttribute<float>& warmth_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("PresetWeight");
 	warmth_attr.setRange(0.0f, 1.0f);
 	warmth_attr.setValue(0.5f);
 	warmth_attr.setClamped(true);
 
-	nap::NumericAttribute<float>& intensity_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("Intensity");
+	nap::NumericAttribute<float>& intensity_attr = mSplineEntity->addChild<nap::NumericAttribute<float>>("PresetTime");
 	intensity_attr.setRange(0.0f, 1.0f);
 	intensity_attr.setValue(0.5f);
 	intensity_attr.setClamped(true);

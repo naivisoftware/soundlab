@@ -52,8 +52,6 @@ namespace nap
 		// Trigger if allowed
 		if (in_time_range && random_allowed && amp_allowed)
 		{
-			std::cout << "grain amp: %s" << params.amplitude << "\n";
-
 			mPreviousTriggerTime = current_time;
 			triggered(time, params, time_diff);
 		}

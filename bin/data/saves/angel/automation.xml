@@ -1,0 +1,78 @@
+<automation>
+	<RMSIntensity>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<FinalScale>1</FinalScale>
+		<Range>0.025, 0.3</Range>
+		<Damping>0.05</Damping>
+	</RMSIntensity>
+	<RMSScale>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0.025, 0.3</Range>
+		<DefaultValue>0.408163</DefaultValue>
+		<Scale>0.561224</Scale>
+		<Damping>0.147959</Damping>
+		<BlendMode>0</BlendMode>
+	</RMSScale>
+	<RMSRotate>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0.025, 0.0898324</Range>
+		<DefaultValue>0</DefaultValue>
+		<Scale>121.224</Scale>
+		<Damping>0.0408163</Damping>
+	</RMSRotate>
+	<GrainColor>
+		<Update>0</Update>
+		<Acceptance>0.484694</Acceptance>
+		<TimeCutoff>0</TimeCutoff>
+		<FrequencyChance>0</FrequencyChance>
+		<FrequencyDamp>0.168367</FrequencyDamp>
+		<OffsetChance>0.30102</OffsetChance>
+		<OffsetDamp>0.178571</OffsetDamp>
+		<FrequencyRange>1, 1.88463</FrequencyRange>
+	<AmpCutoff>0.005</AmpCutoff>
+		<OffsetDeviation>0.5</OffsetDeviation>
+	</GrainColor>
+	<GrainTrace>
+		<Update>1</Update>
+		<Acceptance>0.872449</Acceptance>
+		<TimeCutoff>0.0510204</TimeCutoff>
+		<OffsetChance>0</OffsetChance>
+		<OffsetDamp>0.0561224</OffsetDamp>
+		<SpeedChance>0.571429</SpeedChance>
+		<SpeedRange>0.0316536, 0.120158</SpeedRange>
+		<SpeedDamp>0.0204082</SpeedDamp>
+		<SizeChance>1</SizeChance>
+		<SizeRange>0.302374, 1</SizeRange>
+		<SizeDamp>0.0357143</SizeDamp>
+	<OffsetDeviation>0.0459184</OffsetDeviation>
+	<AmpCutoff>0.367347</AmpCutoff>
+	</GrainTrace>
+<automation/>
+<RMSLfo>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0, 0.152244</Range>
+		<DefaultValue>0</DefaultValue>
+		<Scale>10</Scale>
+		<Damping>0</Damping>
+	</RMSLfo>
+	<GrainLFO>
+		<Update>0</Update>
+		<Acceptance>1</Acceptance>
+		<TimeCutoff>0</TimeCutoff>
+		<AmpCutoff>0.0204082</AmpCutoff>
+		<OffsetChance>0.270408</OffsetChance>
+		<OffsetDamp>0.0459184</OffsetDamp>
+		<OffsetDeviation>0.104592</OffsetDeviation>
+		<SpeedChance>0</SpeedChance>
+		<SpeedRange>0.219075, 1</SpeedRange>
+		<SpeedDamp>0</SpeedDamp>
+	</GrainLFO>
+</automation>

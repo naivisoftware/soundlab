@@ -1,0 +1,78 @@
+<automation>
+	<RMSIntensity>
+		<Update>1</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<FinalScale>1</FinalScale>
+		<Range>0.140983, 0.18345</Range>
+		<Damping>0.0357143</Damping>
+	</RMSIntensity>
+	<RMSScale>
+		<Update>1</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0.135777, 0.219856</Range>
+		<DefaultValue>1</DefaultValue>
+		<Scale>0.420918</Scale>
+		<Damping>0</Damping>
+		<BlendMode>0</BlendMode>
+	</RMSScale>
+	<RMSRotate>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0.025, 0.3</Range>
+		<DefaultValue>0</DefaultValue>
+		<Scale>1</Scale>
+		<Damping>0.05</Damping>
+	</RMSRotate>
+	<RMSLfo>
+		<Update>0</Update>
+		<Invert>0</Invert>
+		<Influence>1</Influence>
+		<Range>0.025, 0.3</Range>
+		<DefaultValue>0</DefaultValue>
+		<Scale>1</Scale>
+		<Damping>0.05</Damping>
+	</RMSLfo>
+	<GrainColor>
+		<Update>1</Update>
+		<Acceptance>0.326531</Acceptance>
+		<TimeCutoff>0</TimeCutoff>
+		<AmpCutoff>0.005</AmpCutoff>
+		<FrequencyChance>1</FrequencyChance>
+		<FrequencyDamp>0.025</FrequencyDamp>
+		<OffsetChance>0</OffsetChance>
+		<OffsetDamp>0.025</OffsetDamp>
+		<OffsetDeviation>0.5</OffsetDeviation>
+		<FrequencyRange>1, 8.88172</FrequencyRange>
+	</GrainColor>
+	<GrainTrace>
+		<Update>1</Update>
+		<Acceptance>0.122449</Acceptance>
+		<TimeCutoff>0</TimeCutoff>
+		<AmpCutoff>0.005</AmpCutoff>
+		<OffsetChance>1</OffsetChance>
+		<OffsetDamp>0</OffsetDamp>
+		<OffsetDeviation>0.0765306</OffsetDeviation>
+		<SpeedChance>1</SpeedChance>
+		<SpeedRange>0.140983, 0.406497</SpeedRange>
+		<SpeedDamp>0</SpeedDamp>
+		<SizeChance>1</SizeChance>
+		<SizeRange>0.0628905, 0.463765</SizeRange>
+		<SizeDamp>0</SizeDamp>
+	</GrainTrace>
+	<GrainLFO>
+		<Update>1</Update>
+		<Acceptance>0.75</Acceptance>
+		<TimeCutoff>0.0306122</TimeCutoff>
+		<AmpCutoff>0.005</AmpCutoff>
+		<OffsetChance>1</OffsetChance>
+		<OffsetDamp>0</OffsetDamp>
+		<OffsetDeviation>0.5</OffsetDeviation>
+		<SpeedChance>1</SpeedChance>
+		<SpeedRange>0, 1</SpeedRange>
+		<SpeedDamp>0</SpeedDamp>
+	</GrainLFO>
+<automation/>
+</automation>

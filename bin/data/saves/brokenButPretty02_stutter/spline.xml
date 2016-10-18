@@ -1,0 +1,79 @@
+<spline>
+	<Color>
+		<Update>1</Update>
+		<Stepped>1</Stepped>
+		<Looping>1</Looping>
+		<CycleSpeed>0</CycleSpeed>
+		<Offset>0.56777</Offset>
+		<Intensity>1</Intensity>
+		<Frequency>6.05102</Frequency>
+		<PulseWidth>0.556122</PulseWidth>
+		<Power>1</Power>
+		<ColorOne>0, 0, 1, 1</ColorOne>
+		<ColorTwo>0, 1, 1, 1</ColorTwo>
+	</Color>
+	<Xform>
+		<Translation>0, 0, 0</Translation>
+		<Rotation>18473.9, 15815.3, 19973.4</Rotation>
+		<Scale>2.00292, 2.00292, 2.00292</Scale>
+		<Pivot>0, 0, 0</Pivot>
+		<UniformScale>0.530452</UniformScale>
+	</Xform>
+	<AnimateRotation>
+		<Update>1</Update>
+		<Reset>0</Reset>
+		<SpeedX>0.244898</SpeedX>
+		<SpeedY>0.158163</SpeedY>
+		<SpeedZ>0.30102</SpeedZ>
+		<Speed>91.8704</Speed>
+	</AnimateRotation>
+	<AnimateScale>
+		<Update>0</Update>
+		<Reset>0</Reset>
+		<Instant>0</Instant>
+		<Speed>0.5</Speed>
+		<Influence>1</Influence>
+		<Range>1</Range>
+		<BlendMode>0</BlendMode>
+	</AnimateScale>
+	<Tracer>
+		<EnableTracer>1</EnableTracer>
+		<Draw>1</Draw>
+		<BlendAlpha>0</BlendAlpha>
+		<Speed>0.0816327</Speed>
+		<Size>0.668367</Size>
+		<PointCount>500</PointCount>
+		<DrawDot>1</DrawDot>
+		<Offset>0.397447</Offset>
+		<LineWidth>1</LineWidth>
+	</Tracer>
+	<LFO>
+		<Update>1</Update>
+		<Frequency>13.6276</Frequency>
+		<Speed>0.504764</Speed>
+		<Offset>0.0283605</Offset>
+		<Amplitude>4.59313</Amplitude>
+		<LfoIndex>0</LfoIndex>
+	</LFO>
+	<Selection>
+		<AutoUpdate>0</AutoUpdate>
+		<Size>200</Size>
+		<PointCount>500</PointCount>
+		<Index>0</Index>
+	</Selection>
+	<Spline_File>
+		<AutoUpdate>1</AutoUpdate>
+		<Reload>0</Reload>
+		<Browse>0</Browse>
+		<File>svg\cross_two.svg</File>
+		<Size>1</Size>
+		<PointCount>500</PointCount>
+	</Spline_File>
+	<Tag>
+		<Warmth>0.5</Warmth>
+		<Intensity>0.5</Intensity>
+	<PresetWeight>0.5</PresetWeight>
+		<PresetTime>0.5</PresetTime>
+	</Tag>
+<spline/>
+</spline>
