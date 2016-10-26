@@ -4,9 +4,9 @@
 		<Stepped>0</Stepped>
 		<Looping>1</Looping>
 		<CycleSpeed>0</CycleSpeed>
-		<Offset>0.742168</Offset>
+		<Offset>0.925365</Offset>
 		<Intensity>1</Intensity>
-		<Frequency>1.93993</Frequency>
+		<Frequency>2.41626</Frequency>
 		<PulseWidth>0.556122</PulseWidth>
 		<Power>1</Power>
 		<ColorOne>0, 0, 1, 1</ColorOne>
@@ -14,7 +14,7 @@
 	</Color>
 	<Xform>
 		<Translation>0, 0, 0</Translation>
-		<Rotation>229.201, 229.201, 229.201</Rotation>
+		<Rotation>109.55, 109.55, 109.55</Rotation>
 		<Scale>2, 2, 2</Scale>
 		<Pivot>0, 0, 0</Pivot>
 		<UniformScale>1</UniformScale>
@@ -25,7 +25,7 @@
 		<SpeedX>1</SpeedX>
 		<SpeedY>1</SpeedY>
 		<SpeedZ>1</SpeedZ>
-		<Speed>2.26431</Speed>
+		<Speed>5.26849</Speed>
 	</AnimateRotation>
 	<AnimateScale>
 		<Update>1</Update>
@@ -40,11 +40,11 @@
 		<EnableTracer>1</EnableTracer>
 		<Draw>1</Draw>
 		<BlendAlpha>0</BlendAlpha>
-		<Speed>0.0251791</Speed>
-		<Size>0.0300265</Size>
+		<Speed>0.0120241</Speed>
+		<Size>0.00822802</Size>
 		<PointCount>500</PointCount>
 		<DrawDot>1</DrawDot>
-		<Offset>0.642881</Offset>
+		<Offset>0.652442</Offset>
 		<LineWidth>1</LineWidth>
 	</Tracer>
 	<LFO>
@@ -52,7 +52,7 @@
 		<Frequency>77.0408</Frequency>
 		<Speed>0</Speed>
 		<Offset>0</Offset>
-		<Amplitude>2.39372</Amplitude>
+		<Amplitude>3.63359</Amplitude>
 		<LfoIndex>0</LfoIndex>
 	</LFO>
 	<Selection>

@@ -64,6 +64,7 @@ public:
 	nap::Entity*						getSpline()				{ return mSplineEntity; }
 	nap::EtherDreamService*				getLaserService()		{ return mLaserService; }
 	AudioComposition*					getAudioComposition()	{ return audioComposition.get(); }
+	lib::audio::AudioService* getAudioService() { return audioService; }
 	nap::Entity*						getSession()			{ return mSessionEntity; }
 	nap::Preset*						getCurrentPreset()		{ return mCurrentPreset; }
 	nap::Entity*						getAutomation()			{ return mAutomationEntity; }

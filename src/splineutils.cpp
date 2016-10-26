@@ -64,8 +64,8 @@ nap::Entity& addSpline(nap::Entity& parent, const ofVec3f& worldPos)
 	file_component.mFile.setValue("svg/whirl.svg");
 
 	// Set colors
-	col_component.mColorOne.setValue(ofFloatColor(0.0f, 1.0f, 0.682f, 1.0f));
-	col_component.mColorTwo.setValue(ofFloatColor(1.0f, 0.0f, 0.0f, 1.0f));
+	col_component.mColorOne.setValue(ofFloatColor(0.0f, 0.0f, 1.0f, 1.0f));
+	col_component.mColorTwo.setValue(ofFloatColor(0.0f, 1.0f, 1.0f, 1.0f));
 
 	col_component.update();
 	col_component.mEnableUpdates.setValue(true);

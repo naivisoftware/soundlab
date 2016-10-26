@@ -10,7 +10,7 @@
 		<sequence2>2</sequence2>
 		<input_audio2>3</input_audio2>
 		<density__>0.505102</density__>
-		<position>0.164727</position>
+		<position>0.17073</position>
 		<amplitude__>0.438776</amplitude__>
 		<amplitudeDev>0.0357143</amplitudeDev>
 		<grainSize__>0.755102</grainSize__>
@@ -48,7 +48,7 @@
 		<attack>193.878</attack>
 		<release>663.265</release>
 		<damping__>0.193878</damping__>
-		<feedback__>0.918367</feedback__>
+		<feedback__>0.959184</feedback__>
 		<detune__>0.2</detune__>
 		<polarity>0</polarity>
 	</resonator>

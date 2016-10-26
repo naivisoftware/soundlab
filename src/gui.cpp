@@ -67,7 +67,11 @@ void Gui::Setup()
 
 	// Populate parameters for laser service
 	mLaserServiceParameters.setName("LaserService");
-	mLaserServiceParameters.addObject(*(mApp.getLaserService()));
+	mLaserServiceParameters.addAttribute(mApp.getLaserService()->mFlipX);
+	mLaserServiceParameters.addAttribute(mApp.getLaserService()->mFlipY);
+	mLaserServiceParameters.addAttribute(mApp.getLaserService()->mCloseCount);
+	mLaserServiceParameters.addAttribute(mApp.getLaserService()->mMinPointCount);
+	mLaserServiceParameters.addAttribute(mApp.getLaserService()->mMaxPointCount);
 
 	// Setup laser cam
 	mLaserCamParameters.setName("LaserCamera");
@@ -86,6 +90,8 @@ void Gui::Setup()
 	// Setup session parameters
 	mSessionParameters.setName("Session");
 	mSessionParameters.addObject(*mApp.getSession());
+	mSessionParameters.addAttribute(mApp.getAudioService()->master);
+	mSessionParameters.addAttribute(mApp.getLaserService()->mSend);
 
 	mPresetParameters.setName("PresetSelection");
 	mPresetParameters.addObject(*mApp.getSession()->getComponent<nap::PresetComponent>());
