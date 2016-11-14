@@ -60,10 +60,7 @@
 		D22868C21D95769500682676 /* AudioFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A31D95769500682676 /* AudioFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C31D95769500682676 /* MathFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A51D95769500682676 /* MathFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C41D95769500682676 /* UtilityFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868A81D95769500682676 /* UtilityFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22868C51D95769500682676 /* OscComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868AB1D95769500682676 /* OscComponent.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22868C61D95769500682676 /* OscService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868AD1D95769500682676 /* OscService.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22868C71D95769500682676 /* Scheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868B01D95769500682676 /* Scheduler.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22868C81D95769500682676 /* OFControlPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868B71D95769500682676 /* OFControlPanel.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869161D9576AE00682676 /* AudioObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868CE1D9576AE00682676 /* AudioObject.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869171D9576AE00682676 /* AudioObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868D01D9576AE00682676 /* AudioObjectManager.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869181D9576AE00682676 /* Butterworth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868D21D9576AE00682676 /* Butterworth.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -80,7 +77,6 @@
 		D22869231D9576AE00682676 /* MixObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868E91D9576AE00682676 /* MixObject.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869241D9576AE00682676 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868EB1D9576AE00682676 /* Oscillator.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869251D9576AE00682676 /* StreamPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868ED1D9576AE00682676 /* StreamPlayer.cpp */; settings = {ASSET_TAGS = (); }; };
-		D22869261D9576AE00682676 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868F11D9576AE00682676 /* AudioDevice.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869271D9576AE00682676 /* AudioPlug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868F31D9576AE00682676 /* AudioPlug.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869281D9576AE00682676 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868F51D9576AE00682676 /* Effect.cpp */; settings = {ASSET_TAGS = (); }; };
 		D22869291D9576AE00682676 /* GrainCloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D22868F81D9576AE00682676 /* GrainCloud.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -133,17 +129,7 @@
 		D2430EDC1DB38F3A00BE4FFE /* settingserializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430ED91DB38F3A00BE4FFE /* settingserializer.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2430EDF1DB4E38F00BE4FFE /* SchedulerService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430EDD1DB4E38F00BE4FFE /* SchedulerService.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2430EE61DB50D0700BE4FFE /* ampcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2430EE41DB50D0700BE4FFE /* ampcomponent.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DADF1DB0D58D005EE74F /* Common.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE11DB0D58D005EE74F /* Plane.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB111DB0D58D005EE74F /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE31DB0D58D005EE74F /* Source.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB121DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB131DB0D58D005EE74F /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DAE71DB0D58D005EE74F /* Utilities.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB1F1DB0D58D005EE74F /* SpatialGranulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB221DB0D58D005EE74F /* SpatialPanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB231DB0D58D005EE74F /* SpatialService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB091DB0D58D005EE74F /* SpatialService.cpp */; settings = {ASSET_TAGS = (); }; };
-		D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB0D1DB0D58D005EE74F /* Transform.cpp */; settings = {ASSET_TAGS = (); }; };
 		D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D251DB261DB0E5B0005EE74F /* Panner.cpp */; settings = {ASSET_TAGS = (); }; };
-		D25CD4B51DB24CFF00E713F8 /* SpeakerGridComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25CD4B91DB25E4300E713F8 /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25CD4B71DB25E4300E713F8 /* gui.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D25F02F21D9AB126003AB96B /* AudioBufferStream.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -165,7 +151,33 @@
 		D28BE2FB1DA25141001E1ACB /* jsoncomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D28BE2F91DA25141001E1ACB /* jsoncomponent.cpp */; settings = {ASSET_TAGS = (); }; };
 		D28BE3001DA29183001E1ACB /* AudioFileService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D28BE2FE1DA29183001E1ACB /* AudioFileService.cpp */; settings = {ASSET_TAGS = (); }; };
 		D2B002AE1DA37F0400E4DECE /* arrayattribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B002AC1DA37F0400E4DECE /* arrayattribute.cpp */; settings = {ASSET_TAGS = (); }; };
-		D2D9E3C81DB128DB00727A32 /* SpatialGrainVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B187901DD9FA480078C96F /* AudioService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1878E1DD9FA480078C96F /* AudioService.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B187941DDA01C20078C96F /* grainmodcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B187911DDA01C20078C96F /* grainmodcomponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B187981DDA086B0078C96F /* coreattributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B187961DDA086B0078C96F /* coreattributes.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886A1DDA3A140078C96F /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188351DDA3A140078C96F /* Common.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886B1DDA3A140078C96F /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188371DDA3A140078C96F /* Plane.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886C1DDA3A140078C96F /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188391DDA3A140078C96F /* Source.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886D1DDA3A140078C96F /* SpeakerGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1883B1DDA3A140078C96F /* SpeakerGrid.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886E1DDA3A140078C96F /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1883D1DDA3A140078C96F /* Utilities.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1886F1DDA3A140078C96F /* AngleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188411DDA3A140078C96F /* AngleFilter.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188701DDA3A140078C96F /* AngleFilterObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188431DDA3A140078C96F /* AngleFilterObject.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188711DDA3A140078C96F /* DistanceDamping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188451DDA3A140078C96F /* DistanceDamping.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188721DDA3A140078C96F /* DistanceIntensity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188471DDA3A140078C96F /* DistanceIntensity.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188731DDA3A140078C96F /* Doppler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188491DDA3A140078C96F /* Doppler.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188741DDA3A140078C96F /* ElevationFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1884B1DDA3A140078C96F /* ElevationFilter.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188751DDA3A140078C96F /* DistanceDiffusion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1884D1DDA3A140078C96F /* DistanceDiffusion.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188761DDA3A140078C96F /* SpatialDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1884F1DDA3A140078C96F /* SpatialDelay.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188771DDA3A140078C96F /* SpatialDistanceModulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188511DDA3A140078C96F /* SpatialDistanceModulator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188781DDA3A140078C96F /* SpatialFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188531DDA3A140078C96F /* SpatialFunctions.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188791DDA3A140078C96F /* SpatialGain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188551DDA3A140078C96F /* SpatialGain.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887A1DDA3A140078C96F /* SpatialGrainVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188571DDA3A140078C96F /* SpatialGrainVoice.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887B1DDA3A140078C96F /* SpatialGranulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188591DDA3A140078C96F /* SpatialGranulator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887C1DDA3A140078C96F /* SpatialModulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1885B1DDA3A140078C96F /* SpatialModulator.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887D1DDA3A140078C96F /* SpatialOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1885D1DDA3A140078C96F /* SpatialOutput.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887E1DDA3A140078C96F /* SpatialPanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B1885F1DDA3A140078C96F /* SpatialPanner.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B1887F1DDA3A140078C96F /* SpatialService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188611DDA3A140078C96F /* SpatialService.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188801DDA3A140078C96F /* SpeakerGridComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188631DDA3A140078C96F /* SpeakerGridComponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D2B188811DDA3A140078C96F /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2B188651DDA3A140078C96F /* Transform.cpp */; settings = {ASSET_TAGS = (); }; };
 		D308EC8C4D9F6BBE7EC32541 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B07A19DF7BDE6B4259735412 /* ofxButton.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -323,16 +335,10 @@
 		D22868A71D95769500682676 /* SSEFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEFunctions.h; sourceTree = "<group>"; };
 		D22868A81D95769500682676 /* UtilityFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UtilityFunctions.cpp; sourceTree = "<group>"; };
 		D22868A91D95769500682676 /* UtilityFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityFunctions.h; sourceTree = "<group>"; };
-		D22868AB1D95769500682676 /* OscComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscComponent.cpp; sourceTree = "<group>"; };
-		D22868AC1D95769500682676 /* OscComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscComponent.h; sourceTree = "<group>"; };
-		D22868AD1D95769500682676 /* OscService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscService.cpp; sourceTree = "<group>"; };
-		D22868AE1D95769500682676 /* OscService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscService.h; sourceTree = "<group>"; };
 		D22868B01D95769500682676 /* Scheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scheduler.cpp; sourceTree = "<group>"; };
 		D22868B11D95769500682676 /* Scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scheduler.h; sourceTree = "<group>"; };
 		D22868B31D95769500682676 /* AsyncObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncObserver.h; sourceTree = "<group>"; };
 		D22868B41D95769500682676 /* ThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPool.h; sourceTree = "<group>"; };
-		D22868B71D95769500682676 /* OFControlPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OFControlPanel.cpp; sourceTree = "<group>"; };
-		D22868B81D95769500682676 /* OFControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFControlPanel.h; sourceTree = "<group>"; };
 		D22868CA1D9576AE00682676 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		D22868CE1D9576AE00682676 /* AudioObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioObject.cpp; sourceTree = "<group>"; };
 		D22868CF1D9576AE00682676 /* AudioObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioObject.h; sourceTree = "<group>"; };
@@ -368,8 +374,6 @@
 		D22868ED1D9576AE00682676 /* StreamPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamPlayer.cpp; sourceTree = "<group>"; };
 		D22868EE1D9576AE00682676 /* StreamPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamPlayer.h; sourceTree = "<group>"; };
 		D22868EF1D9576AE00682676 /* ValueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueObject.h; sourceTree = "<group>"; };
-		D22868F11D9576AE00682676 /* AudioDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioDevice.cpp; sourceTree = "<group>"; };
-		D22868F21D9576AE00682676 /* AudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDevice.h; sourceTree = "<group>"; };
 		D22868F31D9576AE00682676 /* AudioPlug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioPlug.cpp; sourceTree = "<group>"; };
 		D22868F41D9576AE00682676 /* AudioPlug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlug.h; sourceTree = "<group>"; };
 		D22868F51D9576AE00682676 /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Effect.cpp; sourceTree = "<group>"; };
@@ -478,28 +482,8 @@
 		D2430EDE1DB4E38F00BE4FFE /* SchedulerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulerService.h; sourceTree = "<group>"; };
 		D2430EE41DB50D0700BE4FFE /* ampcomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ampcomponent.cpp; sourceTree = "<group>"; };
 		D2430EE51DB50D0700BE4FFE /* ampcomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ampcomponent.h; sourceTree = "<group>"; };
-		D251DADF1DB0D58D005EE74F /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
-		D251DAE01DB0D58D005EE74F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		D251DAE11DB0D58D005EE74F /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
-		D251DAE21DB0D58D005EE74F /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
-		D251DAE31DB0D58D005EE74F /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Source.cpp; sourceTree = "<group>"; };
-		D251DAE41DB0D58D005EE74F /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
-		D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGrid.cpp; sourceTree = "<group>"; };
-		D251DAE61DB0D58D005EE74F /* SpeakerGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGrid.h; sourceTree = "<group>"; };
-		D251DAE71DB0D58D005EE74F /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
-		D251DAE81DB0D58D005EE74F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGranulator.cpp; sourceTree = "<group>"; };
-		D251DB021DB0D58D005EE74F /* SpatialGranulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGranulator.h; sourceTree = "<group>"; };
-		D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialPanner.cpp; sourceTree = "<group>"; };
-		D251DB081DB0D58D005EE74F /* SpatialPanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialPanner.h; sourceTree = "<group>"; };
-		D251DB091DB0D58D005EE74F /* SpatialService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialService.cpp; sourceTree = "<group>"; };
-		D251DB0A1DB0D58D005EE74F /* SpatialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialService.h; sourceTree = "<group>"; };
-		D251DB0D1DB0D58D005EE74F /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
-		D251DB0E1DB0D58D005EE74F /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		D251DB261DB0E5B0005EE74F /* Panner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Panner.cpp; sourceTree = "<group>"; };
 		D251DB271DB0E5B0005EE74F /* Panner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Panner.h; sourceTree = "<group>"; };
-		D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGridComponent.cpp; sourceTree = "<group>"; };
-		D25CD4B41DB24CFF00E713F8 /* SpeakerGridComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGridComponent.h; sourceTree = "<group>"; };
 		D25CD4B71DB25E4300E713F8 /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gui.cpp; sourceTree = "<group>"; };
 		D25CD4B81DB25E4300E713F8 /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
 		D25F02EF1D9AAF4A003AB96B /* AudioFileComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioFileComponent.cpp; sourceTree = "<group>"; };
@@ -540,8 +524,60 @@
 		D28BE2FF1DA29183001E1ACB /* AudioFileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileService.h; sourceTree = "<group>"; };
 		D2B002AC1DA37F0400E4DECE /* arrayattribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrayattribute.cpp; sourceTree = "<group>"; };
 		D2B002AD1DA37F0400E4DECE /* arrayattribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrayattribute.h; sourceTree = "<group>"; };
-		D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGrainVoice.cpp; sourceTree = "<group>"; };
-		D2D9E3C71DB128DB00727A32 /* SpatialGrainVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGrainVoice.h; sourceTree = "<group>"; };
+		D2B1878E1DD9FA480078C96F /* AudioService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioService.cpp; sourceTree = "<group>"; };
+		D2B1878F1DD9FA480078C96F /* AudioService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioService.h; sourceTree = "<group>"; };
+		D2B187911DDA01C20078C96F /* grainmodcomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grainmodcomponent.cpp; sourceTree = "<group>"; };
+		D2B187921DDA01C20078C96F /* grainmodcomponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grainmodcomponent.h; sourceTree = "<group>"; };
+		D2B187961DDA086B0078C96F /* coreattributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coreattributes.cpp; sourceTree = "<group>"; };
+		D2B187971DDA086B0078C96F /* coreattributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coreattributes.h; sourceTree = "<group>"; };
+		D2B188351DDA3A140078C96F /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
+		D2B188361DDA3A140078C96F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		D2B188371DDA3A140078C96F /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		D2B188381DDA3A140078C96F /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		D2B188391DDA3A140078C96F /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Source.cpp; sourceTree = "<group>"; };
+		D2B1883A1DDA3A140078C96F /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
+		D2B1883B1DDA3A140078C96F /* SpeakerGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGrid.cpp; sourceTree = "<group>"; };
+		D2B1883C1DDA3A140078C96F /* SpeakerGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGrid.h; sourceTree = "<group>"; };
+		D2B1883D1DDA3A140078C96F /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
+		D2B1883E1DDA3A140078C96F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		D2B188411DDA3A140078C96F /* AngleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AngleFilter.cpp; sourceTree = "<group>"; };
+		D2B188421DDA3A140078C96F /* AngleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngleFilter.h; sourceTree = "<group>"; };
+		D2B188431DDA3A140078C96F /* AngleFilterObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AngleFilterObject.cpp; sourceTree = "<group>"; };
+		D2B188441DDA3A140078C96F /* AngleFilterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngleFilterObject.h; sourceTree = "<group>"; };
+		D2B188451DDA3A140078C96F /* DistanceDamping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceDamping.cpp; sourceTree = "<group>"; };
+		D2B188461DDA3A140078C96F /* DistanceDamping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceDamping.h; sourceTree = "<group>"; };
+		D2B188471DDA3A140078C96F /* DistanceIntensity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceIntensity.cpp; sourceTree = "<group>"; };
+		D2B188481DDA3A140078C96F /* DistanceIntensity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceIntensity.h; sourceTree = "<group>"; };
+		D2B188491DDA3A140078C96F /* Doppler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Doppler.cpp; sourceTree = "<group>"; };
+		D2B1884A1DDA3A140078C96F /* Doppler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Doppler.h; sourceTree = "<group>"; };
+		D2B1884B1DDA3A140078C96F /* ElevationFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElevationFilter.cpp; sourceTree = "<group>"; };
+		D2B1884C1DDA3A140078C96F /* ElevationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElevationFilter.h; sourceTree = "<group>"; };
+		D2B1884D1DDA3A140078C96F /* DistanceDiffusion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceDiffusion.cpp; sourceTree = "<group>"; };
+		D2B1884E1DDA3A140078C96F /* DistanceDiffusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceDiffusion.h; sourceTree = "<group>"; };
+		D2B1884F1DDA3A140078C96F /* SpatialDelay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialDelay.cpp; sourceTree = "<group>"; };
+		D2B188501DDA3A140078C96F /* SpatialDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialDelay.h; sourceTree = "<group>"; };
+		D2B188511DDA3A140078C96F /* SpatialDistanceModulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialDistanceModulator.cpp; sourceTree = "<group>"; };
+		D2B188521DDA3A140078C96F /* SpatialDistanceModulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialDistanceModulator.h; sourceTree = "<group>"; };
+		D2B188531DDA3A140078C96F /* SpatialFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialFunctions.cpp; sourceTree = "<group>"; };
+		D2B188541DDA3A140078C96F /* SpatialFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialFunctions.h; sourceTree = "<group>"; };
+		D2B188551DDA3A140078C96F /* SpatialGain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGain.cpp; sourceTree = "<group>"; };
+		D2B188561DDA3A140078C96F /* SpatialGain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGain.h; sourceTree = "<group>"; };
+		D2B188571DDA3A140078C96F /* SpatialGrainVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGrainVoice.cpp; sourceTree = "<group>"; };
+		D2B188581DDA3A140078C96F /* SpatialGrainVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGrainVoice.h; sourceTree = "<group>"; };
+		D2B188591DDA3A140078C96F /* SpatialGranulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialGranulator.cpp; sourceTree = "<group>"; };
+		D2B1885A1DDA3A140078C96F /* SpatialGranulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialGranulator.h; sourceTree = "<group>"; };
+		D2B1885B1DDA3A140078C96F /* SpatialModulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialModulator.cpp; sourceTree = "<group>"; };
+		D2B1885C1DDA3A140078C96F /* SpatialModulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialModulator.h; sourceTree = "<group>"; };
+		D2B1885D1DDA3A140078C96F /* SpatialOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialOutput.cpp; sourceTree = "<group>"; };
+		D2B1885E1DDA3A140078C96F /* SpatialOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialOutput.h; sourceTree = "<group>"; };
+		D2B1885F1DDA3A140078C96F /* SpatialPanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialPanner.cpp; sourceTree = "<group>"; };
+		D2B188601DDA3A140078C96F /* SpatialPanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialPanner.h; sourceTree = "<group>"; };
+		D2B188611DDA3A140078C96F /* SpatialService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialService.cpp; sourceTree = "<group>"; };
+		D2B188621DDA3A140078C96F /* SpatialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialService.h; sourceTree = "<group>"; };
+		D2B188631DDA3A140078C96F /* SpeakerGridComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpeakerGridComponent.cpp; sourceTree = "<group>"; };
+		D2B188641DDA3A140078C96F /* SpeakerGridComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerGridComponent.h; sourceTree = "<group>"; };
+		D2B188651DDA3A140078C96F /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		D2B188661DDA3A140078C96F /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		D6AF0D0C4554CAF37CD4251C /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		DAA91A6C2A981A23466EA81A /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../of_v0.9.3_osx_release/addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../of_v0.9.3_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -634,6 +670,8 @@
 		D228680F1D95767C00682676 /* nap */ = {
 			isa = PBXGroup;
 			children = (
+				D2B187961DDA086B0078C96F /* coreattributes.cpp */,
+				D2B187971DDA086B0078C96F /* coreattributes.h */,
 				D2B002AC1DA37F0400E4DECE /* arrayattribute.cpp */,
 				D2B002AD1DA37F0400E4DECE /* arrayattribute.h */,
 				D22868101D95767C00682676 /* attribute.cpp */,
@@ -745,7 +783,6 @@
 			children = (
 				D22868831D95769500682676 /* CMakeLists.txt */,
 				D228688D1D95769500682676 /* Lib */,
-				D22868B51D95769500682676 /* openFrameworks */,
 			);
 			name = stijnlibutility;
 			path = ../nap/stijnlibutility;
@@ -765,7 +802,6 @@
 				D228688F1D95769500682676 /* Control */,
 				D22868961D95769500682676 /* Data */,
 				D22868A21D95769500682676 /* Functions */,
-				D22868AA1D95769500682676 /* Osc */,
 				D22868AF1D95769500682676 /* Scheduler */,
 				D22868B21D95769500682676 /* Threading */,
 			);
@@ -817,17 +853,6 @@
 			path = Functions;
 			sourceTree = "<group>";
 		};
-		D22868AA1D95769500682676 /* Osc */ = {
-			isa = PBXGroup;
-			children = (
-				D22868AB1D95769500682676 /* OscComponent.cpp */,
-				D22868AC1D95769500682676 /* OscComponent.h */,
-				D22868AD1D95769500682676 /* OscService.cpp */,
-				D22868AE1D95769500682676 /* OscService.h */,
-			);
-			path = Osc;
-			sourceTree = "<group>";
-		};
 		D22868AF1D95769500682676 /* Scheduler */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,23 +871,6 @@
 				D22868B41D95769500682676 /* ThreadPool.h */,
 			);
 			path = Threading;
-			sourceTree = "<group>";
-		};
-		D22868B51D95769500682676 /* openFrameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D22868B61D95769500682676 /* Gui */,
-			);
-			path = openFrameworks;
-			sourceTree = "<group>";
-		};
-		D22868B61D95769500682676 /* Gui */ = {
-			isa = PBXGroup;
-			children = (
-				D22868B71D95769500682676 /* OFControlPanel.cpp */,
-				D22868B81D95769500682676 /* OFControlPanel.h */,
-			);
-			path = Gui;
 			sourceTree = "<group>";
 		};
 		D22868C91D9576AE00682676 /* stijnlibaudio */ = {
@@ -939,9 +947,9 @@
 		D22868F01D9576AE00682676 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				D2B1878E1DD9FA480078C96F /* AudioService.cpp */,
+				D2B1878F1DD9FA480078C96F /* AudioService.h */,
 				D242C5101D9E8CEB00B6546C /* Resonator */,
-				D22868F11D9576AE00682676 /* AudioDevice.cpp */,
-				D22868F21D9576AE00682676 /* AudioDevice.h */,
 				D22868F31D9576AE00682676 /* AudioPlug.cpp */,
 				D22868F41D9576AE00682676 /* AudioPlug.h */,
 				D22868F51D9576AE00682676 /* Effect.cpp */,
@@ -1149,44 +1157,6 @@
 			path = Resonator;
 			sourceTree = "<group>";
 		};
-		D251DADE1DB0D58D005EE74F /* 4d */ = {
-			isa = PBXGroup;
-			children = (
-				D251DADF1DB0D58D005EE74F /* Common.cpp */,
-				D251DAE01DB0D58D005EE74F /* Common.h */,
-				D251DAE11DB0D58D005EE74F /* Plane.cpp */,
-				D251DAE21DB0D58D005EE74F /* Plane.h */,
-				D251DAE31DB0D58D005EE74F /* Source.cpp */,
-				D251DAE41DB0D58D005EE74F /* Source.h */,
-				D251DAE51DB0D58D005EE74F /* SpeakerGrid.cpp */,
-				D251DAE61DB0D58D005EE74F /* SpeakerGrid.h */,
-				D251DAE71DB0D58D005EE74F /* Utilities.cpp */,
-				D251DAE81DB0D58D005EE74F /* Utilities.h */,
-			);
-			name = 4d;
-			path = ../nap/4dsound/4d;
-			sourceTree = "<group>";
-		};
-		D251DAE91DB0D58D005EE74F /* 4dService */ = {
-			isa = PBXGroup;
-			children = (
-				D25CD4B31DB24CFF00E713F8 /* SpeakerGridComponent.cpp */,
-				D25CD4B41DB24CFF00E713F8 /* SpeakerGridComponent.h */,
-				D251DB011DB0D58D005EE74F /* SpatialGranulator.cpp */,
-				D251DB021DB0D58D005EE74F /* SpatialGranulator.h */,
-				D251DB071DB0D58D005EE74F /* SpatialPanner.cpp */,
-				D251DB081DB0D58D005EE74F /* SpatialPanner.h */,
-				D251DB091DB0D58D005EE74F /* SpatialService.cpp */,
-				D251DB0A1DB0D58D005EE74F /* SpatialService.h */,
-				D251DB0D1DB0D58D005EE74F /* Transform.cpp */,
-				D251DB0E1DB0D58D005EE74F /* Transform.h */,
-				D2D9E3C61DB128DB00727A32 /* SpatialGrainVoice.cpp */,
-				D2D9E3C71DB128DB00727A32 /* SpatialGrainVoice.h */,
-			);
-			name = 4dService;
-			path = ../nap/4dsound/4dService;
-			sourceTree = "<group>";
-		};
 		D260252D1D957CED0012AAD0 /* napgui */ = {
 			isa = PBXGroup;
 			children = (
@@ -1259,6 +1229,86 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		D2B188331DDA3A140078C96F /* 4dsound */ = {
+			isa = PBXGroup;
+			children = (
+				D2B188341DDA3A140078C96F /* 4d */,
+				D2B1883F1DDA3A140078C96F /* 4dService */,
+			);
+			name = 4dsound;
+			path = ../4dsound/4dsound;
+			sourceTree = "<group>";
+		};
+		D2B188341DDA3A140078C96F /* 4d */ = {
+			isa = PBXGroup;
+			children = (
+				D2B188351DDA3A140078C96F /* Common.cpp */,
+				D2B188361DDA3A140078C96F /* Common.h */,
+				D2B188371DDA3A140078C96F /* Plane.cpp */,
+				D2B188381DDA3A140078C96F /* Plane.h */,
+				D2B188391DDA3A140078C96F /* Source.cpp */,
+				D2B1883A1DDA3A140078C96F /* Source.h */,
+				D2B1883B1DDA3A140078C96F /* SpeakerGrid.cpp */,
+				D2B1883C1DDA3A140078C96F /* SpeakerGrid.h */,
+				D2B1883D1DDA3A140078C96F /* Utilities.cpp */,
+				D2B1883E1DDA3A140078C96F /* Utilities.h */,
+			);
+			path = 4d;
+			sourceTree = "<group>";
+		};
+		D2B1883F1DDA3A140078C96F /* 4dService */ = {
+			isa = PBXGroup;
+			children = (
+				D2B188401DDA3A140078C96F /* casi */,
+				D2B1884D1DDA3A140078C96F /* DistanceDiffusion.cpp */,
+				D2B1884E1DDA3A140078C96F /* DistanceDiffusion.h */,
+				D2B1884F1DDA3A140078C96F /* SpatialDelay.cpp */,
+				D2B188501DDA3A140078C96F /* SpatialDelay.h */,
+				D2B188511DDA3A140078C96F /* SpatialDistanceModulator.cpp */,
+				D2B188521DDA3A140078C96F /* SpatialDistanceModulator.h */,
+				D2B188531DDA3A140078C96F /* SpatialFunctions.cpp */,
+				D2B188541DDA3A140078C96F /* SpatialFunctions.h */,
+				D2B188551DDA3A140078C96F /* SpatialGain.cpp */,
+				D2B188561DDA3A140078C96F /* SpatialGain.h */,
+				D2B188571DDA3A140078C96F /* SpatialGrainVoice.cpp */,
+				D2B188581DDA3A140078C96F /* SpatialGrainVoice.h */,
+				D2B188591DDA3A140078C96F /* SpatialGranulator.cpp */,
+				D2B1885A1DDA3A140078C96F /* SpatialGranulator.h */,
+				D2B1885B1DDA3A140078C96F /* SpatialModulator.cpp */,
+				D2B1885C1DDA3A140078C96F /* SpatialModulator.h */,
+				D2B1885D1DDA3A140078C96F /* SpatialOutput.cpp */,
+				D2B1885E1DDA3A140078C96F /* SpatialOutput.h */,
+				D2B1885F1DDA3A140078C96F /* SpatialPanner.cpp */,
+				D2B188601DDA3A140078C96F /* SpatialPanner.h */,
+				D2B188611DDA3A140078C96F /* SpatialService.cpp */,
+				D2B188621DDA3A140078C96F /* SpatialService.h */,
+				D2B188631DDA3A140078C96F /* SpeakerGridComponent.cpp */,
+				D2B188641DDA3A140078C96F /* SpeakerGridComponent.h */,
+				D2B188651DDA3A140078C96F /* Transform.cpp */,
+				D2B188661DDA3A140078C96F /* Transform.h */,
+			);
+			path = 4dService;
+			sourceTree = "<group>";
+		};
+		D2B188401DDA3A140078C96F /* casi */ = {
+			isa = PBXGroup;
+			children = (
+				D2B188411DDA3A140078C96F /* AngleFilter.cpp */,
+				D2B188421DDA3A140078C96F /* AngleFilter.h */,
+				D2B188431DDA3A140078C96F /* AngleFilterObject.cpp */,
+				D2B188441DDA3A140078C96F /* AngleFilterObject.h */,
+				D2B188451DDA3A140078C96F /* DistanceDamping.cpp */,
+				D2B188461DDA3A140078C96F /* DistanceDamping.h */,
+				D2B188471DDA3A140078C96F /* DistanceIntensity.cpp */,
+				D2B188481DDA3A140078C96F /* DistanceIntensity.h */,
+				D2B188491DDA3A140078C96F /* Doppler.cpp */,
+				D2B1884A1DDA3A140078C96F /* Doppler.h */,
+				D2B1884B1DDA3A140078C96F /* ElevationFilter.cpp */,
+				D2B1884C1DDA3A140078C96F /* ElevationFilter.h */,
+			);
+			path = casi;
+			sourceTree = "<group>";
+		};
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,8 +1320,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				D251DADE1DB0D58D005EE74F /* 4d */,
-				D251DAE91DB0D58D005EE74F /* 4dService */,
+				D2B188331DDA3A140078C96F /* 4dsound */,
 				D28BE2FD1DA26200001E1ACB /* audiosettings.json */,
 				D260252D1D957CED0012AAD0 /* napgui */,
 				D22869B01D95780800682676 /* napof */,
@@ -1293,6 +1342,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D2B187911DDA01C20078C96F /* grainmodcomponent.cpp */,
+				D2B187921DDA01C20078C96F /* grainmodcomponent.h */,
 				D2430EE41DB50D0700BE4FFE /* ampcomponent.cpp */,
 				D2430EE51DB50D0700BE4FFE /* ampcomponent.h */,
 				D2430ED71DB38F3A00BE4FFE /* presetcomponent.cpp */,
@@ -1416,6 +1467,7 @@
 			files = (
 				D2430EE61DB50D0700BE4FFE /* ampcomponent.cpp in Sources */,
 				D22868701D95767D00682676 /* module.cpp in Sources */,
+				D2B1886B1DDA3A140078C96F /* Plane.cpp in Sources */,
 				D22868621D95767D00682676 /* attributeobject.cpp in Sources */,
 				D228692B1D9576AE00682676 /* Granulator.cpp in Sources */,
 				D228691A1D9576AE00682676 /* Convolver.cpp in Sources */,
@@ -1423,7 +1475,6 @@
 				D22868631D95767D00682676 /* cexport.cpp in Sources */,
 				D22869F71D95780800682676 /* napofsimplecamcomponent.cpp in Sources */,
 				D22869161D9576AE00682676 /* AudioObject.cpp in Sources */,
-				D251DB111DB0D58D005EE74F /* Source.cpp in Sources */,
 				D25F02F31D9AB126003AB96B /* AudioBufferStream.cpp in Sources */,
 				D22868711D95767D00682676 /* modulemanager.cpp in Sources */,
 				D22868671D95767D00682676 /* core.cpp in Sources */,
@@ -1432,39 +1483,37 @@
 				D2286A011D95780800682676 /* napofupdatecomponent.cpp in Sources */,
 				D25F02F11D9AAF4A003AB96B /* AudioFileComponent.cpp in Sources */,
 				D26025571D957E530012AAD0 /* ofxSvg.cpp in Sources */,
+				D2B188811DDA3A140078C96F /* Transform.cpp in Sources */,
 				D22869FC1D95780800682676 /* napofsplinemodulationcomponent.cpp in Sources */,
+				D2B1887B1DDA3A140078C96F /* SpatialGranulator.cpp in Sources */,
 				D28BE2F81D9FF49A001E1ACB /* audio.cpp in Sources */,
 				D26025441D957CED0012AAD0 /* splitlayout.cpp in Sources */,
 				D228691B1D9576AE00682676 /* CrossfadeObject.cpp in Sources */,
-				D22868C51D95769500682676 /* OscComponent.cpp in Sources */,
 				D22869241D9576AE00682676 /* Oscillator.cpp in Sources */,
-				D251DB0F1DB0D58D005EE74F /* Common.cpp in Sources */,
 				D228686E1D95767D00682676 /* link.cpp in Sources */,
+				D2B1887D1DDA3A140078C96F /* SpatialOutput.cpp in Sources */,
+				D2B1887F1DDA3A140078C96F /* SpatialService.cpp in Sources */,
 				D242C50D1D9E7FF400B6546C /* tinyxmlerror.cpp in Sources */,
 				D225D3261DAAA014003CAB28 /* nofattributewrapper.cpp in Sources */,
 				D22869F81D95780800682676 /* napofsimpleshapecomponent.cpp in Sources */,
 				D22868741D95767D00682676 /* objectutils.cpp in Sources */,
-				D22868C61D95769500682676 /* OscService.cpp in Sources */,
 				D2430EDC1DB38F3A00BE4FFE /* settingserializer.cpp in Sources */,
 				D22869321D9576AE00682676 /* AudioStream.cpp in Sources */,
 				D2430EDB1DB38F3A00BE4FFE /* presetcomponent.cpp in Sources */,
 				D22869F41D95780800682676 /* napofrendercomponent.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				D228692E1D9576AE00682676 /* OutputUnit.cpp in Sources */,
-				D251DB101DB0D58D005EE74F /* Plane.cpp in Sources */,
 				D22869301D9576AE00682676 /* Unit.cpp in Sources */,
 				D228691C1D9576AE00682676 /* Delay.cpp in Sources */,
 				D242C5131D9E8D1E00B6546C /* ResonatorUnit.cpp in Sources */,
-				D251DB251DB0D58D005EE74F /* Transform.cpp in Sources */,
+				D2B187901DD9FA480078C96F /* AudioService.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				D22868C31D95769500682676 /* MathFunctions.cpp in Sources */,
-				D2D9E3C81DB128DB00727A32 /* SpatialGrainVoice.cpp in Sources */,
 				D22868751D95767D00682676 /* operator.cpp in Sources */,
-				D251DB121DB0D58D005EE74F /* SpeakerGrid.cpp in Sources */,
 				D22868C01D95769500682676 /* DataTypes.cpp in Sources */,
 				D2430EDF1DB4E38F00BE4FFE /* SchedulerService.cpp in Sources */,
+				D2B1887C1DDA3A140078C96F /* SpatialModulator.cpp in Sources */,
 				D228691D1D9576AE00682676 /* DelayObject.cpp in Sources */,
-				D251DB131DB0D58D005EE74F /* Utilities.cpp in Sources */,
 				D22868661D95767D00682676 /* configure.cpp in Sources */,
 				A680F8A59954562DB8777D24 /* splineutils.cpp in Sources */,
 				D22868801D95767D00682676 /* xmlserializer.cpp in Sources */,
@@ -1481,14 +1530,19 @@
 				BAFB107040D72FEC3341CA05 /* ofxBaseGui.cpp in Sources */,
 				D22868691D95767D00682676 /* coretypeconverters.cpp in Sources */,
 				D260253F1D957CED0012AAD0 /* fractionlayout.cpp in Sources */,
+				D2B188761DDA3A140078C96F /* SpatialDelay.cpp in Sources */,
+				D2B1887A1DDA3A140078C96F /* SpatialGrainVoice.cpp in Sources */,
 				D26025561D957E530012AAD0 /* svgtiny_list.cpp in Sources */,
 				D22868681D95767D00682676 /* coremodule.cpp in Sources */,
+				D2B188741DDA3A140078C96F /* ElevationFilter.cpp in Sources */,
 				D22869311D9576AE00682676 /* WavReader.cpp in Sources */,
 				D22869FA1D95780800682676 /* napofsoundcomponent.cpp in Sources */,
+				D2B1886C1DDA3A140078C96F /* Source.cpp in Sources */,
 				D22868BD1D95769500682676 /* OptionControl.cpp in Sources */,
 				D22869F91D95780800682676 /* napofslideshowcomponent.cpp in Sources */,
 				D22869F51D95780800682676 /* napofservice.cpp in Sources */,
 				D22868721D95767D00682676 /* object.cpp in Sources */,
+				D2B1886F1DDA3A140078C96F /* AngleFilter.cpp in Sources */,
 				D242C50C1D9E7FF400B6546C /* tinyxml.cpp in Sources */,
 				D22869211D9576AE00682676 /* GainObject.cpp in Sources */,
 				D22869F01D95780800682676 /* napofimagecomponent.cpp in Sources */,
@@ -1501,6 +1555,7 @@
 				D28BE2FB1DA25141001E1ACB /* jsoncomponent.cpp in Sources */,
 				D22868771D95767D00682676 /* patchcomponent.cpp in Sources */,
 				D26025531D957E530012AAD0 /* src_colors.cpp in Sources */,
+				D2B188731DDA3A140078C96F /* Doppler.cpp in Sources */,
 				D228692F1D9576AE00682676 /* Router.cpp in Sources */,
 				44EE8434D982FB5E34E3C4C0 /* ofxGuiGroup.cpp in Sources */,
 				D225D32A1DAAA13F003CAB28 /* jsonchooser.cpp in Sources */,
@@ -1511,10 +1566,9 @@
 				D22869AF1D9577E700682676 /* ofetherdream.cpp in Sources */,
 				D22868C41D95769500682676 /* UtilityFunctions.cpp in Sources */,
 				D228692D1D9576AE00682676 /* InputUnit.cpp in Sources */,
-				D251DB221DB0D58D005EE74F /* SpatialPanner.cpp in Sources */,
 				D260253E1D957CED0012AAD0 /* boxlayout.cpp in Sources */,
-				D251DB231DB0D58D005EE74F /* SpatialService.cpp in Sources */,
 				D251DB281DB0E5B0005EE74F /* Panner.cpp in Sources */,
+				D2B188771DDA3A140078C96F /* SpatialDistanceModulator.cpp in Sources */,
 				D242C50F1D9E7FF400B6546C /* ofxXmlSettings.cpp in Sources */,
 				D26025401D957CED0012AAD0 /* gridlayout.cpp in Sources */,
 				D22869A51D95776900682676 /* netherdream.cpp in Sources */,
@@ -1523,9 +1577,9 @@
 				D26025541D957E530012AAD0 /* svgtiny.cpp in Sources */,
 				D228687D1D95767D00682676 /* stringutils.cpp in Sources */,
 				D22868781D95767D00682676 /* plug.cpp in Sources */,
+				D2B187941DDA01C20078C96F /* grainmodcomponent.cpp in Sources */,
 				D22868BC1D95769500682676 /* ControlManager.cpp in Sources */,
 				D22869AE1D9577E700682676 /* napetherservice.cpp in Sources */,
-				D22868C81D95769500682676 /* OFControlPanel.cpp in Sources */,
 				D22869FE1D95780800682676 /* napofspritecomponent.cpp in Sources */,
 				D228686D1D95767D00682676 /* fileutils.cpp in Sources */,
 				D228686F1D95767D00682676 /* logger.cpp in Sources */,
@@ -1533,21 +1587,23 @@
 				D228687E1D95767D00682676 /* tinyxml2.cpp in Sources */,
 				D228686C1D95767D00682676 /* eventdispatcher.cpp in Sources */,
 				D26025451D957CED0012AAD0 /* typeconverters.cpp in Sources */,
-				D22869261D9576AE00682676 /* AudioDevice.cpp in Sources */,
 				1D4E7251C73F2E4511101089 /* ofxLabel.cpp in Sources */,
 				D22868C21D95769500682676 /* AudioFunctions.cpp in Sources */,
 				D2286A001D95780800682676 /* napoftransform.cpp in Sources */,
 				D22868651D95767D00682676 /* componentdependency.cpp in Sources */,
 				D28BE3001DA29183001E1ACB /* AudioFileService.cpp in Sources */,
 				D22869331D9576AE00682676 /* MidiProcessor.cpp in Sources */,
+				D2B188781DDA3A140078C96F /* SpatialFunctions.cpp in Sources */,
+				D2B187981DDA086B0078C96F /* coreattributes.cpp in Sources */,
 				D228692A1D9576AE00682676 /* GrainVoice.cpp in Sources */,
-				D25CD4B51DB24CFF00E713F8 /* SpeakerGridComponent.cpp in Sources */,
+				D2B1886E1DDA3A140078C96F /* Utilities.cpp in Sources */,
 				D22869FB1D95780800682676 /* napofsplinecomponent.cpp in Sources */,
 				D228691F1D9576AE00682676 /* FFT.cpp in Sources */,
+				D2B1886D1DDA3A140078C96F /* SpeakerGrid.cpp in Sources */,
+				D2B1886A1DDA3A140078C96F /* Common.cpp in Sources */,
 				D225D3271DAAA014003CAB28 /* nofparamattrlink.cpp in Sources */,
 				D22869281D9576AE00682676 /* Effect.cpp in Sources */,
 				20C6C6351D615148B2203E63 /* ofxPanel.cpp in Sources */,
-				D251DB1F1DB0D58D005EE74F /* SpatialGranulator.cpp in Sources */,
 				D26025551D957E530012AAD0 /* svgtiny_gradient.cpp in Sources */,
 				2068C3FB4EC238D25C2F2FEC /* ofxSlider.cpp in Sources */,
 				D228687A1D95767D00682676 /* service.cpp in Sources */,
@@ -1568,13 +1624,20 @@
 				D22868791D95767D00682676 /* serializer.cpp in Sources */,
 				D22869171D9576AE00682676 /* AudioObjectManager.cpp in Sources */,
 				D22868611D95767D00682676 /* attribute.cpp in Sources */,
+				D2B188701DDA3A140078C96F /* AngleFilterObject.cpp in Sources */,
 				D22869251D9576AE00682676 /* StreamPlayer.cpp in Sources */,
 				D22869271D9576AE00682676 /* AudioPlug.cpp in Sources */,
 				D242C5021D9E7C4B00B6546C /* settings.cpp in Sources */,
+				D2B188791DDA3A140078C96F /* SpatialGain.cpp in Sources */,
 				D22869F11D95780800682676 /* napoflagcomponent.cpp in Sources */,
 				55CF4715B43E2CF1EA4B3DE6 /* ofxToggle.cpp in Sources */,
+				D2B188721DDA3A140078C96F /* DistanceIntensity.cpp in Sources */,
 				D26025431D957CED0012AAD0 /* rect.cpp in Sources */,
+				D2B188751DDA3A140078C96F /* DistanceDiffusion.cpp in Sources */,
+				D2B188711DDA3A140078C96F /* DistanceDamping.cpp in Sources */,
 				D22869FF1D95780800682676 /* napoftracecomponent.cpp in Sources */,
+				D2B188801DDA3A140078C96F /* SpeakerGridComponent.cpp in Sources */,
+				D2B1887E1DDA3A140078C96F /* SpatialPanner.cpp in Sources */,
 				D22869ED1D95780800682676 /* napofattributes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1683,13 +1746,13 @@
 					../napnaivi/core/src,
 					../napnaivi/napetherservice/modules/napof/src,
 					../napnaivi/modules/napof/src,
-					../nap/thirdparty,
 					../nap/stijnlibutility,
 					../netherdream/src,
 					../nap/stijnlibaudio,
 					../nap/netherdream/netherdream,
 					../napnaivi/modules/napgui/src,
 					../nap/4dsound,
+					../thirdparty,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1702,7 +1765,6 @@
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
-					"-lthirdparty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -1733,13 +1795,13 @@
 					../napnaivi/core/src,
 					../napnaivi/napetherservice/modules/napof/src,
 					../napnaivi/modules/napof/src,
-					../nap/thirdparty,
 					../nap/stijnlibutility,
 					../netherdream/src,
 					../nap/stijnlibaudio,
 					../nap/netherdream/netherdream,
 					../napnaivi/modules/napgui/src,
 					../nap/4dsound,
+					../thirdparty,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1753,7 +1815,6 @@
 				OTHER_LDFLAGS = (
 					"$(OF_CORE_LIBS)",
 					"$(OF_CORE_FRAMEWORKS)",
-					"-lthirdparty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

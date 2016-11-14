@@ -9,7 +9,7 @@
 #include <nap/patch.h>
 
 // Audio Includes
-#include <Lib/Audio/Unit/AudioDevice.h>
+#include <Lib/Audio/Unit/AudioService.h>
 #include <Lib/Audio/Utility/AudioFile/AudioFileService.h>
 #include <Lib/Audio/Unit/Granular/Granulator.h>
 #include <Lib/Utility/Scheduler/SchedulerService.h>

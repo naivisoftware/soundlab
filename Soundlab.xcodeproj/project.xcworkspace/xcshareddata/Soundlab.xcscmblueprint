@@ -6,6 +6,7 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "C4EF82D008985A414CC9F5455D781496452D6526" : 0,
     "E0E505E6CB658039E01DB108E67D68125CDF59DB" : 0,
+    "61C3E85EFE2BAAD66C5B1369B4F9CDAB28B88F79" : 0,
     "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7" : 0,
     "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A" : 0
   },
@@ -13,6 +14,7 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "C4EF82D008985A414CC9F5455D781496452D6526" : "nap\/",
     "E0E505E6CB658039E01DB108E67D68125CDF59DB" : "netherdream\/",
+    "61C3E85EFE2BAAD66C5B1369B4F9CDAB28B88F79" : "4dsound\/",
     "BF4FEE629AD59B6CC2243BADE63CC0131F1DFDC7" : "soundlab\/",
     "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A" : "napnaivi\/"
   },
@@ -24,6 +26,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/naivisoftware\/nap.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5FE56591BCBEEB8AFBDA25A3B7D9CF8A8D2FCE9A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stijnvanbeek\/4dsound.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "61C3E85EFE2BAAD66C5B1369B4F9CDAB28B88F79"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/naivisoftware\/soundlab.git",

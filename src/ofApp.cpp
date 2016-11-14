@@ -342,6 +342,7 @@ void ofApp::createAudio()
 	audioService->setBufferSize(64);
 	audioService->setSampleRate(44100);
 	audioService->setActive(true);
+    audioService->master.setValue(0.5);
 
     audioComposition = make_unique<AudioComposition>(mCore.getRoot(), ofFile("audiosettings.json").getAbsolutePath());
 

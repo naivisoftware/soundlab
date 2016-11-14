@@ -1,6 +1,6 @@
 #include <ampcomponent.h>
 #include <nap/entity.h>
-#include <Lib/Audio/Unit/AudioDevice.h>
+#include <Lib/Audio/Unit/AudioService.h>
 #include <Utils/nofUtils.h>
 #include <napoftransform.h>
 #include <napofsplinemodulationcomponent.h>
